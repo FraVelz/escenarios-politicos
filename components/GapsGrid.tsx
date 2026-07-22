@@ -32,13 +32,13 @@ export function GapsGrid({ gaps }: { gaps: GapItem[] }) {
           <Link
             href={`/casos/${g.caso_id}`}
             className={cn(
-              "font-mono text-sm text-white no-underline hover:text-iris-glow",
+              "text-base text-white no-underline hover:text-iris-glow",
               focusRingInline,
             )}
           >
             {g.caso_id}
           </Link>
-          <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] text-warn">
+          <ul className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-warn">
             {g.campos.map((c) => (
               <li key={c}>
                 <span className="text-muted-foreground">N/D · </span>

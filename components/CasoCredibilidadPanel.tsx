@@ -28,9 +28,7 @@ export function CasoCredibilidadPanel({
         animate="show"
       >
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            Credibilidad
-          </p>
+          <p className="text-sm text-muted-foreground">Credibilidad</p>
           <p className="mt-2">
             <AnimatedNumber
               value={credibilidad}
@@ -45,7 +43,7 @@ export function CasoCredibilidadPanel({
               centralidad={centralidad}
             />
           </div>
-          <ul className="mt-4 space-y-1 font-mono text-[11px] text-muted-foreground">
+          <ul className="mt-4 space-y-1 text-sm text-muted-foreground">
             <li>especificidad: {especificidad} (peso 45%)</li>
             <li>repetición_norm: {repeticion_norm} (peso 25%)</li>
             <li>centralidad: {centralidad} (peso 30%)</li>

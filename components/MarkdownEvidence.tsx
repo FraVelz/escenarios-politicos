@@ -53,7 +53,7 @@ export function MarkdownEvidence({
             </h2>
           )}
           {file && (
-            <p className="font-mono text-[11px] text-iris">{file}</p>
+            <p className="font-mono text-xs text-iris">{file}</p>
           )}
         </header>
       )}

@@ -28,39 +28,27 @@ export function CasoMetricsGrid({
         animate="show"
       >
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] text-muted-foreground">
-            Menciones
-          </p>
-          <p className="mt-1 font-mono text-lg tabular-nums text-white">
-            {n_menciones}
-          </p>
+          <p className="text-sm text-muted-foreground">Menciones</p>
+          <p className="mt-1 text-lg tabular-nums text-white">{n_menciones}</p>
         </CrossCell>
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] text-muted-foreground">
-            Especificidad
-          </p>
-          <p className="mt-1 font-mono text-lg tabular-nums text-white">
-            {especificidad}
-          </p>
+          <p className="text-sm text-muted-foreground">Especificidad</p>
+          <p className="mt-1 text-lg tabular-nums text-white">{especificidad}</p>
         </CrossCell>
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] text-muted-foreground">
-            Importancia
-          </p>
-          <p className="mt-1 text-sm text-bone">{importancia}</p>
+          <p className="text-sm text-muted-foreground">Importancia</p>
+          <p className="mt-1 text-base text-bone">{importancia}</p>
         </CrossCell>
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] text-muted-foreground">
-            Factibilidad
-          </p>
-          <p className="mt-1 text-sm text-bone">{factibilidad}</p>
+          <p className="text-sm text-muted-foreground">Factibilidad</p>
+          <p className="mt-1 text-base text-bone">{factibilidad}</p>
         </CrossCell>
         <CrossCell
           variants={itemBlur}
           className="col-span-full sm:col-span-2"
         >
-          <p className="font-mono text-[11px] text-muted-foreground">Función</p>
-          <p className="mt-1 text-sm text-bone">
+          <p className="text-sm text-muted-foreground">Función</p>
+          <p className="mt-1 text-base text-bone">
             {funcion_retorica ?? "N/D"}
           </p>
         </CrossCell>

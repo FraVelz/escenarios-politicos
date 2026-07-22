@@ -22,7 +22,7 @@ export function PlaybookSidebar({ items }: { items: PlaybookNavItem[] }) {
     <aside className="w-full shrink-0 lg:sticky lg:top-14 lg:w-56 xl:w-64">
       <p
         id="playbook-nav-label"
-        className="mb-2 px-1 font-mono text-[11px] font-normal uppercase tracking-wider text-muted-foreground"
+        className="mb-2 px-1 text-sm text-muted-foreground"
       >
         Capítulos
       </p>
@@ -58,12 +58,14 @@ export function PlaybookSidebar({ items }: { items: PlaybookNavItem[] }) {
                         aria-hidden
                       />
                     )}
-                    <span className="relative z-10 w-5 shrink-0 font-mono text-[11px] text-muted-foreground">
+                    <span className="relative z-10 w-6 shrink-0 text-sm text-muted-foreground">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="relative z-10 min-w-0">
-                      <span className="block leading-snug">{item.label}</span>
-                      <span className="mt-0.5 block font-mono text-[10px] text-iris/70">
+                      <span className="block text-base leading-snug">
+                        {item.label}
+                      </span>
+                      <span className="mt-0.5 block text-xs text-muted-foreground">
                         {item.file}
                       </span>
                     </span>

@@ -49,18 +49,14 @@ export function CasosHomeClient({
         animate="show"
       >
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            Identidad
-          </p>
+          <p className="text-sm text-muted-foreground">Identidad</p>
           <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{identidad.length}</p>
-          <p className="mt-2 text-xs text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground">
             Casos con discurso identidad
           </p>
         </CrossCell>
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            Top credibilidad
-          </p>
+          <p className="text-sm text-muted-foreground">Top credibilidad</p>
           <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>
             {topCred[0] ? (
               <AnimatedNumber value={topCred[0].credibilidad} suffix="%" />
@@ -68,23 +64,19 @@ export function CasosHomeClient({
               "—"
             )}
           </p>
-          <p className="mt-2 truncate text-xs text-muted-foreground">
+          <p className="mt-2 truncate text-sm text-muted-foreground">
             {topCred[0]?.titulo ?? "Sin casos"}
           </p>
         </CrossCell>
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            Alertas
-          </p>
+          <p className="text-sm text-muted-foreground">Alertas</p>
           <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{alertas.length}</p>
-          <p className="mt-2 text-xs text-muted-foreground">Señales activas</p>
+          <p className="mt-2 text-sm text-muted-foreground">Señales activas</p>
         </CrossCell>
         <CrossCell variants={itemBlur}>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            Gaps
-          </p>
+          <p className="text-sm text-muted-foreground">Gaps</p>
           <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{gapsCount}</p>
-          <p className="mt-2 text-xs text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground">
             <Link
               href="/gaps"
               className={cn(
@@ -118,13 +110,13 @@ export function CasosHomeClient({
                 <Link
                   href={`/casos/${c.id}`}
                   className={cn(
-                    "block text-sm text-white no-underline hover:text-iris-glow",
+                    "block text-base text-white no-underline hover:text-iris-glow",
                     focusRingInline,
                   )}
                 >
                   {c.titulo}
                 </Link>
-                <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                <p className="mt-1 text-sm text-muted-foreground">
                   {c.discurso_identidad ? "identidad · " : ""}
                   factibilidad: {c.factibilidad}
                 </p>
@@ -134,20 +126,18 @@ export function CasosHomeClient({
                 suffix="%"
                 className="text-xl"
               />
-              <span className="font-mono text-[11px] text-muted-foreground">
-                cred.
-              </span>
+              <span className="text-sm text-muted-foreground">cred.</span>
             </CrossRow>
           ))
         )}
       </CrossGrid>
 
-      <Reveal delay={0.2} y={8} as="p" className="font-mono text-[11px] text-muted-foreground">
+      <Reveal delay={0.2} y={8} as="p" className="text-sm text-muted-foreground">
         Fuente de datos: <span className="text-bone">{source}</span>
       </Reveal>
 
       <section>
-        <Reveal as="h2" delay={0.12} y={10} className="mb-4 text-sm font-medium tracking-tight text-white">
+        <Reveal as="h2" delay={0.12} y={10} className="mb-4 text-base font-medium tracking-tight text-white">
           Alertas
         </Reveal>
         {alertas.length === 0 ? (
@@ -165,12 +155,12 @@ export function CasosHomeClient({
                 variants={fadeUp}
                 className="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3"
               >
-                <span className="font-mono text-[11px] text-warn">{a.tipo}</span>
-                <span className="text-sm text-bone">{a.mensaje}</span>
+                <span className="text-sm text-warn">{a.tipo}</span>
+                <span className="text-base text-bone">{a.mensaje}</span>
                 <Link
                   href={`/casos/${a.caso_id}`}
                   className={cn(
-                    "font-mono text-[11px] text-iris no-underline hover:text-iris-glow",
+                    "text-sm text-iris no-underline hover:text-iris-glow",
                     focusRingInline,
                   )}
                 >

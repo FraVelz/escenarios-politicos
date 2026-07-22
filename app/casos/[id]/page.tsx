@@ -44,7 +44,7 @@ export default async function CasoDetailPage({
         <h1 className="max-w-3xl text-2xl font-medium tracking-tight text-white sm:text-3xl md:text-4xl md:tracking-[-0.02em]">
           {caso.titulo}
         </h1>
-        <p className="font-mono text-[11px] text-muted-foreground">
+        <p className="text-sm text-muted-foreground">
           {meta.join(" · ")}
         </p>
       </header>

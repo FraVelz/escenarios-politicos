@@ -24,13 +24,13 @@ function CasosTable({ casos }: { casos: Caso[] }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Caso</TableHead>
-            <TableHead className="w-20">Cred.%</TableHead>
-            <TableHead className="w-24">Menciones</TableHead>
-            <TableHead className="w-20">Espec.</TableHead>
-            <TableHead>Importancia</TableHead>
-            <TableHead>Factibilidad</TableHead>
-            <TableHead>Flags</TableHead>
+            <TableHead className="text-sm">Caso</TableHead>
+            <TableHead className="w-24 text-sm">Cred.%</TableHead>
+            <TableHead className="w-28 text-sm">Menciones</TableHead>
+            <TableHead className="w-24 text-sm">Espec.</TableHead>
+            <TableHead className="text-sm">Importancia</TableHead>
+            <TableHead className="text-sm">Factibilidad</TableHead>
+            <TableHead className="text-sm">Flags</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -40,34 +40,37 @@ function CasosTable({ casos }: { casos: Caso[] }) {
                 <Link
                   href={`/casos/${c.id}`}
                   className={cn(
-                    "text-sm text-white no-underline hover:text-iris-glow",
+                    "text-base text-white no-underline hover:text-iris-glow",
                     focusRingInline,
                   )}
                 >
                   {c.titulo}
                 </Link>
-                <div className="mt-0.5 font-mono text-[11px] text-muted-foreground">
+                <div className="mt-1 text-sm text-muted-foreground">
                   <Link
                     href="/fuentes"
-                    className={cn("hover:text-bone", focusRingInline)}
+                    className={cn(
+                      "text-smoke no-underline hover:text-white",
+                      focusRingInline,
+                    )}
                   >
-                    ver fuentes
+                    Ver fuentes
                   </Link>
                 </div>
               </TableCell>
               <TableCell>
-                <span className="font-mono tabular-nums text-iris">
+                <span className="font-mono text-base tabular-nums text-iris">
                   {c.credibilidad}
                 </span>
               </TableCell>
-              <TableCell className="font-mono tabular-nums">
+              <TableCell className="tabular-nums text-bone">
                 {c.n_menciones}
               </TableCell>
-              <TableCell className="font-mono tabular-nums">
+              <TableCell className="tabular-nums text-bone">
                 {c.especificidad}
               </TableCell>
-              <TableCell>{c.importancia}</TableCell>
-              <TableCell>{c.factibilidad}</TableCell>
+              <TableCell className="text-bone">{c.importancia}</TableCell>
+              <TableCell className="text-bone">{c.factibilidad}</TableCell>
               <TableCell>
                 <CasoFlags c={c} />
               </TableCell>
@@ -116,7 +119,7 @@ export function CasosPageClient({ all }: { all: Caso[] }) {
         title="Casos"
         description="Agrupados por área. Dentro de cada área: credibilidad %, frecuencia y factibilidad."
       >
-        <p className="font-mono text-[11px] text-muted-foreground">
+        <p className="text-sm text-muted-foreground">
           {all.length} casos · {byArea.length} áreas
         </p>
       </PageHeader>
@@ -127,9 +130,9 @@ export function CasosPageClient({ all }: { all: Caso[] }) {
         <Tabs defaultValue={defaultTab}>
           <TabsList className="flex h-auto max-w-full flex-wrap justify-start">
             {tabs.map((t) => (
-              <TabsTrigger key={t.id} value={t.id}>
+              <TabsTrigger key={t.id} value={t.id} className="text-sm">
                 {t.label}
-                <span className="ml-1.5 font-mono text-[10px] text-muted-foreground">
+                <span className="ml-1.5 text-sm text-muted-foreground">
                   {t.count}
                 </span>
               </TabsTrigger>

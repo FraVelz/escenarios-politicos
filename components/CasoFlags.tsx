@@ -10,12 +10,10 @@ export function CasoFlags({ c }: { c: Caso }) {
     flags.push("relato≠capacidad");
 
   if (flags.length === 0) {
-    return <span className="font-mono text-[11px] text-muted-foreground">—</span>;
+    return <span className="text-sm text-muted-foreground">—</span>;
   }
 
   return (
-    <span className="font-mono text-[11px] text-muted-foreground">
-      {flags.join(" · ")}
-    </span>
+    <span className="text-sm text-muted-foreground">{flags.join(" · ")}</span>
   );
 }

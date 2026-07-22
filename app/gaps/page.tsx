@@ -12,7 +12,7 @@ export default function GapsPage() {
         description={
           <>
             Nada se omite: lo incompleto aparece aquí como{" "}
-            <code className="rounded-none border border-border px-1 py-0.5 font-mono text-[11px] text-iris">
+            <code className="rounded-none border border-border px-1.5 py-0.5 font-mono text-sm text-iris">
               N/D
             </code>{" "}
             o lista de pendientes.
