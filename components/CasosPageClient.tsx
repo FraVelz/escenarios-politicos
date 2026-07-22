@@ -137,7 +137,7 @@ export function CasosPageClient({ all }: { all: Caso[] }) {
           </TabsList>
           {tabs.map((t) => (
             <TabsContent key={t.id} value={t.id}>
-              <FadeIn y={6}>
+              <FadeIn key={t.id} y={10} blur>
                 <CasosTable casos={t.casos} />
               </FadeIn>
             </TabsContent>

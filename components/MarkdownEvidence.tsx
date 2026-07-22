@@ -138,13 +138,13 @@ export function MarkdownEvidence({
           <motion.div
             key="preview"
             role="tabpanel"
-            initial={reduce ? false : { opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -4 }}
-            transition={{ duration: reduce ? 0 : 0.22, ease: easeOut }}
+            initial={reduce ? false : { opacity: 0, y: 8, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={reduce ? undefined : { opacity: 0, y: -4, filter: "blur(4px)" }}
+            transition={{ duration: reduce ? 0 : 0.2, ease: easeOut }}
           >
             <article
-              className="prose-md max-w-none text-sm leading-relaxed text-foreground"
+              className="prose prose-invert max-w-none text-sm leading-relaxed prose-headings:font-medium prose-a:text-iris-glow prose-code:rounded-none prose-code:border prose-code:border-border prose-code:bg-transparent prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-iris prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-none prose-pre:border prose-pre:border-border prose-pre:bg-black"
               dangerouslySetInnerHTML={{ __html: html }}
             />
           </motion.div>
@@ -152,10 +152,10 @@ export function MarkdownEvidence({
           <motion.div
             key="codigo"
             role="tabpanel"
-            initial={reduce ? false : { opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -4 }}
-            transition={{ duration: reduce ? 0 : 0.22, ease: easeOut }}
+            initial={reduce ? false : { opacity: 0, y: 8, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={reduce ? undefined : { opacity: 0, y: -4, filter: "blur(4px)" }}
+            transition={{ duration: reduce ? 0 : 0.2, ease: easeOut }}
           >
             <pre className="whitespace-pre-wrap break-words rounded-none border border-border bg-black p-5 font-mono text-xs leading-relaxed text-bone">
               {markdown}

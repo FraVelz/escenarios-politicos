@@ -2,8 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { CasoCredibilidadPanel } from "@/components/CasoCredibilidadPanel";
+import { CasoMetricsGrid } from "@/components/CasoMetricsGrid";
 import { CasoMencionesClient } from "@/components/CasoMencionesClient";
-import { CrossCell, CrossGrid } from "@/components/CrossGrid";
 import { areaLabel } from "@/lib/areas";
 import { getCasoSync, listMencionesSync } from "@/lib/data";
 import { focusRingInline } from "@/lib/focus";
@@ -59,44 +59,13 @@ export default async function CasoDetailPage({
           />
         </div>
         <div className="md:-ml-px">
-          <CrossGrid cols={2} className="h-full sm:grid-cols-2">
-            <CrossCell>
-              <p className="font-mono text-[11px] text-muted-foreground">
-                Menciones
-              </p>
-              <p className="mt-1 font-mono text-lg tabular-nums text-white">
-                {caso.n_menciones}
-              </p>
-            </CrossCell>
-            <CrossCell>
-              <p className="font-mono text-[11px] text-muted-foreground">
-                Especificidad
-              </p>
-              <p className="mt-1 font-mono text-lg tabular-nums text-white">
-                {caso.especificidad}
-              </p>
-            </CrossCell>
-            <CrossCell>
-              <p className="font-mono text-[11px] text-muted-foreground">
-                Importancia
-              </p>
-              <p className="mt-1 text-sm text-bone">{caso.importancia}</p>
-            </CrossCell>
-            <CrossCell>
-              <p className="font-mono text-[11px] text-muted-foreground">
-                Factibilidad
-              </p>
-              <p className="mt-1 text-sm text-bone">{caso.factibilidad}</p>
-            </CrossCell>
-            <CrossCell className="col-span-full sm:col-span-2">
-              <p className="font-mono text-[11px] text-muted-foreground">
-                Función
-              </p>
-              <p className="mt-1 text-sm text-bone">
-                {caso.funcion_retorica ?? "N/D"}
-              </p>
-            </CrossCell>
-          </CrossGrid>
+          <CasoMetricsGrid
+            n_menciones={caso.n_menciones}
+            especificidad={caso.especificidad}
+            importancia={caso.importancia}
+            factibilidad={caso.factibilidad}
+            funcion_retorica={caso.funcion_retorica}
+          />
         </div>
       </div>
 

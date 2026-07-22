@@ -35,7 +35,7 @@ export function CredibilidadDesgloseChart({
 
   return (
     <div
-      className="chart-inert h-44 w-full"
+      className="h-44 w-full outline-none [&_*]:outline-none [&_*]:shadow-none"
       role="img"
       aria-label={label}
     >

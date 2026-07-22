@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SkipLink } from "@/components/SkipLink";
+import { PAGE_GRID_BG } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const inter = Inter({
@@ -45,13 +47,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body>
+      <body className={cn("relative min-h-full", PAGE_GRID_BG)}>
         <SkipLink />
         <SiteHeader />
         <div
           id="contenido-principal"
           tabIndex={-1}
-          className="mx-auto max-w-[1200px] px-4 pb-16 pt-8 outline-none sm:px-6 lg:px-8"
+          className="relative mx-auto max-w-[1200px] px-4 pb-16 pt-8 outline-none sm:px-6 lg:px-8"
         >
           {children}
         </div>

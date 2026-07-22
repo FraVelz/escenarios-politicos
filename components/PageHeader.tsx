@@ -21,34 +21,36 @@ export function PageHeader({
   return (
     <motion.div
       className={cn("mb-8 space-y-2", className)}
-      initial={reduce ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: reduce ? 0 : 0.4, ease: easeOut }}
+      initial={
+        reduce ? false : { opacity: 0, y: 16, filter: "blur(6px)" }
+      }
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: reduce ? 0 : 0.5, ease: easeOut }}
     >
       <h1 className="text-2xl font-medium tracking-tight text-white sm:text-3xl">
         {title}
       </h1>
       {description && (
-        <motion.p
+        <motion.div
           className="max-w-2xl text-sm text-muted-foreground sm:text-[0.95rem]"
-          initial={reduce ? false : { opacity: 0, y: 6 }}
+          initial={reduce ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: reduce ? 0 : 0.4,
-            delay: reduce ? 0 : 0.06,
+            duration: reduce ? 0 : 0.45,
+            delay: reduce ? 0 : 0.08,
             ease: easeOut,
           }}
         >
           {description}
-        </motion.p>
+        </motion.div>
       )}
       {children && (
         <motion.div
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            duration: reduce ? 0 : 0.35,
-            delay: reduce ? 0 : 0.1,
+            duration: reduce ? 0 : 0.4,
+            delay: reduce ? 0 : 0.12,
             ease: easeOut,
           }}
         >

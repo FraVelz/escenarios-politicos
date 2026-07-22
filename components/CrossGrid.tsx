@@ -1,12 +1,16 @@
+"use client";
+
 import * as React from "react";
+import { motion, type HTMLMotionProps } from "motion/react";
+import { CROSS_CELL, CROSS_GRID, CROSS_ROW } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
-type CrossGridProps = React.ComponentProps<"div"> & {
+type CrossGridProps = HTMLMotionProps<"div"> & {
   cols?: 1 | 2 | 3 | 4;
 };
 
 /**
- * Rejilla sharp sin gap: bordes compartidos + cruces charcoal en intersecciones.
+ * Rejilla sharp sin gap — motion.div para stagger / reveal.
  */
 export function CrossGrid({
   className,
@@ -24,18 +28,13 @@ export function CrossGrid({
           : "grid-cols-2 lg:grid-cols-4";
 
   return (
-    <div
+    <motion.div
       data-slot="cross-grid"
-      className={cn("cross-grid", colsClass, className)}
-      style={
-        {
-          "--cross-cols": cols,
-        } as React.CSSProperties
-      }
+      className={cn(CROSS_GRID, colsClass, className)}
       {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -43,15 +42,15 @@ export function CrossCell({
   className,
   children,
   ...props
-}: React.ComponentProps<"div">) {
+}: HTMLMotionProps<"div">) {
   return (
-    <div
+    <motion.div
       data-slot="cross-cell"
-      className={cn("cross-cell group/cell", className)}
+      className={cn(CROSS_CELL, className)}
       {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -60,14 +59,14 @@ export function CrossRow({
   className,
   children,
   ...props
-}: React.ComponentProps<"div">) {
+}: HTMLMotionProps<"div">) {
   return (
-    <div
+    <motion.div
       data-slot="cross-row"
-      className={cn("cross-cell cross-row col-span-full", className)}
+      className={cn(CROSS_ROW, className)}
       {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

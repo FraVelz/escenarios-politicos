@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { SCORE_MONO } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
 /** Número animado sutil para % de credibilidad */
@@ -38,7 +39,7 @@ export function AnimatedNumber({
 
   return (
     <motion.span
-      className={cn("score-mono tabular-nums", className)}
+      className={cn(SCORE_MONO, "tabular-nums", className)}
       initial={reduce ? false : { opacity: 0.4 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.35 }}

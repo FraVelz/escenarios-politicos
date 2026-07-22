@@ -23,7 +23,7 @@ export function SiteHeader() {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-[25px]"
+      className="sticky top-0 z-40 border-b border-border bg-black/95 backdrop-blur-[25px]"
       initial={reduce ? false : { opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduce ? 0 : 0.35, ease: easeOut }}
@@ -78,7 +78,7 @@ export function SiteHeader() {
                     layoutId={reduce ? undefined : "nav-active"}
                     aria-hidden
                     className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-[calc(100%-1.25rem)] -translate-x-1/2 bg-primary"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 34 }}
                   />
                 )}
               </Link>

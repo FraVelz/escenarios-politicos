@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { Alerta, Caso } from "@/lib/types";
 import { useLiveCasos } from "@/components/LiveCasos";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { CrossCell, CrossGrid, CrossRow } from "@/components/CrossGrid";
-import { useMotionPresets } from "@/components/motion";
+import { Reveal, easeOut, useMotionPresets } from "@/components/motion";
 import { focusRingInline } from "@/lib/focus";
+import { SCORE_MONO } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
 function buildRanking(identidad: Caso[], topCred: Caso[]): Caso[] {
@@ -35,31 +36,34 @@ export function CasosHomeClient({
   gapsCount: number;
 }) {
   const { source } = useLiveCasos(initialCasos);
-  const { stagger, item } = useMotionPresets();
-  const container = stagger(0.04);
+  const { stagger, itemBlur, fadeUp } = useMotionPresets();
+  const reduce = useReducedMotion();
   const ranking = buildRanking(identidad, topCred);
 
   return (
     <div className="space-y-12">
-      <CrossGrid cols={4}>
-        <CrossCell>
+      <CrossGrid
+        cols={4}
+        variants={stagger(0.07)}
+        initial="hidden"
+        animate="show"
+      >
+        <CrossCell variants={itemBlur}>
           <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
             Identidad
           </p>
-          <p className="score-mono mt-2 text-3xl">{identidad.length}</p>
+          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{identidad.length}</p>
           <p className="mt-2 text-xs text-muted-foreground">
             Casos con discurso identidad
           </p>
         </CrossCell>
-        <CrossCell>
+        <CrossCell variants={itemBlur}>
           <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
             Top credibilidad
           </p>
-          <p className="score-mono mt-2 text-3xl">
+          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>
             {topCred[0] ? (
-              <>
-                <AnimatedNumber value={topCred[0].credibilidad} suffix="%" />
-              </>
+              <AnimatedNumber value={topCred[0].credibilidad} suffix="%" />
             ) : (
               "—"
             )}
@@ -68,18 +72,18 @@ export function CasosHomeClient({
             {topCred[0]?.titulo ?? "Sin casos"}
           </p>
         </CrossCell>
-        <CrossCell>
+        <CrossCell variants={itemBlur}>
           <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
             Alertas
           </p>
-          <p className="score-mono mt-2 text-3xl">{alertas.length}</p>
+          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{alertas.length}</p>
           <p className="mt-2 text-xs text-muted-foreground">Señales activas</p>
         </CrossCell>
-        <CrossCell>
+        <CrossCell variants={itemBlur}>
           <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
             Gaps
           </p>
-          <p className="score-mono mt-2 text-3xl">{gapsCount}</p>
+          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{gapsCount}</p>
           <p className="mt-2 text-xs text-muted-foreground">
             <Link
               href="/gaps"
@@ -94,14 +98,22 @@ export function CasosHomeClient({
         </CrossCell>
 
         {ranking.length === 0 ? (
-          <CrossRow>
+          <CrossRow variants={itemBlur}>
             <p className="col-span-full text-sm text-muted-foreground">
               Sin casos en ranking.
             </p>
           </CrossRow>
         ) : (
           ranking.map((c) => (
-            <CrossRow key={c.id}>
+            <CrossRow
+              key={c.id}
+              variants={itemBlur}
+              whileHover={
+                reduce
+                  ? undefined
+                  : { x: 2, transition: { duration: 0.15, ease: easeOut } }
+              }
+            >
               <div className="min-w-0">
                 <Link
                   href={`/casos/${c.id}`}
@@ -130,27 +142,27 @@ export function CasosHomeClient({
         )}
       </CrossGrid>
 
-      <p className="font-mono text-[11px] text-muted-foreground">
+      <Reveal delay={0.2} y={8} as="p" className="font-mono text-[11px] text-muted-foreground">
         Fuente de datos: <span className="text-bone">{source}</span>
-      </p>
+      </Reveal>
 
       <section>
-        <h2 className="mb-4 text-sm font-medium tracking-tight text-white">
+        <Reveal as="h2" delay={0.12} y={10} className="mb-4 text-sm font-medium tracking-tight text-white">
           Alertas
-        </h2>
+        </Reveal>
         {alertas.length === 0 ? (
           <p className="text-sm text-muted-foreground">Sin alertas.</p>
         ) : (
           <motion.ul
             className="divide-y divide-border border-y border-border"
-            variants={container}
+            variants={stagger(0.06)}
             initial="hidden"
             animate="show"
           >
             {alertas.map((a) => (
               <motion.li
                 key={a.id}
-                variants={item}
+                variants={fadeUp}
                 className="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3"
               >
                 <span className="font-mono text-[11px] text-warn">{a.tipo}</span>

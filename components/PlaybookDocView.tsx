@@ -1,6 +1,7 @@
 "use client";
 
 import { MarkdownEvidence } from "@/components/MarkdownEvidence";
+import { Reveal } from "@/components/motion";
 
 /** Wrapper playbook: título + switcher Preview/Código */
 export function PlaybookDocView({
@@ -15,11 +16,13 @@ export function PlaybookDocView({
   html: string;
 }) {
   return (
-    <MarkdownEvidence
-      title={title}
-      file={file}
-      markdown={markdown}
-      html={html}
-    />
+    <Reveal y={14} delay={0.05}>
+      <MarkdownEvidence
+        title={title}
+        file={file}
+        markdown={markdown}
+        html={html}
+      />
+    </Reveal>
   );
 }
