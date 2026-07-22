@@ -1,8 +1,10 @@
 import type { EspecificidadChecklist, CredibilidadDesglose } from "./credibilidad";
+import type { AreaId } from "./areas";
 
 export type Caso = {
   id: string;
   titulo: string;
+  area: AreaId;
   actor_id: string;
   fase: "campana" | "transicion" | "gobierno";
   n_menciones: number;

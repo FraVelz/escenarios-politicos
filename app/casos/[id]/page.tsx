@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CasoMencionesClient } from "@/components/CasoMencionesClient";
+import { areaLabel } from "@/lib/areas";
 import { getCasoSync, listMencionesSync } from "@/lib/data";
 
 export default async function CasoDetailPage({
@@ -22,6 +24,7 @@ export default async function CasoDetailPage({
       {caso.discurso_identidad && (
         <span className="badge identidad">discurso identidad</span>
       )}
+      <span className="badge">{areaLabel(caso.area)}</span>
       <span className="badge">{caso.fase}</span>
       <span className="badge">revisión: {caso.revision}</span>
 
@@ -53,18 +56,7 @@ export default async function CasoDetailPage({
         </p>
       )}
 
-      <h2>Menciones</h2>
-      {menciones.length === 0 && <p className="muted">Sin menciones.</p>}
-      {menciones.map((m) => (
-        <div key={m.id} className="panel" style={{ marginBottom: "0.75rem" }}>
-          <div className="badge">{m.tipo_pieza}</div>
-          <div className="muted">{m.fecha}</div>
-          <blockquote style={{ margin: "0.5rem 0" }}>{m.cita_corta}</blockquote>
-          <a href={m.url} target="_blank" rel="noreferrer">
-            Fuente
-          </a>
-        </div>
-      ))}
+      <CasoMencionesClient casoId={id} initial={menciones} />
     </main>
   );
 }

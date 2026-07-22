@@ -25,11 +25,12 @@ Se registran **múltiples casos** a la vez. El informe de escenarios resume; los
 ### Cómo abrir un caso
 
 1. Título corto y estable (`id` slug: `empleo-formal`, `reforma-salud`).
-2. `actor_id` (candidato, presidente, coalición).
-3. `fase`: `campana` | `transicion` | `gobierno`.
-4. Primera mención con **URL + cita corta + fecha** (aunque sea la única).
-5. Campos siempre presentes: importancia, factibilidad, credibilidad, desglose, `discurso_identidad`, `campos_pendientes` (usar `"N/D"` si aún no hay juicio).
-6. `revision`: `pendiente` hasta revisión humana/agente.
+2. **Área** temática (`paz_seguridad`, `empleo`, `fiscal`, `salud`, `educacion`, `infraestructura`, `vivienda_social`, `justicia`, `exterior`).
+3. `actor_id` (candidato, presidente, coalición).
+4. `fase`: `campana` | `transicion` | `gobierno`.
+5. Primera mención con **URL + cita corta + fecha** (aunque sea la única).
+6. Campos siempre presentes: importancia, factibilidad, credibilidad, desglose, `discurso_identidad`, `campos_pendientes` (usar `"N/D"` si aún no hay juicio).
+7. `revision`: `pendiente` hasta revisión humana/agente.
 
 ### Reglas
 

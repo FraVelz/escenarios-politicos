@@ -3,6 +3,7 @@
 ```yaml
 id: ejemplo-empleo
 titulo: "Creación de empleo formal"
+area: empleo # paz_seguridad | empleo | fiscal | salud | educacion | infraestructura | vivienda_social | justicia | exterior
 actor_id: candidato-o-presidente
 fase: campana # campana | transicion | gobierno
 n_menciones: 1

@@ -1,21 +1,51 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isIngestWrite() {
+      return request.resource.data.keys().hasAny(['workflow_id'])
+        && request.resource.data.workflow_id is string
+        && request.resource.data.workflow_id.matches('^(wf-|seed-).*');
+    }
+
     match /casos/{id} {
       allow read: if true;
-      allow write: if false;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
     }
     match /menciones/{id} {
       allow read: if true;
-      allow write: if false;
-    }
-    match /eventos/{id} {
-      allow read: if true;
-      allow write: if false;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
     }
     match /indicadores/{id} {
       allow read: if true;
-      allow write: if false;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
+    }
+    match /raw_items/{id} {
+      allow read: if true;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
+    }
+    match /eventos/{id} {
+      allow read: if true;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
+    }
+    match /alertas/{id} {
+      allow read: if true;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
+    }
+    match /ingest_errors/{id} {
+      allow read: if true;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
+    }
+    match /ingest_runs/{id} {
+      allow read: if true;
+      allow create, update: if isIngestWrite();
+      allow delete: if false;
     }
     match /tensiones/{id} {
       allow read: if true;
@@ -27,22 +57,6 @@ service cloud.firestore {
     }
     match /informes/{id} {
       allow read: if true;
-      allow write: if false;
-    }
-    match /alertas/{id} {
-      allow read: if true;
-      allow write: if false;
-    }
-    match /ingest_errors/{id} {
-      allow read: if true;
-      allow write: if false;
-    }
-    match /ingest_runs/{id} {
-      allow read: if true;
-      allow write: if false;
-    }
-    match /raw_items/{id} {
-      allow read: if false;
       allow write: if false;
     }
     match /{document=**} {

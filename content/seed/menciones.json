@@ -7,16 +7,8 @@
     "url": "https://www.presidencia.gov.co/",
     "cita_corta": "Vamos a crear empleo para todos los colombianos.",
     "tipo_pieza": "discurso",
-    "ingerido_en": "2026-07-21T20:00:00Z",
-    "workflow_id": "seed-manual",
-    "evidencia_checklist": {
-      "plan_mecanismo": false,
-      "responsables_equipo": false,
-      "plazos": false,
-      "recursos": false,
-      "metricas": false,
-      "contraste_status_quo": false
-    }
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
   },
   {
     "id": "men-empleo-plan-01",
@@ -26,16 +18,8 @@
     "url": "https://www.mintrabajo.gov.co/",
     "cita_corta": "Plan de empleo formal con equipo en MinTrabajo, plazos a 18 meses, financiado con reasignación presupuestal e indicadores de formalización.",
     "tipo_pieza": "programa",
-    "ingerido_en": "2026-07-21T20:00:00Z",
-    "workflow_id": "seed-manual",
-    "evidencia_checklist": {
-      "plan_mecanismo": true,
-      "responsables_equipo": true,
-      "plazos": true,
-      "recursos": true,
-      "metricas": true,
-      "contraste_status_quo": true
-    }
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
   },
   {
     "id": "men-paz-identidad-01",
@@ -45,16 +29,19 @@
     "url": "https://www.presidencia.gov.co/",
     "cita_corta": "La paz es el corazón de este proyecto político; negociamos con estructura y contrastamos el modelo anterior.",
     "tipo_pieza": "discurso",
-    "ingerido_en": "2026-07-21T20:00:00Z",
-    "workflow_id": "seed-manual",
-    "evidencia_checklist": {
-      "plan_mecanismo": true,
-      "responsables_equipo": true,
-      "plazos": false,
-      "recursos": false,
-      "metricas": false,
-      "contraste_status_quo": true
-    }
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-seguridad-rural-01",
+    "caso_id": "seguridad-rural-eslogan",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-07-10",
+    "url": "https://www.presidencia.gov.co/",
+    "cita_corta": "Vamos a recuperar la seguridad en el campo.",
+    "tipo_pieza": "discurso",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
   },
   {
     "id": "men-fiscal-01",
@@ -62,17 +49,97 @@
     "actor_id": "actor-ejemplo-campana",
     "fecha": "2026-02-01",
     "url": "https://www.minhacienda.gov.co/",
-    "cita_corta": "Propuesta técnica de ajuste fiscal con mecanismos y plazos, sin despliegue discursivo de campaña.",
+    "cita_corta": "Propuesta técnica de ajuste fiscal con mecanismos y plazos.",
     "tipo_pieza": "programa",
-    "ingerido_en": "2026-07-21T20:00:00Z",
-    "workflow_id": "seed-manual",
-    "evidencia_checklist": {
-      "plan_mecanismo": true,
-      "responsables_equipo": false,
-      "plazos": true,
-      "recursos": true,
-      "metricas": false,
-      "contraste_status_quo": false
-    }
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-regla-fiscal-01",
+    "caso_id": "regla-fiscal-relajacion",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-06-01",
+    "url": "https://www.minhacienda.gov.co/",
+    "cita_corta": "Flexibilizar la regla fiscal con plazos y un mecanismo de transición, frente al status quo.",
+    "tipo_pieza": "discurso",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-salud-plan-01",
+    "caso_id": "salud-plan-hospitales",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-05-12",
+    "url": "https://www.minsalud.gov.co/",
+    "cita_corta": "Red hospitalaria regional con equipo gestor, cronograma a 36 meses, fuente de financiamiento e indicadores de cobertura.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-salud-eslogan-01",
+    "caso_id": "salud-eslogan-gratis",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-07-05",
+    "url": "https://www.presidencia.gov.co/",
+    "cita_corta": "Salud gratuita para todos.",
+    "tipo_pieza": "discurso",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-edu-01",
+    "caso_id": "educacion-jornada-unica",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-06-20",
+    "url": "https://www.mineducacion.gov.co/",
+    "cita_corta": "Piloto de jornada única con equipo en secretarías departamentales y contraste frente al modelo actual.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-infra-01",
+    "caso_id": "infra-metro-regional",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-05-20",
+    "url": "https://www.mintransporte.gov.co/",
+    "cita_corta": "Fases de metro/tren regional con plazos y esquema de financiamiento público-privado.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-vivienda-01",
+    "caso_id": "vivienda-subsidios",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-04-18",
+    "url": "https://www.minvivienda.gov.co/",
+    "cita_corta": "Cupos anuales de subsidio con equipo implementador y contraste al esquema vigente.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-justicia-01",
+    "caso_id": "justicia-reforma-procesal",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-02-28",
+    "url": "https://www.minjusticia.gov.co/",
+    "cita_corta": "Reforma procesal acotada con mecanismo, plazos y costo estimado.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-exterior-01",
+    "caso_id": "exterior-discurso-soberania",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-07-08",
+    "url": "https://www.cancilleria.gov.co/",
+    "cita_corta": "Defenderemos la soberanía en la política exterior.",
+    "tipo_pieza": "discurso",
+    "ingerido_en": "2026-07-21T21:30:00Z",
+    "workflow_id": "seed-manual"
   }
 ]

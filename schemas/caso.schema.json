@@ -7,6 +7,7 @@
   "required": [
     "id",
     "titulo",
+    "area",
     "actor_id",
     "fase",
     "n_menciones",
@@ -23,6 +24,20 @@
   "properties": {
     "id": { "type": "string", "minLength": 1 },
     "titulo": { "type": "string", "minLength": 1 },
+    "area": {
+      "type": "string",
+      "enum": [
+        "paz_seguridad",
+        "empleo",
+        "fiscal",
+        "salud",
+        "educacion",
+        "infraestructura",
+        "vivienda_social",
+        "justicia",
+        "exterior"
+      ]
+    },
     "actor_id": { "type": "string", "minLength": 1 },
     "fase": { "type": "string", "enum": ["campana", "transicion", "gobierno"] },
     "n_menciones": { "type": "integer", "minimum": 0 },

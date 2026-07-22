@@ -1,4 +1,10 @@
-import { workflow, node, trigger, sticky } from '@n8n/workflow-sdk';
+import {
+  workflow,
+  node,
+  trigger,
+  sticky,
+  expr,
+} from '@n8n/workflow-sdk';
 
 const schedule = trigger({
   type: 'n8n-nodes-base.scheduleTrigger',
@@ -7,7 +13,15 @@ const schedule = trigger({
     name: 'Weekly Macro',
     parameters: {
       rule: {
-        interval: [{ field: 'weeks', weeksInterval: 1, triggerAtDay: [1], triggerAtHour: 8, triggerAtMinute: 0 }],
+        interval: [
+          {
+            field: 'weeks',
+            weeksInterval: 1,
+            triggerAtDay: [1],
+            triggerAtHour: 8,
+            triggerAtMinute: 0,
+          },
+        ],
       },
     },
   },
@@ -34,10 +48,22 @@ const normalize = node({
     parameters: {
       mode: 'runOnceForAllItems',
       language: 'javaScript',
-      jsCode: `const body = $input.first().json;
-// World Bank returns [meta, data[]]
-const rows = Array.isArray(body) ? body[1] : (body?.[1] || []);
-const latest = (rows || []).find(r => r && r.value !== null) || rows?.[0] || {};
+      jsCode: `const items = $input.all().map(i => i.json);
+let rows = [];
+const first = items[0];
+if (Array.isArray(first) && Array.isArray(first[1])) {
+  rows = first[1];
+} else if (items.length >= 2 && Array.isArray(items[1]) && items[1][0]?.countryiso3code) {
+  rows = items[1];
+} else if (items.some(i => i && i.countryiso3code)) {
+  rows = items.filter(i => i && i.countryiso3code);
+} else {
+  for (const it of items) {
+    if (Array.isArray(it) && Array.isArray(it[1])) { rows = it[1]; break; }
+    if (Array.isArray(it) && it[0]?.countryiso3code) { rows = it; break; }
+  }
+}
+const latest = rows.find(r => r && r.value !== null && r.value !== undefined) || rows[0] || {};
 const indicador = {
   id: 'ind-inflacion-col',
   codigo: 'FP.CPI.TOTL.ZG',
@@ -50,23 +76,66 @@ const indicador = {
   updated_at: new Date().toISOString(),
   workflow_id: 'wf-a-macro',
 };
-// Validacion minima schema indicador
 const required = ['id','codigo','valor','fecha','fuente_url','pais'];
 const missing = required.filter(k => indicador[k] === undefined || indicador[k] === null || indicador[k] === '');
 if (missing.length) {
-  return [{ json: { ingest_error: true, reason: 'missing fields: ' + missing.join(','), payload: indicador } }];
+  return [{
+    json: {
+      collection: 'ingest_errors',
+      id: 'err-wf-a-' + Date.now(),
+      data: {
+        reason: 'missing fields: ' + missing.join(','),
+        payload: indicador,
+        workflow_id: 'wf-a-macro',
+        created_at: new Date().toISOString(),
+      },
+    },
+  }];
 }
-return [{ json: indicador }];`,
+return [{
+  json: {
+    collection: 'indicadores',
+    id: indicador.id,
+    data: indicador,
+  },
+}];`,
+    },
+  },
+});
+
+const postIngest = node({
+  type: 'n8n-nodes-base.httpRequest',
+  version: 4.4,
+  config: {
+    name: 'POST Firebase via API',
+    parameters: {
+      method: 'POST',
+      url: 'https://escenarios-politicos.vercel.app/api/ingest',
+      authentication: 'none',
+      sendHeaders: true,
+      headerParameters: {
+        parameters: [
+          { name: 'Content-Type', value: 'application/json' },
+          { name: 'x-ingest-secret', value: 'escenarios-dev-ingest' },
+        ],
+      },
+      sendBody: true,
+      contentType: 'json',
+      specifyBody: 'json',
+      jsonBody: expr(
+        '={{ JSON.stringify({ collection: $json.collection, id: $json.id, data: $json.data }) }}',
+      ),
     },
   },
 });
 
 const note = sticky(
-  'WF-A Macro Colombia: World Bank → indicador normalizado. Conectar HTTP Firebase/Admin o Data Table para persistir. Si ingest_error=true → colección ingest_errors.',
+  'WF-A → POST /api/ingest → Firestore. Header x-ingest-secret debe coincidir con INGEST_SECRET en Vercel.',
 );
 
 export default workflow('wf-a-macro-colombia', 'CO WF-A Macro World Bank')
   .add(schedule)
   .to(fetchWb)
   .to(normalize)
+  .to(postIngest)
   .add(note);
