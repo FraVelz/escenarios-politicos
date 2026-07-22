@@ -1,6 +1,11 @@
 import seedCasos from "@/content/seed/casos.json";
 import seedMenciones from "@/content/seed/menciones.json";
-import type { Alerta, Caso, Mencion } from "./types";
+import seedMarco from "@/content/seed/marco.json";
+import type { Alerta, Caso, MarcoPolitico, Mencion } from "./types";
+
+export function getMarcoSync(): MarcoPolitico {
+  return seedMarco as MarcoPolitico;
+}
 
 export function listCasosSync(): Caso[] {
   return seedCasos as Caso[];

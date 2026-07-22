@@ -1,0 +1,124 @@
+{
+  "tipo_analisis": "Análisis de discurso político colombiano con credibilidad % auditable (especificidad × repetición × centralidad) y escenarios base/optimista/pesimista. No es pronóstico electoral ni probabilidad inventada de cumplimiento.",
+  "estado_acto": "transicion_pre_posesion",
+  "actualizado_at": "2026-07-22T15:00:00Z",
+  "pregunta_central": "En la transición Petro → De la Espriella, ¿qué temas de discurso tienen relato creíble frente a factibilidad en horizontes 30/90/365 días?",
+  "horizontes_dias": [30, 90, 365],
+  "presidente_ejercicio": {
+    "nombre": "Gustavo Petro",
+    "rol_label": "Presidente en ejercicio",
+    "periodo_inicio": "2022-08-07",
+    "periodo_fin": "2026-08-07",
+    "imagen_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Presidente_Gustavo_Petro_Urrego.jpg",
+    "imagen_credito": "Departamento Nacional de Planeación (Flickr) vía Wikimedia Commons",
+    "imagen_fuente_url": "https://commons.wikimedia.org/wiki/File:Presidente_Gustavo_Petro_Urrego.jpg",
+    "fuentes": [
+      {
+        "medio": "Infobae",
+        "url": "https://www.infobae.com/colombia/2026/06/17/esta-es-la-fecha-en-la-que-gustavo-petro-entregara-la-presidencia-de-colombia-a-su-sucesor/",
+        "fecha": "2026-06-17",
+        "nota": "Cierre de mandato el 7 de agosto de 2026"
+      },
+      {
+        "medio": "Wikipedia (Inauguration of Abelardo de la Espriella)",
+        "url": "https://en.wikipedia.org/wiki/Inauguration_of_Abelardo_de_la_Espriella",
+        "fecha": "2026-07-22",
+        "nota": "Petro como saliente en la posesión del 7 ago 2026"
+      }
+    ]
+  },
+  "presidente_electo_o_sucesor": {
+    "nombre": "Abelardo de la Espriella",
+    "rol_label": "Presidente electo",
+    "posesion_at": "2026-08-07",
+    "periodo_inicio": "2026-08-07",
+    "periodo_fin": "2030-08-07",
+    "vice_nombre": "José Manuel Restrepo",
+    "imagen_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Colombian_Presidential_Candidate_Abelardo_de_la_Espriella_%28cropped%29.jpg",
+    "imagen_credito": "Wikimedia Commons",
+    "imagen_fuente_url": "https://commons.wikimedia.org/wiki/File:Colombian_Presidential_Candidate_Abelardo_de_la_Espriella_(cropped).jpg",
+    "fuentes": [
+      {
+        "medio": "El País América Colombia",
+        "url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html",
+        "fecha": "2026-07-17",
+        "nota": "Posesión el 7 de agosto de 2026"
+      },
+      {
+        "medio": "Caracol Radio",
+        "url": "https://caracol.com.co/2026/06/21/fecha-de-la-posesion-de-abelardo-de-la-espriella-el-nuevo-presidente-de-colombia-2026-2030/",
+        "fecha": "2026-06-21",
+        "nota": "Periodo 2026–2030; mención a fórmula vicepresidencial"
+      },
+      {
+        "medio": "El Espectador",
+        "url": "https://www.elespectador.com/politica/abelardo-de-la-espriella-alista-su-posesion-presidencial-del-7-de-agosto-seria-en-una-guarnicion-militar-y-estos-son-los-detalles-noticias-hoy/",
+        "fecha": "2026-07",
+        "nota": "Preparativos de posesión; debate sobre sede"
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "fecha": "2026-06-21",
+      "titulo": "Segunda vuelta presidencial",
+      "detalle": "Resultado electoral que define al presidente electo (Abelardo de la Espriella).",
+      "fuente_url": "https://www.infobae.com/colombia/2026/06/17/esta-es-la-fecha-en-la-que-gustavo-petro-entregara-la-presidencia-de-colombia-a-su-sucesor/"
+    },
+    {
+      "fecha": "2026-06",
+      "titulo": "Inicio de transición / empalme",
+      "detalle": "Periodo entre elección y posesión; prensa documenta tensiones en el empalme (verificar estado actual en cada revisión).",
+      "fuente_url": "https://www.infobae.com/colombia/2026/07/08/abelardo-de-la-espriella-confirmo-que-se-posesionara-en-una-guarnicion-militar-como-nunca-se-ha-hecho/"
+    },
+    {
+      "fecha": "2026-08-07",
+      "titulo": "Posesión presidencial",
+      "detalle": "Fecha constitucional de posesión (conmemoración Batalla de Boyacá). Inicia mandato 2026–2030.",
+      "fuente_url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html"
+    },
+    {
+      "fecha": "2026-08-07",
+      "titulo": "Cierre mandato Petro",
+      "detalle": "Fin del periodo constitucional del presidente en ejercicio.",
+      "fuente_url": "https://caracol.com.co/2026/06/21/fecha-de-la-posesion-de-abelardo-de-la-espriella-el-nuevo-presidente-de-colombia-2026-2030/"
+    }
+  ],
+  "contraste_ejes": [
+    {
+      "id": "seguridad_orden",
+      "titulo": "Seguridad y orden",
+      "lado_a": "Gobierno Petro: énfasis en paz total / reformas sociales (relato de mandato saliente).",
+      "lado_b": "Electo De la Espriella: discurso de seguridad y restablecimiento del orden; posesión simbólica ligada a fuerza pública (según prensa).",
+      "fuente_url": "https://www.infobae.com/colombia/2026/07/08/abelardo-de-la-espriella-confirmo-que-se-posesionara-en-una-guarnicion-militar-como-nunca-se-ha-hecho/"
+    },
+    {
+      "id": "instituciones_posesion",
+      "titulo": "Instituciones y forma de posesión",
+      "lado_a": "Tradición / marco constitucional: posesión ante el Congreso (Capitolio).",
+      "lado_b": "Electo plantea posesión en guarnición militar; debate jurídico y político en curso (jul 2026).",
+      "fuente_url": "https://en.mercopress.com/2026/07/10/colombia-s-president-elect-asks-congress-to-be-sworn-in-at-a-military-base"
+    },
+    {
+      "id": "paz_conflicto",
+      "titulo": "Paz y conflicto armado",
+      "lado_a": "N/D — contraste programático detallado pendiente de fuentes primarias del plan de gobierno.",
+      "lado_b": "N/D",
+      "fuente_url": null
+    },
+    {
+      "id": "fiscal_macro",
+      "titulo": "Fiscal y macro",
+      "lado_a": "N/D",
+      "lado_b": "N/D",
+      "fuente_url": null
+    },
+    {
+      "id": "politica_social",
+      "titulo": "Política social",
+      "lado_a": "N/D — reformas sociales del saliente citadas en movilización de cierre (prensa).",
+      "lado_b": "N/D",
+      "fuente_url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html"
+    }
+  ]
+}

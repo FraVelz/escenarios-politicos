@@ -1,6 +1,6 @@
 # Playbook Colombia — índice
 
-Manual operativo para el agente: **estructurar datos**, **investigar el acto/gobierno colombiano** y **registrar múltiples casos** (promesas/temas de discurso) con **credibilidad %** auditable.
+Manual operativo para el agente: **estructurar datos**, **investigar el acto/gobierno colombiano** y **registrar múltiples casos** (promesas/temas de discurso) con **credibilidad %** auditable. Doce temas + marco de transición en `marco.json` / `/contexto`.
 
 ## Cuándo usarlo
 

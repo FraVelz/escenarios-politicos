@@ -35,7 +35,10 @@
         "infraestructura",
         "vivienda_social",
         "justicia",
-        "exterior"
+        "exterior",
+        "energia_clima",
+        "agro_rural",
+        "tecnologia_estado"
       ]
     },
     "actor_id": { "type": "string", "minLength": 1 },

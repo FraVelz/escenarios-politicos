@@ -1,8 +1,9 @@
-import { listAlertasSync, listCasosSync, gapsFromCasos } from "@/lib/data";
+import { getMarcoSync, listAlertasSync, listCasosSync, gapsFromCasos } from "@/lib/data";
 import { CasosHomeClient } from "@/components/CasosHomeClient";
 import { HomeHero } from "@/components/HomeHero";
 
 export default function HomePage() {
+  const marco = getMarcoSync();
   const casos = listCasosSync();
   const alertas = listAlertasSync();
   const gaps = gapsFromCasos(casos);
@@ -13,7 +14,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <HomeHero />
+      <HomeHero marco={marco} />
       <CasosHomeClient
         initialCasos={casos}
         identidad={identidad}

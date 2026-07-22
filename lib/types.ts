@@ -22,6 +22,7 @@ export type Caso = {
   campos_pendientes: string[];
   updated_at: string;
   notas?: string;
+  workflow_id?: string;
 };
 
 export type Mencion = {
@@ -42,4 +43,57 @@ export type Alerta = {
   caso_id: string;
   mensaje: string;
   created_at: string;
+};
+
+export type MarcoFuente = {
+  medio: string;
+  url: string;
+  fecha: string;
+  nota?: string;
+};
+
+export type MarcoActor = {
+  nombre: string;
+  rol_label: string;
+  periodo_inicio?: string;
+  periodo_fin?: string;
+  posesion_at?: string;
+  vice_nombre?: string;
+  imagen_url?: string | null;
+  imagen_credito?: string | null;
+  imagen_fuente_url?: string | null;
+  fuentes: MarcoFuente[];
+};
+
+export type MarcoTimelineItem = {
+  fecha: string;
+  titulo: string;
+  detalle: string;
+  fuente_url?: string | null;
+};
+
+export type MarcoContrasteEje = {
+  id: string;
+  titulo: string;
+  lado_a: string;
+  lado_b: string;
+  fuente_url?: string | null;
+};
+
+export type EstadoActo =
+  | "gobierno_estable"
+  | "transicion_pre_posesion"
+  | "post_transicion_reciente"
+  | "sin_sucesor_conocido";
+
+export type MarcoPolitico = {
+  tipo_analisis: string;
+  estado_acto: EstadoActo;
+  actualizado_at: string;
+  pregunta_central: string;
+  horizontes_dias: number[];
+  presidente_ejercicio: MarcoActor;
+  presidente_electo_o_sucesor: MarcoActor;
+  timeline: MarcoTimelineItem[];
+  contraste_ejes: MarcoContrasteEje[];
 };

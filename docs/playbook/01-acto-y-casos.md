@@ -9,12 +9,33 @@ Definir **una frase** que ancla el análisis (no “todo el país”):
 - Reforma o crisis concreta
 - Ciclo electoral / precampaña
 
-Registrar en [`docs/colombia/00-brief.md`](../colombia/00-brief.md):
+Registrar en [`docs/colombia/00-brief.md`](../colombia/00-brief.md) y espejo tipado [`content/seed/marco.json`](../../content/seed/marco.json):
 
-- Fecha de actualización
-- Acto
-- Pregunta central
+- Fecha de actualización (`actualizado_at`)
+- `estado_acto`: `gobierno_estable` | `transicion_pre_posesion` | `post_transicion_reciente` | `sin_sucesor_conocido`
+- Acto + pregunta central + `tipo_analisis`
 - Horizontes: **30 / 90 / 365 días**
+- Actores (ejercicio / electo), timeline, contraste con **URL+fecha o N/D**
+- UI: `/contexto`
+
+## Doce temas (áreas)
+
+| id | Label |
+|----|--------|
+| `paz_seguridad` | Paz y seguridad |
+| `empleo` | Empleo y economía laboral |
+| `fiscal` | Fiscal y macro |
+| `salud` | Salud |
+| `educacion` | Educación |
+| `infraestructura` | Infraestructura y movilidad |
+| `vivienda_social` | Vivienda y política social |
+| `justicia` | Justicia e instituciones |
+| `exterior` | Política exterior |
+| `energia_clima` | Energía y clima |
+| `agro_rural` | Agro y desarrollo rural |
+| `tecnologia_estado` | Tecnología y Estado digital |
+
+Fuente de verdad código: [`lib/areas.ts`](../../lib/areas.ts). ≥1 caso por tema en el seed.
 
 ## Casos (unidad principal)
 
@@ -25,7 +46,7 @@ Se registran **múltiples casos** a la vez. El informe de escenarios resume; los
 ### Cómo abrir un caso
 
 1. Título corto y estable (`id` slug: `empleo-formal`, `reforma-salud`).
-2. **Área** temática (`paz_seguridad`, `empleo`, `fiscal`, `salud`, `educacion`, `infraestructura`, `vivienda_social`, `justicia`, `exterior`).
+2. **Área** temática (12 ids en `lib/areas.ts` / schema).
 3. `actor_id` (candidato, presidente, coalición).
 4. `fase`: `campana` | `transicion` | `gobierno`.
 5. Primera mención con **URL + cita corta + fecha** (aunque sea la única).

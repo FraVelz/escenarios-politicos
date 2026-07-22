@@ -2,8 +2,11 @@
 
 ## Hecho cuando
 
-- [ ] Brief Colombia actualizado (`docs/colombia/00-brief.md`)
-- [ ] ≥1 acto macro con pregunta central y horizontes 30/90/365
+- [ ] Brief Colombia actualizado (`docs/colombia/00-brief.md`) + espejo `content/seed/marco.json`
+- [ ] ≥1 acto macro con pregunta central, `estado_acto` y horizontes 30/90/365
+- [ ] Actores/fechas/contraste con URL+fecha o `N/D` (sin inventar)
+- [ ] 12 temas en `lib/areas.ts` / schema; ≥1 caso por tema
+- [ ] UI `/contexto` coherente con el marco
 - [ ] Múltiples casos con schemas válidos (required presentes)
 - [ ] Cada caso tiene `credibilidad` + `credibilidad_desglose`
 - [ ] Checklist de especificidad solo con evidencias citadas
