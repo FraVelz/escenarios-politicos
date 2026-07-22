@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escenarios-politicos.local/schemas/indicador.schema.json",
+  "title": "Indicador",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "codigo", "valor", "fecha", "fuente_url", "pais"],
+  "properties": {
+    "id": { "type": "string" },
+    "codigo": { "type": "string" },
+    "nombre": { "type": "string" },
+    "valor": { "type": ["number", "string"] },
+    "fecha": { "type": "string" },
+    "fuente_url": { "type": "string" },
+    "pais": { "type": "string", "const": "COL" },
+    "unidad": { "type": "string" },
+    "updated_at": { "type": "string" }
+  }
+}

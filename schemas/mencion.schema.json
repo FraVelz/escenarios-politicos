@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escenarios-politicos.local/schemas/mencion.schema.json",
+  "title": "Mencion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "caso_id",
+    "actor_id",
+    "fecha",
+    "url",
+    "cita_corta",
+    "tipo_pieza",
+    "ingerido_en",
+    "workflow_id"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "caso_id": { "type": "string" },
+    "actor_id": { "type": "string" },
+    "fecha": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "cita_corta": { "type": "string", "minLength": 1 },
+    "tipo_pieza": {
+      "type": "string",
+      "enum": ["discurso", "entrevista", "comunicado", "noticia", "debate", "programa"]
+    },
+    "ingerido_en": { "type": "string" },
+    "workflow_id": { "type": "string" },
+    "evidencia_checklist": {
+      "type": "object",
+      "properties": {
+        "plan_mecanismo": { "type": "boolean" },
+        "responsables_equipo": { "type": "boolean" },
+        "plazos": { "type": "boolean" },
+        "recursos": { "type": "boolean" },
+        "metricas": { "type": "boolean" },
+        "contraste_status_quo": { "type": "boolean" }
+      }
+    }
+  }
+}

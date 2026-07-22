@@ -1,0 +1,28 @@
+---
+description: Alcance del repo escenarios-politicos
+alwaysApply: true
+---
+
+# Escenarios políticos (Colombia)
+
+Dashboard **Next.js** + playbook + n8n → **Firebase Firestore**. Metodología en `docs/playbook/`.
+
+## Alcance
+
+- Solo Colombia; múltiples casos con credibilidad % auditable.
+- Web en `app/`; seed en `content/`; schemas en `schemas/`.
+- Respuestas al usuario en **español**.
+- Commits: ver `git-commits.mdc`.
+- Agente: `/colombia-actual` → playbook.
+
+## Prohibido
+
+- Inventar cifras, URLs o “probabilidad de cumplimiento al X%”.
+- Credibilidad % solo con fórmula del playbook + evidencias.
+- Scrapers agresivos o datos no públicos.
+- Commit de secretos / service accounts.
+- Escritura a Firestore desde el cliente web.
+
+## Legacy
+
+- `src/escenarios/` Python: opcional / legado; no es el camino crítico.

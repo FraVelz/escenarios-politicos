@@ -1,0 +1,35 @@
+# Python legacy
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+.env.local
+.env*.local
+
+# Node / Next
+node_modules/
+.next/
+out/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Data caches
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+*.local.md
+serviceAccount*.json
+*-firebase-adminsdk*.json
+.vercel

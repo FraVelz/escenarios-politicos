@@ -1,0 +1,13 @@
+[
+  {
+    "id": "ind-inflacion-col",
+    "codigo": "FP.CPI.TOTL.ZG",
+    "nombre": "Inflación (IPC, World Bank proxy)",
+    "valor": "N/D",
+    "fecha": "N/D",
+    "fuente_url": "https://api.worldbank.org/v2/country/COL/indicator/FP.CPI.TOTL.ZG?format=json",
+    "pais": "COL",
+    "unidad": "%",
+    "updated_at": "2026-07-21T20:00:00Z"
+  }
+]

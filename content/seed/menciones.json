@@ -1,0 +1,78 @@
+[
+  {
+    "id": "men-empleo-eslogan-01",
+    "caso_id": "empleo-eslogan",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-07-01",
+    "url": "https://www.presidencia.gov.co/",
+    "cita_corta": "Vamos a crear empleo para todos los colombianos.",
+    "tipo_pieza": "discurso",
+    "ingerido_en": "2026-07-21T20:00:00Z",
+    "workflow_id": "seed-manual",
+    "evidencia_checklist": {
+      "plan_mecanismo": false,
+      "responsables_equipo": false,
+      "plazos": false,
+      "recursos": false,
+      "metricas": false,
+      "contraste_status_quo": false
+    }
+  },
+  {
+    "id": "men-empleo-plan-01",
+    "caso_id": "empleo-con-plan",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-03-10",
+    "url": "https://www.mintrabajo.gov.co/",
+    "cita_corta": "Plan de empleo formal con equipo en MinTrabajo, plazos a 18 meses, financiado con reasignación presupuestal e indicadores de formalización.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-21T20:00:00Z",
+    "workflow_id": "seed-manual",
+    "evidencia_checklist": {
+      "plan_mecanismo": true,
+      "responsables_equipo": true,
+      "plazos": true,
+      "recursos": true,
+      "metricas": true,
+      "contraste_status_quo": true
+    }
+  },
+  {
+    "id": "men-paz-identidad-01",
+    "caso_id": "paz-total-identidad",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-06-15",
+    "url": "https://www.presidencia.gov.co/",
+    "cita_corta": "La paz es el corazón de este proyecto político; negociamos con estructura y contrastamos el modelo anterior.",
+    "tipo_pieza": "discurso",
+    "ingerido_en": "2026-07-21T20:00:00Z",
+    "workflow_id": "seed-manual",
+    "evidencia_checklist": {
+      "plan_mecanismo": true,
+      "responsables_equipo": true,
+      "plazos": false,
+      "recursos": false,
+      "metricas": false,
+      "contraste_status_quo": true
+    }
+  },
+  {
+    "id": "men-fiscal-01",
+    "caso_id": "reforma-fiscal-tecnica",
+    "actor_id": "actor-ejemplo-campana",
+    "fecha": "2026-02-01",
+    "url": "https://www.minhacienda.gov.co/",
+    "cita_corta": "Propuesta técnica de ajuste fiscal con mecanismos y plazos, sin despliegue discursivo de campaña.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-21T20:00:00Z",
+    "workflow_id": "seed-manual",
+    "evidencia_checklist": {
+      "plan_mecanismo": true,
+      "responsables_equipo": false,
+      "plazos": true,
+      "recursos": true,
+      "metricas": false,
+      "contraste_status_quo": false
+    }
+  }
+]

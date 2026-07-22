@@ -1,0 +1,15 @@
+---
+description: Metodología de escenarios Colombia
+alwaysApply: true
+---
+
+# Metodología
+
+- Fuente de verdad del agente: `docs/playbook/`.
+- Casos con frecuencia, especificidad, **credibilidad %**, importancia, factibilidad, discurso identidad.
+- Credibilidad = 0.45×especificidad + 0.25×repetición_norm + 0.30×centralidad (ver playbook 02).
+- Tres escenarios (base / optimista / pesimista) con señales; no confundir con credibilidad.
+- Toda cifra: valor + fecha + fuente. Si falta: `N/D`.
+- Completitud: fallos de ingest → `ingest_errors`; gaps visibles en `/gaps`.
+
+Referencias: `docs/playbook/00-indice.md`, `docs/metodologia/00-marco-general.md`.

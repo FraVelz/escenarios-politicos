@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escenarios-politicos.local/schemas/caso.schema.json",
+  "title": "Caso",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "titulo",
+    "actor_id",
+    "fase",
+    "n_menciones",
+    "especificidad",
+    "credibilidad",
+    "credibilidad_desglose",
+    "discurso_identidad",
+    "importancia",
+    "factibilidad",
+    "revision",
+    "updated_at",
+    "campos_pendientes"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "titulo": { "type": "string", "minLength": 1 },
+    "actor_id": { "type": "string", "minLength": 1 },
+    "fase": { "type": "string", "enum": ["campana", "transicion", "gobierno"] },
+    "n_menciones": { "type": "integer", "minimum": 0 },
+    "primera_mencion_at": { "type": ["string", "null"] },
+    "ultima_mencion_at": { "type": ["string", "null"] },
+    "especificidad": { "type": "number", "minimum": 0, "maximum": 100 },
+    "especificidad_checklist": {
+      "type": "object",
+      "properties": {
+        "plan_mecanismo": { "type": "boolean" },
+        "responsables_equipo": { "type": "boolean" },
+        "plazos": { "type": "boolean" },
+        "recursos": { "type": "boolean" },
+        "metricas": { "type": "boolean" },
+        "contraste_status_quo": { "type": "boolean" }
+      }
+    },
+    "credibilidad": { "type": "number", "minimum": 0, "maximum": 100 },
+    "credibilidad_desglose": {
+      "type": "object",
+      "required": ["especificidad", "repeticion_norm", "centralidad"],
+      "properties": {
+        "especificidad": { "type": "number" },
+        "repeticion_norm": { "type": "number" },
+        "centralidad": { "type": "number" }
+      }
+    },
+    "discurso_identidad": { "type": "boolean" },
+    "importancia": { "type": "string", "enum": ["alta", "media", "baja", "N/D"] },
+    "factibilidad": { "type": "string", "enum": ["alta", "media", "baja", "N/D"] },
+    "funcion_retorica": {
+      "type": "string",
+      "enum": ["votos", "agenda", "ambiguedad", "N/D"]
+    },
+    "revision": {
+      "type": "string",
+      "enum": ["pendiente", "en_seguimiento", "archivado"]
+    },
+    "campos_pendientes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "updated_at": { "type": "string" },
+    "notas": { "type": "string" }
+  }
+}

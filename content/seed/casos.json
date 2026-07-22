@@ -1,0 +1,130 @@
+[
+  {
+    "id": "empleo-eslogan",
+    "titulo": "Creación de empleo (eslogan sin plan)",
+    "actor_id": "actor-ejemplo-campana",
+    "fase": "campana",
+    "n_menciones": 15,
+    "primera_mencion_at": "2025-11-01",
+    "ultima_mencion_at": "2026-07-01",
+    "especificidad": 0,
+    "especificidad_checklist": {
+      "plan_mecanismo": false,
+      "responsables_equipo": false,
+      "plazos": false,
+      "recursos": false,
+      "metricas": false,
+      "contraste_status_quo": false
+    },
+    "credibilidad": 27,
+    "credibilidad_desglose": {
+      "especificidad": 0,
+      "repeticion_norm": 84,
+      "centralidad": 20
+    },
+    "discurso_identidad": false,
+    "importancia": "alta",
+    "factibilidad": "N/D",
+    "funcion_retorica": "votos",
+    "revision": "en_seguimiento",
+    "campos_pendientes": ["factibilidad"],
+    "updated_at": "2026-07-21T20:00:00Z",
+    "notas": "Ejemplo: mucha repetición, cero detalle. Credibilidad limitada pese a frecuencia."
+  },
+  {
+    "id": "empleo-con-plan",
+    "titulo": "Empleo formal con plan y equipo",
+    "actor_id": "actor-ejemplo-campana",
+    "fase": "campana",
+    "n_menciones": 1,
+    "primera_mencion_at": "2026-03-10",
+    "ultima_mencion_at": "2026-03-10",
+    "especificidad": 100,
+    "especificidad_checklist": {
+      "plan_mecanismo": true,
+      "responsables_equipo": true,
+      "plazos": true,
+      "recursos": true,
+      "metricas": true,
+      "contraste_status_quo": true
+    },
+    "credibilidad": 56,
+    "credibilidad_desglose": {
+      "especificidad": 100,
+      "repeticion_norm": 20,
+      "centralidad": 20
+    },
+    "discurso_identidad": false,
+    "importancia": "alta",
+    "factibilidad": "media",
+    "funcion_retorica": "agenda",
+    "revision": "en_seguimiento",
+    "campos_pendientes": [],
+    "updated_at": "2026-07-21T20:00:00Z",
+    "notas": "Ejemplo: una mención detallada supera al eslogan repetido en credibilidad."
+  },
+  {
+    "id": "paz-total-identidad",
+    "titulo": "Paz como eje de identidad de campaña",
+    "actor_id": "actor-ejemplo-campana",
+    "fase": "campana",
+    "n_menciones": 8,
+    "primera_mencion_at": "2025-10-01",
+    "ultima_mencion_at": "2026-06-15",
+    "especificidad": 55,
+    "especificidad_checklist": {
+      "plan_mecanismo": true,
+      "responsables_equipo": true,
+      "plazos": false,
+      "recursos": false,
+      "metricas": false,
+      "contraste_status_quo": true
+    },
+    "credibilidad": 72,
+    "credibilidad_desglose": {
+      "especificidad": 55,
+      "repeticion_norm": 69,
+      "centralidad": 100
+    },
+    "discurso_identidad": true,
+    "importancia": "alta",
+    "factibilidad": "baja",
+    "funcion_retorica": "votos",
+    "revision": "en_seguimiento",
+    "campos_pendientes": [],
+    "updated_at": "2026-07-21T20:00:00Z",
+    "notas": "Discurso identidad: máxima centralidad. Alta credibilidad del relato + baja factibilidad = alerta."
+  },
+  {
+    "id": "reforma-fiscal-tecnica",
+    "titulo": "Ajuste fiscal técnico (poco mencionado)",
+    "actor_id": "actor-ejemplo-campana",
+    "fase": "campana",
+    "n_menciones": 1,
+    "primera_mencion_at": "2026-02-01",
+    "ultima_mencion_at": "2026-02-01",
+    "especificidad": 60,
+    "especificidad_checklist": {
+      "plan_mecanismo": true,
+      "responsables_equipo": false,
+      "plazos": true,
+      "recursos": true,
+      "metricas": false,
+      "contraste_status_quo": false
+    },
+    "credibilidad": 35,
+    "credibilidad_desglose": {
+      "especificidad": 60,
+      "repeticion_norm": 20,
+      "centralidad": 10
+    },
+    "discurso_identidad": false,
+    "importancia": "alta",
+    "factibilidad": "media",
+    "funcion_retorica": "agenda",
+    "revision": "pendiente",
+    "campos_pendientes": [],
+    "updated_at": "2026-07-21T20:00:00Z",
+    "notas": "Baja frecuencia / alta importancia: no ignorar."
+  }
+]

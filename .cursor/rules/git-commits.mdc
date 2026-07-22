@@ -1,0 +1,29 @@
+---
+description: Git commits — no AI co-author trailers
+alwaysApply: true
+---
+
+# Git commits
+
+When creating or amending commits on behalf of the user:
+
+- **Never** add `Co-authored-by:`, `Signed-off-by:` for Cursor, or any AI/IDE co-author line unless the user explicitly asks for it.
+- The commit message must contain only what the user requested (Conventional Commits subject/body, etc.).
+- **Always** commit with a message file, not inline `-m`:
+
+  ```bash
+  git commit -F /tmp/commit-msg.txt
+  ```
+
+- **Always** verify immediately after commit:
+
+  ```bash
+  git log -1 --format=%B
+  ```
+
+  If the output contains `Co-authored-by: Cursor` (or any Cursor/AI trailer), fix **before** `git push`.
+
+- Follow [`.cursor/commands/auto-commit.md`](../commands/auto-commit.md) for message style only.
+- **Never** restore deleted files unless the user asks.
+- **Never** push a commit that still shows a Cursor co-author trailer in `git log -1 --format=%B`.
+- Do **not** push unless the user explicitly asks.

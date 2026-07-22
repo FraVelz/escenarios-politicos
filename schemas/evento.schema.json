@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escenarios-politicos.local/schemas/evento.schema.json",
+  "title": "Evento",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "titulo", "fecha", "url", "fuente", "ingerido_en"],
+  "properties": {
+    "id": { "type": "string" },
+    "titulo": { "type": "string" },
+    "fecha": { "type": "string" },
+    "url": { "type": "string" },
+    "fuente": { "type": "string", "enum": ["oficial", "medio", "datos", "otro"] },
+    "resumen": { "type": "string" },
+    "ingerido_en": { "type": "string" },
+    "workflow_id": { "type": "string" },
+    "caso_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
