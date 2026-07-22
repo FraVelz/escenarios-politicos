@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { readPlaybook } from "@/lib/playbook";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default async function PlaybookDocPage({
   params,
@@ -13,12 +16,21 @@ export default async function PlaybookDocPage({
 
   return (
     <main>
-      <p>
-        <Link href="/playbook">← Playbook</Link>
-      </p>
-      <article className="prose panel">
-        <pre style={{ whiteSpace: "pre-wrap", margin: 0 }}>{md}</pre>
-      </article>
+      <Button asChild variant="ghost" size="sm" className="mb-4 -ml-2">
+        <Link href="/playbook">
+          <ArrowLeft />
+          Playbook
+        </Link>
+      </Button>
+      <Card>
+        <CardContent className="p-5 sm:p-6">
+          <article className="prose-dashboard">
+            <pre className="m-0 whitespace-pre-wrap border-0 bg-transparent p-0 font-sans text-sm leading-relaxed text-foreground">
+              {md}
+            </pre>
+          </article>
+        </CardContent>
+      </Card>
     </main>
   );
 }

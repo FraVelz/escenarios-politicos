@@ -4,6 +4,7 @@ import {
   trigger,
   sticky,
   expr,
+  newCredential,
 } from '@n8n/workflow-sdk';
 
 const manual = trigger({
@@ -103,13 +104,11 @@ const postIngest = node({
     parameters: {
       method: 'POST',
       url: 'https://escenarios-politicos.vercel.app/api/ingest',
-      authentication: 'none',
+      authentication: 'genericCredentialType',
+      genericAuthType: 'httpHeaderAuth',
       sendHeaders: true,
       headerParameters: {
-        parameters: [
-          { name: 'Content-Type', value: 'application/json' },
-          { name: 'x-ingest-secret', value: 'escenarios-dev-ingest' },
-        ],
+        parameters: [{ name: 'Content-Type', value: 'application/json' }],
       },
       sendBody: true,
       contentType: 'json',
@@ -123,11 +122,14 @@ const postIngest = node({
         },
       },
     },
+    credentials: {
+      httpHeaderAuth: newCredential('Escenarios Ingest'),
+    },
   },
 });
 
 const note = sticky(
-  'WF-D: clasifica → menciones + casos vía /api/ingest. Ejecutar a mano. Header x-ingest-secret = INGEST_SECRET.',
+  'WF-D → menciones/casos vía /api/ingest. Credencial "Escenarios Ingest" (x-ingest-secret).',
 );
 
 export default workflow('wf-d-clasificar-colombia', 'CO WF-D Clasificar Credibilidad')

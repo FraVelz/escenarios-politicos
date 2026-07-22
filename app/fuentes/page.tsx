@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { FuentesMencionesClient } from "@/components/FuentesMencionesClient";
+import { PageHeader } from "@/components/PageHeader";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { listCasosSync, listMencionesSync } from "@/lib/data";
 
 export default function FuentesPage() {
@@ -11,18 +14,25 @@ export default function FuentesPage() {
 
   return (
     <main>
-      <h1>Fuentes y menciones</h1>
-      <p className="muted">
-        Cada tema (caso) con sus citas y URL de origen. Lo que ingiere n8n aparece
-        aquí cuando llega a Firestore.
-      </p>
+      <PageHeader
+        title="Fuentes y menciones"
+        description="Cada tema (caso) con sus citas y URL de origen. Lo que ingiere n8n aparece aquí cuando llega a Firestore."
+      />
 
       <FuentesMencionesClient initialMenciones={menciones} casos={casos} />
 
-      <h2 style={{ marginTop: "2.5rem" }}>Catálogo de fuentes (metodología)</h2>
-      <article className="prose panel">
-        <pre style={{ whiteSpace: "pre-wrap", margin: 0 }}>{md}</pre>
-      </article>
+      <Separator className="my-10" />
+
+      <h2 className="mb-3 text-lg font-semibold tracking-tight">
+        Catálogo de fuentes (metodología)
+      </h2>
+      <Card>
+        <CardContent className="p-5">
+          <pre className="prose-dashboard m-0 whitespace-pre-wrap font-mono text-xs text-foreground">
+            {md}
+          </pre>
+        </CardContent>
+      </Card>
     </main>
   );
 }

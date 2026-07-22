@@ -1,4 +1,4 @@
-/** Firebase client — lectura pública; escritura denegada por rules. */
+/** Firebase client — solo lectura; escritura denegada por rules (Admin SDK en /api/ingest). */
 import { initializeApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 

@@ -4,6 +4,7 @@ import {
   trigger,
   sticky,
   expr,
+  newCredential,
 } from '@n8n/workflow-sdk';
 
 const every6h = trigger({
@@ -90,13 +91,11 @@ const postIngest = node({
     parameters: {
       method: 'POST',
       url: 'https://escenarios-politicos.vercel.app/api/ingest',
-      authentication: 'none',
+      authentication: 'genericCredentialType',
+      genericAuthType: 'httpHeaderAuth',
       sendHeaders: true,
       headerParameters: {
-        parameters: [
-          { name: 'Content-Type', value: 'application/json' },
-          { name: 'x-ingest-secret', value: 'escenarios-dev-ingest' },
-        ],
+        parameters: [{ name: 'Content-Type', value: 'application/json' }],
       },
       sendBody: true,
       contentType: 'json',
@@ -110,11 +109,14 @@ const postIngest = node({
         },
       },
     },
+    credentials: {
+      httpHeaderAuth: newCredential('Escenarios Ingest'),
+    },
   },
 });
 
 const note = sticky(
-  'WF-C → raw_items en Firestore vía /api/ingest. Header x-ingest-secret = INGEST_SECRET. Max 15 items/run.',
+  'WF-C → raw_items vía /api/ingest. Credencial "Escenarios Ingest" (x-ingest-secret). Max 15 items/run.',
 );
 
 export default workflow('wf-c-rss-colombia', 'CO WF-C RSS Discurso/Medios')

@@ -32,4 +32,5 @@ data/processed/*
 *.local.md
 serviceAccount*.json
 *-firebase-adminsdk*.json
+.firebase-admin.json
 .vercel

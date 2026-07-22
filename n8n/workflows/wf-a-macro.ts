@@ -4,6 +4,7 @@ import {
   trigger,
   sticky,
   expr,
+  newCredential,
 } from '@n8n/workflow-sdk';
 
 const schedule = trigger({
@@ -111,13 +112,11 @@ const postIngest = node({
     parameters: {
       method: 'POST',
       url: 'https://escenarios-politicos.vercel.app/api/ingest',
-      authentication: 'none',
+      authentication: 'genericCredentialType',
+      genericAuthType: 'httpHeaderAuth',
       sendHeaders: true,
       headerParameters: {
-        parameters: [
-          { name: 'Content-Type', value: 'application/json' },
-          { name: 'x-ingest-secret', value: 'escenarios-dev-ingest' },
-        ],
+        parameters: [{ name: 'Content-Type', value: 'application/json' }],
       },
       sendBody: true,
       contentType: 'json',
@@ -126,11 +125,14 @@ const postIngest = node({
         '={{ JSON.stringify({ collection: $json.collection, id: $json.id, data: $json.data }) }}',
       ),
     },
+    credentials: {
+      httpHeaderAuth: newCredential('Escenarios Ingest'),
+    },
   },
 });
 
 const note = sticky(
-  'WF-A → POST /api/ingest → Firestore. Header x-ingest-secret debe coincidir con INGEST_SECRET en Vercel.',
+  'WF-A → /api/ingest (Admin SDK). Credencial Header Auth "Escenarios Ingest": Name=x-ingest-secret, Value=<INGEST_SECRET de Vercel>. Nunca pegar el secreto en el nodo.',
 );
 
 export default workflow('wf-a-macro-colombia', 'CO WF-A Macro World Bank')

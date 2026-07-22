@@ -1,51 +1,51 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Geist, Geist_Mono } from "next/font/google";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+
 export const metadata: Metadata = {
-  title: "Escenarios Colombia",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
+  title: {
+    default: "Escenarios Colombia",
+    template: "%s · Escenarios Colombia",
+  },
   description:
     "Casos, credibilidad del discurso y escenarios políticos — Colombia",
+  openGraph: {
+    title: "Escenarios Colombia",
+    description:
+      "Casos y credibilidad del discurso — análisis político Colombia",
+    type: "website",
+    locale: "es_CO",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Escenarios Colombia",
+    description:
+      "Casos y credibilidad del discurso — análisis político Colombia",
+  },
 };
-
-const links = [
-  { href: "/", label: "Inicio" },
-  { href: "/casos", label: "Casos" },
-  { href: "/gaps", label: "Gaps" },
-  { href: "/escenarios", label: "Escenarios" },
-  { href: "/fuentes", label: "Fuentes" },
-  { href: "/playbook", label: "Playbook" },
-];
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;550;650&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <div className="shell">
-          <nav>
-            <Link href="/" className="brand">
-              Escenarios Colombia
-            </Link>
-            {links.map((l) => (
-              <Link key={l.href} href={l.href}>
-                {l.label}
-              </Link>
-            ))}
-          </nav>
+        <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8 lg:py-6">
+          <SiteHeader />
           {children}
         </div>
       </body>
