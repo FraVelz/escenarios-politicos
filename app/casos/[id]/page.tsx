@@ -3,16 +3,11 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { CasoCredibilidadPanel } from "@/components/CasoCredibilidadPanel";
 import { CasoMencionesClient } from "@/components/CasoMencionesClient";
+import { CrossCell, CrossGrid } from "@/components/CrossGrid";
 import { areaLabel } from "@/lib/areas";
 import { getCasoSync, listMencionesSync } from "@/lib/data";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { focusRingInline } from "@/lib/focus";
+import { cn } from "@/lib/utils";
 
 export default async function CasoDetailPage({
   params,
@@ -25,76 +20,90 @@ export default async function CasoDetailPage({
   const menciones = listMencionesSync(id);
   const d = caso.credibilidad_desglose;
 
+  const meta = [
+    caso.discurso_identidad ? "discurso identidad" : null,
+    areaLabel(caso.area),
+    caso.fase,
+    `revisión: ${caso.revision}`,
+  ].filter(Boolean);
+
   return (
     <main>
-      <Button asChild variant="ghost" size="sm" className="mb-4 -ml-2">
-        <Link href="/casos">
-          <ArrowLeft />
-          Casos
-        </Link>
-      </Button>
+      <Link
+        href="/casos"
+        className={cn(
+          "mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground no-underline hover:text-white",
+          focusRingInline,
+        )}
+      >
+        <ArrowLeft className="size-3.5" aria-hidden />
+        Casos
+      </Link>
 
-      <div className="mb-6 space-y-3">
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+      <header className="mb-8 space-y-3">
+        <h1 className="max-w-3xl text-2xl font-medium tracking-tight text-white sm:text-3xl md:text-4xl md:tracking-[-0.02em]">
           {caso.titulo}
         </h1>
-        <div className="flex flex-wrap gap-1.5">
-          {caso.discurso_identidad && (
-            <Badge variant="identidad">discurso identidad</Badge>
-          )}
-          <Badge>{areaLabel(caso.area)}</Badge>
-          <Badge>{caso.fase}</Badge>
-          <Badge>revisión: {caso.revision}</Badge>
+        <p className="font-mono text-[11px] text-muted-foreground">
+          {meta.join(" · ")}
+        </p>
+      </header>
+
+      <div className="mb-8 grid gap-0 md:grid-cols-2">
+        <div className="md:pr-0">
+          <CasoCredibilidadPanel
+            credibilidad={caso.credibilidad}
+            especificidad={d.especificidad}
+            repeticion_norm={d.repeticion_norm}
+            centralidad={d.centralidad}
+          />
+        </div>
+        <div className="md:-ml-px">
+          <CrossGrid cols={2} className="h-full sm:grid-cols-2">
+            <CrossCell>
+              <p className="font-mono text-[11px] text-muted-foreground">
+                Menciones
+              </p>
+              <p className="mt-1 font-mono text-lg tabular-nums text-white">
+                {caso.n_menciones}
+              </p>
+            </CrossCell>
+            <CrossCell>
+              <p className="font-mono text-[11px] text-muted-foreground">
+                Especificidad
+              </p>
+              <p className="mt-1 font-mono text-lg tabular-nums text-white">
+                {caso.especificidad}
+              </p>
+            </CrossCell>
+            <CrossCell>
+              <p className="font-mono text-[11px] text-muted-foreground">
+                Importancia
+              </p>
+              <p className="mt-1 text-sm text-bone">{caso.importancia}</p>
+            </CrossCell>
+            <CrossCell>
+              <p className="font-mono text-[11px] text-muted-foreground">
+                Factibilidad
+              </p>
+              <p className="mt-1 text-sm text-bone">{caso.factibilidad}</p>
+            </CrossCell>
+            <CrossCell className="col-span-full sm:col-span-2">
+              <p className="font-mono text-[11px] text-muted-foreground">
+                Función
+              </p>
+              <p className="mt-1 text-sm text-bone">
+                {caso.funcion_retorica ?? "N/D"}
+              </p>
+            </CrossCell>
+          </CrossGrid>
         </div>
       </div>
 
-      <div className="mb-8 grid gap-4 md:grid-cols-2">
-        <CasoCredibilidadPanel
-          credibilidad={caso.credibilidad}
-          especificidad={d.especificidad}
-          repeticion_norm={d.repeticion_norm}
-          centralidad={d.centralidad}
-        />
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Métricas</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-              <div>
-                <dt className="text-muted-foreground">Menciones</dt>
-                <dd className="font-mono font-medium tabular-nums">
-                  {caso.n_menciones}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-muted-foreground">Especificidad</dt>
-                <dd className="font-mono font-medium tabular-nums">
-                  {caso.especificidad}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-muted-foreground">Importancia</dt>
-                <dd className="font-medium">{caso.importancia}</dd>
-              </div>
-              <div>
-                <dt className="text-muted-foreground">Factibilidad</dt>
-                <dd className="font-medium">{caso.factibilidad}</dd>
-              </div>
-              <div className="col-span-2">
-                <dt className="text-muted-foreground">Función</dt>
-                <dd className="font-medium">
-                  {caso.funcion_retorica ?? "N/D"}
-                </dd>
-              </div>
-            </dl>
-          </CardContent>
-        </Card>
-      </div>
-
       {caso.notas && (
-        <p className="mb-8 text-sm text-muted-foreground">{caso.notas}</p>
+        <p className="mb-8 max-w-2xl text-sm text-muted-foreground">
+          {caso.notas}
+        </p>
       )}
 
       <CasoMencionesClient casoId={id} initial={menciones} />

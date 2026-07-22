@@ -2,14 +2,7 @@
 
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { CredibilidadDesgloseChart } from "@/components/CredibilidadDesgloseChart";
-import { Progress } from "@/components/ui/progress";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CrossCell, CrossGrid } from "@/components/CrossGrid";
 
 export function CasoCredibilidadPanel({
   credibilidad,
@@ -23,30 +16,31 @@ export function CasoCredibilidadPanel({
   centralidad: number;
 }) {
   return (
-    <Card>
-      <CardHeader>
-        <CardDescription>Credibilidad</CardDescription>
-        <CardTitle className="flex items-baseline gap-1">
-          <AnimatedNumber value={credibilidad} suffix="%" />
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <Progress
-          value={credibilidad}
-          className="h-2"
-          aria-label={`Credibilidad ${credibilidad} por ciento`}
-        />
-        <CredibilidadDesgloseChart
-          especificidad={especificidad}
-          repeticion_norm={repeticion_norm}
-          centralidad={centralidad}
-        />
-        <ul className="space-y-1 text-xs text-muted-foreground">
+    <CrossGrid cols={1} className="grid-cols-1">
+      <CrossCell>
+        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+          Credibilidad
+        </p>
+        <p className="mt-2">
+          <AnimatedNumber
+            value={credibilidad}
+            suffix="%"
+            className="text-4xl sm:text-5xl"
+          />
+        </p>
+        <div className="mt-6">
+          <CredibilidadDesgloseChart
+            especificidad={especificidad}
+            repeticion_norm={repeticion_norm}
+            centralidad={centralidad}
+          />
+        </div>
+        <ul className="mt-4 space-y-1 font-mono text-[11px] text-muted-foreground">
           <li>especificidad: {especificidad} (peso 45%)</li>
           <li>repetición_norm: {repeticion_norm} (peso 25%)</li>
           <li>centralidad: {centralidad} (peso 30%)</li>
         </ul>
-      </CardContent>
-    </Card>
+      </CrossCell>
+    </CrossGrid>
   );
 }

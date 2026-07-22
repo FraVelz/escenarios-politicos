@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SkipLink } from "@/components/SkipLink";
 import "./globals.css";
 
-const geistSans = Geist({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -43,14 +44,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
         <SkipLink />
         <SiteHeader />
         <div
           id="contenido-principal"
           tabIndex={-1}
-          className="mx-auto max-w-6xl px-4 pb-10 pt-6 outline-none sm:px-6 lg:px-8"
+          className="mx-auto max-w-[1200px] px-4 pb-16 pt-8 outline-none sm:px-6 lg:px-8"
         >
           {children}
         </div>

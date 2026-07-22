@@ -5,8 +5,6 @@ import { ExternalLink } from "lucide-react";
 import { useLiveMenciones } from "@/components/LiveMenciones";
 import { areaLabel } from "@/lib/areas";
 import type { Caso, Mencion } from "@/lib/types";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { focusRingInline } from "@/lib/focus";
 import { cn } from "@/lib/utils";
 
@@ -32,10 +30,9 @@ export function FuentesMencionesClient({
   const huerfanas = menciones.filter((m) => !casoMap[m.caso_id]);
 
   return (
-    <div className="space-y-8">
-      <p className="text-xs text-muted-foreground">
-        Menciones en vivo · fuente de datos:{" "}
-        <span className="font-medium text-foreground">{source}</span> ·{" "}
+    <div className="space-y-10">
+      <p className="font-mono text-[11px] text-muted-foreground">
+        Menciones en vivo · fuente: <span className="text-bone">{source}</span> ·{" "}
         {menciones.length} registro{menciones.length === 1 ? "" : "s"}
       </p>
 
@@ -43,94 +40,91 @@ export function FuentesMencionesClient({
         <section key={caso.id} aria-labelledby={`caso-${caso.id}`}>
           <h2
             id={`caso-${caso.id}`}
-            className="mb-1 text-lg font-semibold tracking-tight"
+            className="mb-1 text-base font-medium tracking-tight text-white"
           >
             <Link
               href={`/casos/${caso.id}`}
               className={cn(
-                "text-foreground no-underline hover:text-primary",
+                "text-white no-underline hover:text-iris-glow",
                 focusRingInline,
               )}
             >
               {caso.titulo}
             </Link>
           </h2>
-          <p className="mb-3 text-xs text-muted-foreground">
+          <p className="mb-4 font-mono text-[11px] text-muted-foreground">
             {areaLabel(caso.area)} · {items.length} mención
             {items.length === 1 ? "" : "es"} · cred. {caso.credibilidad}%
           </p>
-          <div className="space-y-3">
+          <ul className="space-y-5 border-t border-border pt-4">
             {items.map((m) => (
-              <Card key={m.id}>
-                <CardHeader className="flex-row items-center gap-2 space-y-0 pb-2">
-                  <Badge>{m.tipo_pieza}</Badge>
-                  <span className="text-xs text-muted-foreground">{m.fecha}</span>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <blockquote className="border-l-2 border-primary/40 pl-3 text-sm leading-relaxed">
-                    {m.cita_corta}
-                  </blockquote>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <a
-                      href={m.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={cn(
-                        "inline-flex items-center gap-1.5 text-sm no-underline hover:underline",
-                        focusRingInline,
-                      )}
-                    >
-                      Abrir fuente
-                      <ExternalLink className="size-3.5" aria-hidden />
-                      <span className="sr-only">
-                        (se abre en una pestaña nueva)
-                      </span>
-                    </a>
-                    <span className="max-w-full truncate font-mono text-[11px] text-muted-foreground">
-                      {m.url}
+              <li key={m.id}>
+                <p className="mb-2 font-mono text-[11px] text-muted-foreground">
+                  <span className="text-iris">{m.tipo_pieza}</span>
+                  <span className="mx-2 text-border">·</span>
+                  {m.fecha}
+                </p>
+                <blockquote className="border-l border-border pl-4 text-sm leading-relaxed text-bone">
+                  {m.cita_corta}
+                </blockquote>
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 pl-4">
+                  <a
+                    href={m.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={cn(
+                      "inline-flex items-center gap-1.5 text-sm text-smoke no-underline hover:text-white",
+                      focusRingInline,
+                    )}
+                  >
+                    Abrir fuente
+                    <ExternalLink className="size-3.5" aria-hidden />
+                    <span className="sr-only">
+                      (se abre en una pestaña nueva)
                     </span>
-                  </div>
-                  <p className="text-[11px] text-muted-foreground">
-                    workflow: {m.workflow_id} · id: {m.id}
-                  </p>
-                </CardContent>
-              </Card>
+                  </a>
+                  <span className="max-w-full truncate font-mono text-[11px] text-iris">
+                    {m.url}
+                  </span>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       ))}
 
       {huerfanas.length > 0 && (
         <section>
-          <h2 className="mb-3 text-lg font-semibold tracking-tight">
+          <h2 className="mb-4 text-sm font-medium tracking-tight text-white">
             Sin caso vinculado
           </h2>
-          <div className="space-y-3">
+          <ul className="space-y-5 border-t border-border pt-4">
             {huerfanas.map((m) => (
-              <Card key={m.id}>
-                <CardHeader>
-                  <Badge>caso_id: {m.caso_id}</Badge>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <blockquote className="border-l-2 border-border pl-3 text-sm">
-                    {m.cita_corta}
-                  </blockquote>
-                  <a
-                    href={m.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={cn("break-all text-sm", focusRingInline)}
-                  >
-                    {m.url}
-                    <span className="sr-only">
-                      {" "}
-                      (se abre en una pestaña nueva)
-                    </span>
-                  </a>
-                </CardContent>
-              </Card>
+              <li key={m.id}>
+                <p className="mb-2 font-mono text-[11px] text-iris">
+                  caso_id: {m.caso_id}
+                </p>
+                <blockquote className="border-l border-border pl-4 text-sm text-bone">
+                  {m.cita_corta}
+                </blockquote>
+                <a
+                  href={m.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(
+                    "mt-2 block break-all pl-4 font-mono text-[11px] text-iris",
+                    focusRingInline,
+                  )}
+                >
+                  {m.url}
+                  <span className="sr-only">
+                    {" "}
+                    (se abre en una pestaña nueva)
+                  </span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       )}
 

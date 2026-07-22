@@ -16,7 +16,7 @@ function Progress({
       value={value}
       aria-label={ariaLabel}
       className={cn(
-        "relative h-1.5 w-full overflow-hidden rounded-full bg-secondary",
+        "relative h-px w-full overflow-hidden rounded-none bg-[#292d30]",
         className,
       )}
       {...props}

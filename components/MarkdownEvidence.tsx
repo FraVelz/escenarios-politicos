@@ -48,17 +48,19 @@ export function MarkdownEvidence({
       {(title || file) && (
         <header className="mb-4">
           {title && (
-            <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+            <h2 className="text-base font-medium tracking-tight text-white">
+              {title}
+            </h2>
           )}
           {file && (
-            <p className="font-mono text-xs text-muted-foreground">{file}</p>
+            <p className="font-mono text-[11px] text-iris">{file}</p>
           )}
         </header>
       )}
 
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <div
-          className="inline-flex rounded-lg bg-muted p-1"
+          className="inline-flex border-b border-border"
           role="tablist"
           aria-label="Vista del documento"
         >
@@ -68,11 +70,11 @@ export function MarkdownEvidence({
             aria-selected={mode === "preview"}
             onClick={() => setMode("preview")}
             className={cn(
-              "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+              "inline-flex cursor-pointer items-center gap-1.5 border-b-2 border-transparent px-3 py-2 text-xs font-medium transition-colors duration-150",
               focusRingNav,
               mode === "preview"
-                ? "bg-card text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground",
+                ? "border-primary text-white"
+                : "text-muted-foreground hover:text-white",
             )}
           >
             <Eye className="size-3.5" aria-hidden />
@@ -84,11 +86,11 @@ export function MarkdownEvidence({
             aria-selected={mode === "codigo"}
             onClick={() => setMode("codigo")}
             className={cn(
-              "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+              "inline-flex cursor-pointer items-center gap-1.5 border-b-2 border-transparent px-3 py-2 text-xs font-medium transition-colors duration-150",
               focusRingNav,
               mode === "codigo"
-                ? "bg-card text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground",
+                ? "border-primary text-white"
+                : "text-muted-foreground hover:text-white",
             )}
           >
             <Code2 className="size-3.5" aria-hidden />
@@ -155,7 +157,7 @@ export function MarkdownEvidence({
             exit={reduce ? undefined : { opacity: 0, y: -4 }}
             transition={{ duration: reduce ? 0 : 0.22, ease: easeOut }}
           >
-            <pre className="max-h-[min(70vh,40rem)] overflow-auto whitespace-pre-wrap break-words font-mono text-xs leading-relaxed text-muted-foreground">
+            <pre className="whitespace-pre-wrap break-words rounded-none border border-border bg-black p-5 font-mono text-xs leading-relaxed text-bone">
               {markdown}
             </pre>
           </motion.div>

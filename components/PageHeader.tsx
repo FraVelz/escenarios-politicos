@@ -25,7 +25,7 @@ export function PageHeader({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduce ? 0 : 0.4, ease: easeOut }}
     >
-      <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      <h1 className="text-2xl font-medium tracking-tight text-white sm:text-3xl">
         {title}
       </h1>
       {description && (

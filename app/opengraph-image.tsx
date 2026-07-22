@@ -25,9 +25,9 @@ export default function OpenGraphImage() {
             style={{
               width: 56,
               height: 56,
-              borderRadius: 14,
+              borderRadius: 0,
               background: BRAND.bg,
-              border: `1px solid ${BRAND.accent}73`,
+              border: `1px solid ${BRAND.border}`,
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
@@ -60,32 +60,32 @@ export default function OpenGraphImage() {
               }}
             />
           </div>
-          <span style={{ color: "#8b9aab", fontSize: 22 }}>
+          <span style={{ color: "#a1a4a5", fontSize: 22 }}>
             Análisis político
           </span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div
             style={{
-              color: BRAND.fg,
+              color: "#ffffff",
               fontSize: 64,
-              fontWeight: 650,
+              fontWeight: 500,
               letterSpacing: "-0.03em",
               lineHeight: 1.1,
             }}
           >
             Escenarios Colombia
           </div>
-          <div style={{ color: "#8b9aab", fontSize: 28, maxWidth: 720 }}>
+          <div style={{ color: "#a1a4a5", fontSize: 28, maxWidth: 720 }}>
             Casos y credibilidad del discurso
           </div>
         </div>
         <div
           style={{
-            height: 4,
+            height: 1,
             width: 120,
-            background: BRAND.accent,
-            borderRadius: 2,
+            background: BRAND.border,
+            borderRadius: 0,
           }}
         />
       </div>

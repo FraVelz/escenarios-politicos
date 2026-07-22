@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
-import { BookOpen } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion";
 import { focusRingNav } from "@/lib/focus";
 import { cn } from "@/lib/utils";
@@ -23,14 +22,14 @@ export function PlaybookSidebar({ items }: { items: PlaybookNavItem[] }) {
     <aside className="w-full shrink-0 lg:sticky lg:top-14 lg:w-56 xl:w-64">
       <p
         id="playbook-nav-label"
-        className="mb-2 px-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
+        className="mb-2 px-1 font-mono text-[11px] font-normal uppercase tracking-wider text-muted-foreground"
       >
         Capítulos
       </p>
       <ScrollArea className="max-h-[40vh] lg:max-h-[calc(100vh-8rem)]">
         <nav aria-labelledby="playbook-nav-label">
-          <Stagger className="flex flex-col gap-0.5 pr-2" gap={0.04}>
-            {items.map((item) => {
+          <Stagger className="flex flex-col border-t border-border pr-2" gap={0.04}>
+            {items.map((item, i) => {
               const href = `/playbook/${item.slug}`;
               const active =
                 pathname === href || pathname.startsWith(`${href}/`);
@@ -40,17 +39,17 @@ export function PlaybookSidebar({ items }: { items: PlaybookNavItem[] }) {
                     href={href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "relative flex items-start gap-2 rounded-md px-2.5 py-2 text-sm no-underline transition-colors",
+                      "relative flex items-start gap-3 border-b border-border px-1 py-2.5 text-sm no-underline transition-colors duration-150",
                       focusRingNav,
                       active
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
+                        ? "text-white"
+                        : "text-muted-foreground hover:text-white",
                     )}
                   >
                     {active && (
                       <motion.span
                         layoutId={reduce ? undefined : "playbook-active"}
-                        className="absolute inset-0 rounded-md bg-accent"
+                        className="absolute left-0 top-1/2 h-3 w-px -translate-y-1/2 bg-primary"
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -59,16 +58,12 @@ export function PlaybookSidebar({ items }: { items: PlaybookNavItem[] }) {
                         aria-hidden
                       />
                     )}
-                    <BookOpen
-                      className={cn(
-                        "relative z-10 mt-0.5 size-3.5 shrink-0",
-                        active ? "text-primary" : "text-muted-foreground",
-                      )}
-                      aria-hidden
-                    />
+                    <span className="relative z-10 w-5 shrink-0 font-mono text-[11px] text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     <span className="relative z-10 min-w-0">
                       <span className="block leading-snug">{item.label}</span>
-                      <span className="mt-0.5 block font-mono text-[10px] opacity-60">
+                      <span className="mt-0.5 block font-mono text-[10px] text-iris/70">
                         {item.file}
                       </span>
                     </span>

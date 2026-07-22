@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { listAlertasSync, listCasosSync, gapsFromCasos } from "@/lib/data";
 import { CasosHomeClient } from "@/components/CasosHomeClient";
 import { FadeIn } from "@/components/motion";
-import { PageHeader } from "@/components/PageHeader";
-import { Button } from "@/components/ui/button";
+import { focusRingInline } from "@/lib/focus";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   const casos = listCasosSync();
@@ -17,10 +16,24 @@ export default function HomePage() {
 
   return (
     <main>
-      <PageHeader
-        title="Colombia — casos y credibilidad"
-        description="Credibilidad % = especificidad × repetición × centralidad (no es probabilidad de cumplimiento). Datos: Firestore + seed local."
-      />
+      <FadeIn className="mb-10 space-y-4">
+        <h1 className="max-w-3xl text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl md:leading-[1.1] md:tracking-[-0.03em]">
+          Colombia — casos y credibilidad
+        </h1>
+        <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-[0.95rem]">
+          Credibilidad % = especificidad × repetición × centralidad (no es
+          probabilidad de cumplimiento). Datos: Firestore + seed local.
+        </p>
+        <Link
+          href="/casos"
+          className={cn(
+            "inline-flex text-sm text-bone no-underline hover:text-white",
+            focusRingInline,
+          )}
+        >
+          Ver todos los casos →
+        </Link>
+      </FadeIn>
 
       <CasosHomeClient
         initialCasos={casos}
@@ -29,15 +42,6 @@ export default function HomePage() {
         alertas={alertas}
         gapsCount={gaps.length}
       />
-
-      <FadeIn delay={0.2} className="mt-8">
-        <Button asChild variant="outline">
-          <Link href="/casos">
-            Ver todos los casos
-            <ArrowRight />
-          </Link>
-        </Button>
-      </FadeIn>
     </main>
   );
 }

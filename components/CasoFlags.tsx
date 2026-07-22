@@ -1,21 +1,21 @@
 import type { Caso } from "@/lib/types";
-import { Badge } from "@/components/ui/badge";
 
 export function CasoFlags({ c }: { c: Caso }) {
+  const flags: string[] = [];
+  if (c.discurso_identidad) flags.push("identidad");
+  if (c.n_menciones >= 10 && c.especificidad < 20) flags.push("ruido");
+  if (c.n_menciones <= 1 && c.importancia === "alta")
+    flags.push("raro/importante");
+  if (c.credibilidad >= 60 && c.factibilidad === "baja")
+    flags.push("relato≠capacidad");
+
+  if (flags.length === 0) {
+    return <span className="font-mono text-[11px] text-muted-foreground">—</span>;
+  }
+
   return (
-    <span className="inline-flex flex-wrap gap-1">
-      {c.discurso_identidad && (
-        <Badge variant="identidad">identidad</Badge>
-      )}
-      {c.n_menciones >= 10 && c.especificidad < 20 && (
-        <Badge variant="danger">ruido</Badge>
-      )}
-      {c.n_menciones <= 1 && c.importancia === "alta" && (
-        <Badge variant="warn">raro/importante</Badge>
-      )}
-      {c.credibilidad >= 60 && c.factibilidad === "baja" && (
-        <Badge variant="danger">relato≠capacidad</Badge>
-      )}
+    <span className="font-mono text-[11px] text-muted-foreground">
+      {flags.join(" · ")}
     </span>
   );
 }

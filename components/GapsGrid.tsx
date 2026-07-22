@@ -1,14 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Stagger, StaggerItem } from "@/components/motion";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CrossCell, CrossGrid } from "@/components/CrossGrid";
 import { focusRingInline } from "@/lib/focus";
 import { cn } from "@/lib/utils";
 
@@ -20,35 +13,31 @@ export function GapsGrid({ gaps }: { gaps: GapItem[] }) {
   }
 
   return (
-    <Stagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" gap={0.05}>
+    <CrossGrid cols={1} className="grid-cols-1">
       {gaps.map((g) => (
-        <StaggerItem key={g.caso_id}>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">
-                <Link
-                  href={`/casos/${g.caso_id}`}
-                  className={cn(
-                    "text-foreground no-underline hover:text-primary",
-                    focusRingInline,
-                  )}
-                >
-                  {g.caso_id}
-                </Link>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="flex flex-wrap gap-1.5">
-                {g.campos.map((c) => (
-                  <li key={c}>
-                    <Badge variant="warn">{c}</Badge>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        </StaggerItem>
+        <CrossCell
+          key={g.caso_id}
+          className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+        >
+          <Link
+            href={`/casos/${g.caso_id}`}
+            className={cn(
+              "font-mono text-sm text-white no-underline hover:text-iris-glow",
+              focusRingInline,
+            )}
+          >
+            {g.caso_id}
+          </Link>
+          <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] text-warn">
+            {g.campos.map((c) => (
+              <li key={c}>
+                <span className="text-muted-foreground">N/D · </span>
+                {c}
+              </li>
+            ))}
+          </ul>
+        </CrossCell>
       ))}
-    </Stagger>
+    </CrossGrid>
   );
 }

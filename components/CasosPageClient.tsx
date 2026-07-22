@@ -5,7 +5,6 @@ import { AREA_ORDER, areaLabel } from "@/lib/areas";
 import type { Caso } from "@/lib/types";
 import { CasoFlags } from "@/components/CasoFlags";
 import { PageHeader } from "@/components/PageHeader";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -21,60 +20,62 @@ import { cn } from "@/lib/utils";
 
 function CasosTable({ casos }: { casos: Caso[] }) {
   return (
-    <Card>
-      <CardContent className="p-0">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Caso</TableHead>
-              <TableHead className="w-20">Cred.%</TableHead>
-              <TableHead className="w-24">Menciones</TableHead>
-              <TableHead className="w-20">Espec.</TableHead>
-              <TableHead>Importancia</TableHead>
-              <TableHead>Factibilidad</TableHead>
-              <TableHead>Flags</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {casos.map((c) => (
-              <TableRow key={c.id}>
-                <TableCell>
+    <div className="overflow-hidden border border-border">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Caso</TableHead>
+            <TableHead className="w-20">Cred.%</TableHead>
+            <TableHead className="w-24">Menciones</TableHead>
+            <TableHead className="w-20">Espec.</TableHead>
+            <TableHead>Importancia</TableHead>
+            <TableHead>Factibilidad</TableHead>
+            <TableHead>Flags</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {casos.map((c) => (
+            <TableRow key={c.id}>
+              <TableCell>
+                <Link
+                  href={`/casos/${c.id}`}
+                  className={cn(
+                    "text-sm text-white no-underline hover:text-iris-glow",
+                    focusRingInline,
+                  )}
+                >
+                  {c.titulo}
+                </Link>
+                <div className="mt-0.5 font-mono text-[11px] text-muted-foreground">
                   <Link
-                    href={`/casos/${c.id}`}
-                    className={cn(
-                      "font-medium text-foreground no-underline hover:text-primary",
-                      focusRingInline,
-                    )}
+                    href="/fuentes"
+                    className={cn("hover:text-bone", focusRingInline)}
                   >
-                    {c.titulo}
+                    ver fuentes
                   </Link>
-                  <div className="mt-0.5 text-xs text-muted-foreground">
-                    <Link
-                      href="/fuentes"
-                      className={cn("hover:underline", focusRingInline)}
-                    >
-                      ver fuentes
-                    </Link>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <span className="font-mono font-semibold tabular-nums">
-                    {c.credibilidad}
-                  </span>
-                </TableCell>
-                <TableCell className="tabular-nums">{c.n_menciones}</TableCell>
-                <TableCell className="tabular-nums">{c.especificidad}</TableCell>
-                <TableCell>{c.importancia}</TableCell>
-                <TableCell>{c.factibilidad}</TableCell>
-                <TableCell>
-                  <CasoFlags c={c} />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
+                </div>
+              </TableCell>
+              <TableCell>
+                <span className="font-mono tabular-nums text-iris">
+                  {c.credibilidad}
+                </span>
+              </TableCell>
+              <TableCell className="font-mono tabular-nums">
+                {c.n_menciones}
+              </TableCell>
+              <TableCell className="font-mono tabular-nums">
+                {c.especificidad}
+              </TableCell>
+              <TableCell>{c.importancia}</TableCell>
+              <TableCell>{c.factibilidad}</TableCell>
+              <TableCell>
+                <CasoFlags c={c} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }
 
@@ -115,7 +116,7 @@ export function CasosPageClient({ all }: { all: Caso[] }) {
         title="Casos"
         description="Agrupados por área. Dentro de cada área: credibilidad %, frecuencia y factibilidad."
       >
-        <p className="text-sm text-muted-foreground">
+        <p className="font-mono text-[11px] text-muted-foreground">
           {all.length} casos · {byArea.length} áreas
         </p>
       </PageHeader>

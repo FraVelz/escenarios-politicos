@@ -22,9 +22,9 @@ export default function AppleIcon() {
           style={{
             width: 140,
             height: 140,
-            borderRadius: 32,
+            borderRadius: 0,
             background: BRAND.bg,
-            border: `3px solid ${BRAND.accent}73`,
+            border: `2px solid ${BRAND.border}`,
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "center",

@@ -11,9 +11,9 @@ import {
 } from "recharts";
 
 const COLORS = {
-  especificidad: "#3d9cfd",
-  repeticion_norm: "#5b9fd4",
-  centralidad: "#8b9aab",
+  especificidad: "#3b9eff",
+  repeticion_norm: "#9281f7",
+  centralidad: "#a1a4a5",
 };
 
 export function CredibilidadDesgloseChart({
@@ -51,17 +51,18 @@ export function CredibilidadDesgloseChart({
             type="category"
             dataKey="name"
             width={88}
-            tick={{ fill: "#8b9aab", fontSize: 11 }}
+            tick={{ fill: "#a1a4a5", fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />
           <Tooltip
             cursor={{ fill: "rgba(255,255,255,0.04)" }}
             contentStyle={{
-              background: "#141b24",
-              border: "1px solid #2a3542",
-              borderRadius: 8,
+              background: "#000000",
+              border: "1px solid #292d30",
+              borderRadius: 0,
               fontSize: 12,
+              color: "#f0f0f0",
             }}
             formatter={(v) => [`${v}`, "Valor"]}
           />

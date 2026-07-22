@@ -18,11 +18,11 @@ export default function PlaybookLayout({
   return (
     <main>
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+        <h1 className="text-2xl font-medium tracking-tight text-white sm:text-3xl">
           <Link
             href="/playbook"
             className={cn(
-              "rounded-sm text-foreground no-underline hover:text-foreground",
+              "text-white no-underline hover:text-white",
               focusRingInline,
             )}
           >

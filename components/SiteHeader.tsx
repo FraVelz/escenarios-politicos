@@ -23,16 +23,16 @@ export function SiteHeader() {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 border-b border-border/80 bg-background/80 backdrop-blur-md"
+      className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-[25px]"
       initial={reduce ? false : { opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduce ? 0 : 0.35, ease: easeOut }}
     >
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-[1200px] items-center gap-4 px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
           className={cn(
-            "flex items-center gap-2.5 rounded-md text-foreground no-underline hover:text-foreground",
+            "flex items-center gap-2.5 rounded-none text-white no-underline hover:text-white",
             focusRing,
           )}
         >
@@ -40,11 +40,11 @@ export function SiteHeader() {
             className="inline-flex"
             whileHover={reduce ? undefined : { scale: 1.05 }}
             whileTap={reduce ? undefined : { scale: 0.96 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.15 }}
           >
             <BrandMark />
           </motion.span>
-          <span className="text-sm font-semibold tracking-tight">
+          <span className="text-sm font-medium tracking-tight text-white">
             Escenarios Colombia
           </span>
         </Link>
@@ -63,15 +63,15 @@ export function SiteHeader() {
                 href={l.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "group relative rounded-md px-2.5 py-1.5 text-muted-foreground no-underline transition-colors hover:bg-transparent hover:text-foreground",
+                  "group relative rounded-none px-2.5 py-1.5 text-bone no-underline transition-colors duration-150 hover:bg-transparent hover:text-white",
                   focusRingNav,
-                  active && "text-foreground",
+                  active && "text-white",
                 )}
               >
                 {l.label}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-0 -translate-x-1/2 bg-primary/70 transition-[width] duration-300 ease-out group-hover:w-[calc(100%-1.25rem)]"
+                  className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-0 -translate-x-1/2 bg-primary/70 transition-[width] duration-150 ease-out group-hover:w-[calc(100%-1.25rem)]"
                 />
                 {active && (
                   <motion.span

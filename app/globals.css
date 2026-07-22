@@ -22,37 +22,48 @@
   --color-warn: var(--warn);
   --color-ok: var(--ok);
   --color-identidad: var(--identidad);
+  --color-iris: var(--iris);
+  --color-iris-glow: var(--iris-glow);
+  --color-bone: var(--bone);
+  --color-smoke: var(--smoke);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 }
 
+/* Resend-adapted tokens — void black + iris violet (code) + signal blue (action) */
 :root {
-  --radius: 0.625rem;
-  --background: #0c1117;
-  --foreground: #e8eef4;
-  --card: #141b24;
-  --card-foreground: #e8eef4;
-  --popover: #141b24;
-  --popover-foreground: #e8eef4;
-  --primary: #3d9cfd;
-  --primary-foreground: #061018;
-  --secondary: #1c2633;
-  --secondary-foreground: #d4dde8;
-  --muted: #1c2633;
-  --muted-foreground: #8b9aab;
-  --accent: #1e2a3a;
-  --accent-foreground: #e8eef4;
-  --destructive: #e85d5d;
-  --border: #2a3542;
-  --input: #2a3542;
-  --ring: #3d9cfd;
-  --warn: #e8a838;
-  --ok: #3ecf8e;
-  --identidad: #5b9fd4;
+  --radius: 0px;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #000000;
+  --card-foreground: #f0f0f0;
+  --popover: #000000;
+  --popover-foreground: #f0f0f0;
+  --primary: #3b9eff;
+  --primary-foreground: #000000;
+  --secondary: #000000;
+  --secondary-foreground: #f0f0f0;
+  --muted: #0b0e14;
+  --muted-foreground: #a1a4a5;
+  --accent: #0b0e14;
+  --accent-foreground: #ffffff;
+  --destructive: #ff9592;
+  --border: #292d30;
+  --input: #292d30;
+  --ring: #3b9eff;
+  --warn: #ffca16;
+  --ok: #3ad389;
+  --identidad: #70b8ff;
+  --iris: #9281f7;
+  --iris-glow: #baa7ff;
+  --bone: #f0f0f0;
+  --ash: #a1a4a5;
+  --smoke: #abafb4;
+  --graphite: #292d30;
 }
 
 @layer base {
@@ -65,14 +76,20 @@
   }
 
   body {
-    @apply min-h-full bg-background text-foreground font-sans;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(61, 156, 253, 0.12), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(30, 42, 58, 0.8), transparent);
-    background-attachment: fixed;
+    @apply min-h-full bg-background font-sans text-foreground;
+    /* Canvas plano void — sin washes / gradientes de fondo */
   }
 
-  /* Foco por teclado: fallback; controles con focusRing anulan outline */
+  h1,
+  h2,
+  h3 {
+    @apply tracking-tight text-white;
+  }
+
+  h1 {
+    letter-spacing: -0.02em;
+  }
+
   :focus:not(:focus-visible) {
     outline: none;
   }
@@ -83,17 +100,43 @@
   }
 
   a {
-    @apply text-primary transition-colors hover:text-primary/80;
+    @apply cursor-pointer text-smoke transition-colors duration-150 hover:text-white;
   }
 
-  /* Landmark enfocable vía skip link (sin anillo al saltar) */
+  button,
+  [role="button"],
+  [role="tab"],
+  [role="menuitem"],
+  [role="option"],
+  [role="switch"],
+  [role="checkbox"],
+  [role="radio"],
+  [role="link"],
+  summary,
+  label[for],
+  select,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="file"] {
+    @apply cursor-pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"],
+  input:disabled,
+  select:disabled {
+    @apply cursor-not-allowed;
+  }
+
   #contenido-principal:focus {
     outline: none;
   }
 }
 
 @layer components {
-  /* Skip link: oculto hasta Tab / focus-visible */
   .skip-link {
     position: absolute;
     width: 1px;
@@ -118,44 +161,87 @@
     overflow: visible;
     clip: auto;
     white-space: normal;
-    border-radius: var(--radius-md);
-    background: var(--primary);
-    color: var(--primary-foreground);
+    border-radius: 0;
+    border: 1px solid var(--graphite);
+    background: #000;
+    color: #fff;
     font-size: 0.875rem;
     font-weight: 500;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
     outline: none;
   }
 }
 
 @layer utilities {
+  /* Rejilla sharp: bordes compartidos + cruces charcoal */
+  .cross-grid {
+    display: grid;
+    border-top: 1px solid var(--graphite);
+    border-left: 1px solid var(--graphite);
+    border-radius: 0;
+    background: #000;
+  }
+
+  .cross-cell {
+    position: relative;
+    border-right: 1px solid var(--graphite);
+    border-bottom: 1px solid var(--graphite);
+    padding: 1.25rem;
+    transition: background-color 150ms ease-out;
+  }
+
+  .cross-cell:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Filas full-width dentro de la misma rejilla */
+  .cross-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 1rem 1.5rem;
+    align-items: baseline;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /* Cruces en intersecciones (esquina inferior-derecha de cada celda) */
+  .cross-cell::after {
+    content: "";
+    position: absolute;
+    right: -1.5px;
+    bottom: -1.5px;
+    width: 3px;
+    height: 3px;
+    background: #464a4d;
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .prose-dashboard {
     @apply max-w-[72ch] text-[0.95rem] leading-relaxed text-muted-foreground;
   }
 
   .prose-dashboard pre {
-    @apply overflow-auto rounded-lg border border-border bg-card p-4 font-mono text-sm text-foreground;
+    @apply overflow-auto rounded-none border border-border bg-background p-6 font-mono text-sm text-bone;
   }
 
   .score-mono {
-    @apply font-mono text-2xl font-semibold tracking-tight tabular-nums;
+    @apply font-mono text-2xl font-normal tracking-tight tabular-nums text-iris;
   }
 
-  /* Markdown renderizado (playbook preview) */
   .prose-md {
-    @apply text-foreground;
+    @apply text-bone;
   }
 
   .prose-md :where(h1) {
-    @apply mb-3 mt-0 text-xl font-semibold tracking-tight;
+    @apply mb-3 mt-0 text-xl font-medium tracking-tight text-white;
   }
 
   .prose-md :where(h2) {
-    @apply mb-2 mt-6 text-lg font-semibold tracking-tight;
+    @apply mb-2 mt-6 text-lg font-medium tracking-tight text-white;
   }
 
   .prose-md :where(h3) {
-    @apply mb-2 mt-5 text-base font-semibold;
+    @apply mb-2 mt-5 text-base font-medium text-white;
   }
 
   .prose-md :where(p) {
@@ -179,27 +265,27 @@
   }
 
   .prose-md :where(strong) {
-    @apply font-semibold text-foreground;
+    @apply font-medium text-white;
   }
 
   .prose-md :where(a) {
-    @apply text-primary underline-offset-2 hover:underline;
+    @apply text-iris-glow underline-offset-2 hover:underline;
   }
 
   .prose-md :where(code) {
-    @apply rounded bg-muted px-1 py-0.5 font-mono text-[0.85em] text-foreground;
+    @apply rounded-none border border-border bg-transparent px-1.5 py-0.5 font-mono text-[0.85em] text-iris;
   }
 
   .prose-md :where(pre) {
-    @apply mb-3 overflow-auto rounded-md bg-muted/50 p-3 font-mono text-xs text-foreground;
+    @apply mb-3 overflow-auto rounded-none border border-border bg-background p-4 font-mono text-xs text-bone;
   }
 
   .prose-md :where(pre code) {
-    @apply bg-transparent p-0;
+    @apply border-0 p-0 text-bone;
   }
 
   .prose-md :where(blockquote) {
-    @apply mb-3 border-l-2 border-primary/40 pl-3 text-muted-foreground;
+    @apply mb-3 border-l border-border pl-3 text-muted-foreground;
   }
 
   .prose-md :where(hr) {
@@ -211,18 +297,17 @@
   }
 
   .prose-md :where(th) {
-    @apply border-b border-border px-2 py-2 text-left text-xs font-medium text-muted-foreground;
+    @apply border-b border-border px-2 py-2 text-left font-mono text-xs font-normal text-muted-foreground;
   }
 
   .prose-md :where(td) {
-    @apply border-b border-border/70 px-2 py-2 align-top text-muted-foreground;
+    @apply border-b border-border px-2 py-2 align-top text-muted-foreground;
   }
 
   .prose-md :where(tr:last-child td) {
     @apply border-b-0;
   }
 
-  /* Charts: no saturar Tab con paths SVG */
   .chart-inert :focus,
   .chart-inert :focus-visible {
     outline: none !important;
