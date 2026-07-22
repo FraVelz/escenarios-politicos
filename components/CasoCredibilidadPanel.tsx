@@ -31,7 +31,11 @@ export function CasoCredibilidadPanel({
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Progress value={credibilidad} className="h-2" />
+        <Progress
+          value={credibilidad}
+          className="h-2"
+          aria-label={`Credibilidad ${credibilidad} por ciento`}
+        />
         <CredibilidadDesgloseChart
           especificidad={especificidad}
           repeticion_norm={repeticion_norm}

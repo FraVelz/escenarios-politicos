@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SkipLink } from "@/components/SkipLink";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,8 +45,13 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8 lg:py-6">
-          <SiteHeader />
+        <SkipLink />
+        <SiteHeader />
+        <div
+          id="contenido-principal"
+          tabIndex={-1}
+          className="mx-auto max-w-6xl px-4 pb-10 pt-6 outline-none sm:px-6 lg:px-8"
+        >
           {children}
         </div>
       </body>

@@ -15,6 +15,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { FadeIn } from "@/components/motion";
+import { focusRingInline } from "@/lib/focus";
+import { cn } from "@/lib/utils";
 
 function CasosTable({ casos }: { casos: Caso[] }) {
   return (
@@ -38,12 +41,18 @@ function CasosTable({ casos }: { casos: Caso[] }) {
                 <TableCell>
                   <Link
                     href={`/casos/${c.id}`}
-                    className="font-medium text-foreground no-underline hover:text-primary"
+                    className={cn(
+                      "font-medium text-foreground no-underline hover:text-primary",
+                      focusRingInline,
+                    )}
                   >
                     {c.titulo}
                   </Link>
                   <div className="mt-0.5 text-xs text-muted-foreground">
-                    <Link href="/fuentes" className="hover:underline">
+                    <Link
+                      href="/fuentes"
+                      className={cn("hover:underline", focusRingInline)}
+                    >
                       ver fuentes
                     </Link>
                   </div>
@@ -127,7 +136,9 @@ export function CasosPageClient({ all }: { all: Caso[] }) {
           </TabsList>
           {tabs.map((t) => (
             <TabsContent key={t.id} value={t.id}>
-              <CasosTable casos={t.casos} />
+              <FadeIn y={6}>
+                <CasosTable casos={t.casos} />
+              </FadeIn>
             </TabsContent>
           ))}
         </Tabs>

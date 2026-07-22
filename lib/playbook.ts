@@ -11,8 +11,30 @@ export const PLAYBOOK_FILES = [
   "06-checklist-revision.md",
 ] as const;
 
+export type PlaybookFile = (typeof PLAYBOOK_FILES)[number];
+
+export function playbookSlug(file: string): string {
+  return file.replace(/\.md$/, "");
+}
+
+/** Título legible a partir del nombre de archivo */
+export function playbookLabel(file: string): string {
+  const base = playbookSlug(file).replace(/^\d+-/, "");
+  return base
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
 export function readPlaybook(slug: string): string | null {
-  const safe = PLAYBOOK_FILES.find((f) => f.replace(/\.md$/, "") === slug);
+  const safe = PLAYBOOK_FILES.find((f) => playbookSlug(f) === slug);
   if (!safe) return null;
-  return fs.readFileSync(path.join(process.cwd(), "docs/playbook", safe), "utf8");
+  return fs.readFileSync(
+    path.join(process.cwd(), "docs/playbook", safe),
+    "utf8",
+  );
+}
+
+export function defaultPlaybookSlug(): string {
+  return playbookSlug(PLAYBOOK_FILES[0]);
 }

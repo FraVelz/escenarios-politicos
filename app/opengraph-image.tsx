@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { BRAND } from "@/lib/brand";
 
 export const alt = "Escenarios Colombia — Casos y credibilidad del discurso";
 export const size = { width: 1200, height: 630 };
@@ -14,34 +15,50 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0c1117",
+          background: BRAND.pageBg,
           padding: 64,
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <div
             style={{
               width: 56,
               height: 56,
               borderRadius: 14,
-              background: "#141b24",
-              border: "1px solid rgba(61,156,253,0.45)",
+              background: BRAND.bg,
+              border: `1px solid ${BRAND.accent}73`,
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-end",
               justifyContent: "center",
-              color: "#e8eef4",
-              fontSize: 22,
-              fontWeight: 700,
+              gap: 4,
+              paddingBottom: 12,
             }}
           >
-            EC
+            <div
+              style={{
+                width: 6,
+                height: 12,
+                background: BRAND.accent,
+                borderRadius: 2,
+              }}
+            />
+            <div
+              style={{
+                width: 6,
+                height: 18,
+                background: BRAND.accent,
+                borderRadius: 2,
+              }}
+            />
+            <div
+              style={{
+                width: 6,
+                height: 26,
+                background: BRAND.accent,
+                borderRadius: 2,
+              }}
+            />
           </div>
           <span style={{ color: "#8b9aab", fontSize: 22 }}>
             Análisis político
@@ -50,7 +67,7 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div
             style={{
-              color: "#e8eef4",
+              color: BRAND.fg,
               fontSize: 64,
               fontWeight: 650,
               letterSpacing: "-0.03em",
@@ -67,7 +84,7 @@ export default function OpenGraphImage() {
           style={{
             height: 4,
             width: 120,
-            background: "#3d9cfd",
+            background: BRAND.accent,
             borderRadius: 2,
           }}
         />

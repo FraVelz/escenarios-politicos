@@ -6,11 +6,9 @@ import { useLiveMenciones } from "@/components/LiveMenciones";
 import { areaLabel } from "@/lib/areas";
 import type { Caso, Mencion } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { focusRingInline } from "@/lib/focus";
+import { cn } from "@/lib/utils";
 
 export function FuentesMencionesClient({
   initialMenciones,
@@ -42,11 +40,17 @@ export function FuentesMencionesClient({
       </p>
 
       {byCaso.map(({ caso, items }) => (
-        <section key={caso.id}>
-          <h2 className="mb-1 text-lg font-semibold tracking-tight">
+        <section key={caso.id} aria-labelledby={`caso-${caso.id}`}>
+          <h2
+            id={`caso-${caso.id}`}
+            className="mb-1 text-lg font-semibold tracking-tight"
+          >
             <Link
               href={`/casos/${caso.id}`}
-              className="text-foreground no-underline hover:text-primary"
+              className={cn(
+                "text-foreground no-underline hover:text-primary",
+                focusRingInline,
+              )}
             >
               {caso.titulo}
             </Link>
@@ -71,10 +75,16 @@ export function FuentesMencionesClient({
                       href={m.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm no-underline hover:underline"
+                      className={cn(
+                        "inline-flex items-center gap-1.5 text-sm no-underline hover:underline",
+                        focusRingInline,
+                      )}
                     >
                       Abrir fuente
-                      <ExternalLink className="size-3.5" />
+                      <ExternalLink className="size-3.5" aria-hidden />
+                      <span className="sr-only">
+                        (se abre en una pestaña nueva)
+                      </span>
                     </a>
                     <span className="max-w-full truncate font-mono text-[11px] text-muted-foreground">
                       {m.url}
@@ -109,9 +119,13 @@ export function FuentesMencionesClient({
                     href={m.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="break-all text-sm"
+                    className={cn("break-all text-sm", focusRingInline)}
                   >
                     {m.url}
+                    <span className="sr-only">
+                      {" "}
+                      (se abre en una pestaña nueva)
+                    </span>
                   </a>
                 </CardContent>
               </Card>

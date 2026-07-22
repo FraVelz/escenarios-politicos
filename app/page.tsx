@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { listAlertasSync, listCasosSync, gapsFromCasos } from "@/lib/data";
 import { CasosHomeClient } from "@/components/CasosHomeClient";
+import { FadeIn } from "@/components/motion";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 
@@ -29,14 +30,14 @@ export default function HomePage() {
         gapsCount={gaps.length}
       />
 
-      <div className="mt-8">
+      <FadeIn delay={0.2} className="mt-8">
         <Button asChild variant="outline">
           <Link href="/casos">
             Ver todos los casos
             <ArrowRight />
           </Link>
         </Button>
-      </div>
+      </FadeIn>
     </main>
   );
 }

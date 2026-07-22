@@ -1,23 +1,12 @@
 import { timingSafeEqual } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebaseAdmin";
+import {
+  MAX_BODY_BYTES,
+  ingestBodySchema,
+} from "@/lib/ingest-schema";
 
 export const runtime = "nodejs";
-
-const ALLOWED = new Set([
-  "casos",
-  "menciones",
-  "indicadores",
-  "raw_items",
-  "eventos",
-  "alertas",
-  "ingest_errors",
-  "ingest_runs",
-]);
-
-const MAX_BODY_BYTES = 256_000;
-const MAX_ID_LEN = 128;
-const ID_RE = /^[a-zA-Z0-9_.:\-]+$/;
 
 function secretsEqual(a: string, b: string): boolean {
   const ba = Buffer.from(a);
@@ -62,34 +51,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "payload too large" }, { status: 413 });
   }
 
-  let body: { collection?: string; id?: string; data?: Record<string, unknown> };
+  let json: unknown;
   try {
-    body = JSON.parse(rawText) as typeof body;
+    json = JSON.parse(rawText);
   } catch {
     return NextResponse.json({ error: "invalid json" }, { status: 400 });
   }
 
-  const { collection, id, data } = body;
-  if (!collection || !id || !data || typeof data !== "object" || Array.isArray(data)) {
+  const parsed = ingestBodySchema.safeParse(json);
+  if (!parsed.success) {
+    const issue = parsed.error.issues[0];
     return NextResponse.json(
-      { error: "need collection, id, data object" },
+      { error: issue?.message ?? "invalid payload" },
       { status: 400 },
     );
-  }
-  if (!ALLOWED.has(collection)) {
-    return NextResponse.json({ error: "collection not allowed" }, { status: 400 });
-  }
-  if (typeof id !== "string" || id.length > MAX_ID_LEN || !ID_RE.test(id)) {
-    return NextResponse.json({ error: "invalid id" }, { status: 400 });
   }
 
-  const workflowId = data.workflow_id;
-  if (typeof workflowId !== "string" || !/^(wf-|seed-)/.test(workflowId)) {
-    return NextResponse.json(
-      { error: "data.workflow_id must start with wf- or seed-" },
-      { status: 400 },
-    );
-  }
+  const { collection, id, data } = parsed.data;
 
   // Evitar que el payload cambie el id del documento.
   const payload = { ...data, id };

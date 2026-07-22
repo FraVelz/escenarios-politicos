@@ -1,11 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
-import { AlertTriangle, Fingerprint, TrendingUp } from "lucide-react";
+import { motion } from "motion/react";
+import {
+  FingerprintPattern,
+  ListChecks,
+  TriangleAlert,
+  TrendingUp,
+} from "lucide-react";
 import type { Alerta, Caso } from "@/lib/types";
 import { useLiveCasos } from "@/components/LiveCasos";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { MotionCard, useMotionPresets } from "@/components/motion";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -15,30 +21,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-
-function GapIcon(props: React.ComponentProps<"svg">) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M9.5 4h5" />
-      <path d="M8 8h8" />
-      <path d="M7 12h10" />
-      <path d="M9.5 16h5" />
-      <path d="M11 20h2" />
-      <circle cx="18" cy="6" r="2" />
-    </svg>
-  );
-}
+import { focusRingCard, focusRingInline } from "@/lib/focus";
+import { cn } from "@/lib/utils";
 
 export function CasosHomeClient({
   initialCasos,
@@ -54,23 +38,8 @@ export function CasosHomeClient({
   gapsCount: number;
 }) {
   const { source } = useLiveCasos(initialCasos);
-  const reduce = useReducedMotion();
-
-  const container = {
-    hidden: {},
-    show: {
-      transition: { staggerChildren: reduce ? 0 : 0.06 },
-    },
-  };
-
-  const item = {
-    hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
+  const { stagger, item } = useMotionPresets();
+  const container = stagger(0.06);
 
   return (
     <div className="space-y-10">
@@ -89,7 +58,7 @@ export function CasosHomeClient({
           <Card className="border-border/80 bg-card/80">
             <CardHeader className="pb-2">
               <CardDescription className="flex items-center gap-1.5">
-                <Fingerprint className="size-3.5" />
+                <FingerprintPattern className="size-3.5" />
                 Identidad
               </CardDescription>
               <CardTitle className="score-mono text-2xl">
@@ -121,7 +90,7 @@ export function CasosHomeClient({
           <Card className="border-border/80 bg-card/80">
             <CardHeader className="pb-2">
               <CardDescription className="flex items-center gap-1.5">
-                <AlertTriangle className="size-3.5 text-warn" />
+                <TriangleAlert className="size-3.5 text-warn" />
                 Alertas
               </CardDescription>
               <CardTitle className="score-mono text-2xl">
@@ -137,7 +106,7 @@ export function CasosHomeClient({
           <Card className="border-border/80 bg-card/80">
             <CardHeader className="pb-2">
               <CardDescription className="flex items-center gap-1.5">
-                <GapIcon className="size-3.5" />
+                <ListChecks className="size-3.5" />
                 Gaps
               </CardDescription>
               <CardTitle className="score-mono text-2xl">{gapsCount}</CardTitle>
@@ -166,28 +135,33 @@ export function CasosHomeClient({
           )}
           {identidad.map((c) => (
             <motion.div key={c.id} variants={item}>
-              <Link href={`/casos/${c.id}`} className="block no-underline">
-                <Card className="h-full transition-colors hover:border-primary/40 hover:bg-accent/30">
-                  <CardHeader>
-                    <Badge variant="identidad" className="w-fit">
-                      identidad
-                    </Badge>
-                    <CardTitle className="text-sm leading-snug text-foreground">
-                      {c.titulo}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <AnimatedNumber
-                      value={c.credibilidad}
-                      suffix="%"
-                      className="text-xl"
-                    />
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      factibilidad: {c.factibilidad}
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
+              <MotionCard>
+                <Link
+                  href={`/casos/${c.id}`}
+                  className={cn("block h-full no-underline", focusRingCard)}
+                >
+                  <Card className="h-full transition-colors hover:border-primary/40 hover:bg-accent/30">
+                    <CardHeader>
+                      <Badge variant="identidad" className="w-fit">
+                        identidad
+                      </Badge>
+                      <CardTitle className="text-sm leading-snug text-foreground">
+                        {c.titulo}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <AnimatedNumber
+                        value={c.credibilidad}
+                        suffix="%"
+                        className="text-xl"
+                      />
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        factibilidad: {c.factibilidad}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </MotionCard>
             </motion.div>
           ))}
         </motion.div>
@@ -205,28 +179,36 @@ export function CasosHomeClient({
         >
           {topCred.map((c) => (
             <motion.div key={c.id} variants={item}>
-              <Link href={`/casos/${c.id}`} className="block no-underline">
-                <Card className="h-full transition-colors hover:border-primary/40 hover:bg-accent/30">
-                  <CardHeader>
-                    {c.discurso_identidad && (
-                      <Badge variant="identidad" className="w-fit">
-                        identidad
-                      </Badge>
-                    )}
-                    <CardTitle className="text-sm leading-snug text-foreground">
-                      {c.titulo}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <AnimatedNumber
-                      value={c.credibilidad}
-                      suffix="%"
-                      className="text-xl"
-                    />
-                    <Progress value={c.credibilidad} />
-                  </CardContent>
-                </Card>
-              </Link>
+              <MotionCard>
+                <Link
+                  href={`/casos/${c.id}`}
+                  className={cn("block h-full no-underline", focusRingCard)}
+                >
+                  <Card className="h-full transition-colors hover:border-primary/40 hover:bg-accent/30">
+                    <CardHeader>
+                      {c.discurso_identidad && (
+                        <Badge variant="identidad" className="w-fit">
+                          identidad
+                        </Badge>
+                      )}
+                      <CardTitle className="text-sm leading-snug text-foreground">
+                        {c.titulo}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <AnimatedNumber
+                        value={c.credibilidad}
+                        suffix="%"
+                        className="text-xl"
+                      />
+                      <Progress
+                        value={c.credibilidad}
+                        aria-label={`Credibilidad ${c.credibilidad} por ciento`}
+                      />
+                    </CardContent>
+                  </Card>
+                </Link>
+              </MotionCard>
             </motion.div>
           ))}
         </motion.div>
@@ -234,31 +216,41 @@ export function CasosHomeClient({
 
       <section>
         <h2 className="mb-3 text-lg font-semibold tracking-tight">Alertas</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <motion.div
+          className="grid gap-3 sm:grid-cols-2"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
           {alertas.length === 0 && (
             <p className="text-sm text-muted-foreground">Sin alertas.</p>
           )}
           {alertas.map((a) => (
-            <Card key={a.id}>
-              <CardHeader>
-                <Badge variant="warn" className="w-fit">
-                  {a.tipo}
-                </Badge>
-                <CardTitle className="text-sm font-normal leading-snug text-foreground">
-                  {a.mensaje}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Link
-                  href={`/casos/${a.caso_id}`}
-                  className="text-sm no-underline hover:underline"
-                >
-                  {a.caso_id}
-                </Link>
-              </CardContent>
-            </Card>
+            <motion.div key={a.id} variants={item}>
+              <Card>
+                <CardHeader>
+                  <Badge variant="warn" className="w-fit">
+                    {a.tipo}
+                  </Badge>
+                  <CardTitle className="text-sm font-normal leading-snug text-foreground">
+                    {a.mensaje}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Link
+                    href={`/casos/${a.caso_id}`}
+                    className={cn(
+                      "text-sm no-underline hover:underline",
+                      focusRingInline,
+                    )}
+                  >
+                    {a.caso_id}
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </div>
   );

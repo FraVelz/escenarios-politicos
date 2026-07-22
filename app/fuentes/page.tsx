@@ -1,14 +1,17 @@
 import fs from "fs";
 import path from "path";
 import { FuentesMencionesClient } from "@/components/FuentesMencionesClient";
+import { MarkdownEvidence } from "@/components/MarkdownEvidence";
 import { PageHeader } from "@/components/PageHeader";
-import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { listCasosSync, listMencionesSync } from "@/lib/data";
+import { markdownToHtml } from "@/lib/markdown";
 
-export default function FuentesPage() {
-  const file = path.join(process.cwd(), "docs/colombia/01-fuentes.md");
+export default async function FuentesPage() {
+  const filePath = "docs/colombia/01-fuentes.md";
+  const file = path.join(process.cwd(), filePath);
   const md = fs.readFileSync(file, "utf8");
+  const html = await markdownToHtml(md);
   const casos = listCasosSync();
   const menciones = listMencionesSync();
 
@@ -26,13 +29,7 @@ export default function FuentesPage() {
       <h2 className="mb-3 text-lg font-semibold tracking-tight">
         Catálogo de fuentes (metodología)
       </h2>
-      <Card>
-        <CardContent className="p-5">
-          <pre className="prose-dashboard m-0 whitespace-pre-wrap font-mono text-xs text-foreground">
-            {md}
-          </pre>
-        </CardContent>
-      </Card>
+      <MarkdownEvidence markdown={md} html={html} file={filePath} />
     </main>
   );
 }

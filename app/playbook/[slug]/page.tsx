@@ -1,9 +1,12 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
-import { readPlaybook } from "@/lib/playbook";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { PlaybookDocView } from "@/components/PlaybookDocView";
+import { markdownToHtml } from "@/lib/markdown";
+import {
+  PLAYBOOK_FILES,
+  playbookLabel,
+  playbookSlug,
+  readPlaybook,
+} from "@/lib/playbook";
 
 export default async function PlaybookDocPage({
   params,
@@ -14,23 +17,15 @@ export default async function PlaybookDocPage({
   const md = readPlaybook(slug);
   if (!md) notFound();
 
+  const file = PLAYBOOK_FILES.find((f) => playbookSlug(f) === slug)!;
+  const html = await markdownToHtml(md);
+
   return (
-    <main>
-      <Button asChild variant="ghost" size="sm" className="mb-4 -ml-2">
-        <Link href="/playbook">
-          <ArrowLeft />
-          Playbook
-        </Link>
-      </Button>
-      <Card>
-        <CardContent className="p-5 sm:p-6">
-          <article className="prose-dashboard">
-            <pre className="m-0 whitespace-pre-wrap border-0 bg-transparent p-0 font-sans text-sm leading-relaxed text-foreground">
-              {md}
-            </pre>
-          </article>
-        </CardContent>
-      </Card>
-    </main>
+    <PlaybookDocView
+      title={playbookLabel(file)}
+      file={file}
+      markdown={md}
+      html={html}
+    />
   );
 }

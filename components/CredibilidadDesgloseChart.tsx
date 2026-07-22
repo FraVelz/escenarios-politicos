@@ -31,13 +31,20 @@ export function CredibilidadDesgloseChart({
     { name: "Cent. 30%", key: "centralidad", value: centralidad },
   ];
 
+  const label = `Desglose de credibilidad: especificidad ${especificidad}, repetición ${repeticion_norm}, centralidad ${centralidad}`;
+
   return (
-    <div className="h-44 w-full">
+    <div
+      className="chart-inert h-44 w-full"
+      role="img"
+      aria-label={label}
+    >
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           layout="vertical"
           margin={{ top: 4, right: 12, left: 4, bottom: 0 }}
+          accessibilityLayer={false}
         >
           <XAxis type="number" domain={[0, 100]} hide />
           <YAxis
@@ -58,7 +65,12 @@ export function CredibilidadDesgloseChart({
             }}
             formatter={(v) => [`${v}`, "Valor"]}
           />
-          <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={14}>
+          <Bar
+            dataKey="value"
+            radius={[0, 4, 4, 0]}
+            barSize={14}
+            isAnimationActive={false}
+          >
             {data.map((d) => (
               <Cell
                 key={d.key}

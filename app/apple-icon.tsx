@@ -1,8 +1,10 @@
 import { ImageResponse } from "next/og";
+import { BRAND } from "@/lib/brand";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
+/** Misma geometría que BrandMark / icon.svg (barras crecientes) */
 export default function AppleIcon() {
   return new ImageResponse(
     (
@@ -13,17 +15,50 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0c1117",
-          borderRadius: 36,
-          border: "3px solid rgba(61,156,253,0.4)",
-          color: "#e8eef4",
-          fontSize: 72,
-          fontWeight: 700,
-          fontFamily: "system-ui, sans-serif",
-          letterSpacing: "-0.05em",
+          background: BRAND.pageBg,
         }}
       >
-        EC
+        <div
+          style={{
+            width: 140,
+            height: 140,
+            borderRadius: 32,
+            background: BRAND.bg,
+            border: `3px solid ${BRAND.accent}73`,
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
+            gap: 10,
+            paddingBottom: 28,
+            paddingLeft: 28,
+            paddingRight: 28,
+          }}
+        >
+          <div
+            style={{
+              width: 16,
+              height: 36,
+              background: BRAND.accent,
+              borderRadius: 4,
+            }}
+          />
+          <div
+            style={{
+              width: 16,
+              height: 56,
+              background: BRAND.accent,
+              borderRadius: 4,
+            }}
+          />
+          <div
+            style={{
+              width: 16,
+              height: 80,
+              background: BRAND.accent,
+              borderRadius: 4,
+            }}
+          />
+        </div>
       </div>
     ),
     { ...size },

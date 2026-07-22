@@ -16,6 +16,8 @@ venv/
 node_modules/
 .next/
 out/
+package-lock.json
+yarn.lock
 
 # IDE / OS
 .idea/

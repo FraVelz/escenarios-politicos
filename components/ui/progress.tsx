@@ -7,11 +7,14 @@ import { cn } from "@/lib/utils";
 function Progress({
   className,
   value,
+  "aria-label": ariaLabel = "Progreso",
   ...props
 }: React.ComponentProps<typeof ProgressPrimitive.Root>) {
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
+      value={value}
+      aria-label={ariaLabel}
       className={cn(
         "relative h-1.5 w-full overflow-hidden rounded-full bg-secondary",
         className,

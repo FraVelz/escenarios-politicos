@@ -1,0 +1,11 @@
+.next
+out
+build
+node_modules
+pnpm-lock.yaml
+*.min.js
+coverage
+.venv
+n8n
+legacy
+src

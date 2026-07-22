@@ -57,7 +57,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
 
   html {
@@ -72,8 +72,59 @@
     background-attachment: fixed;
   }
 
+  /* Foco por teclado: fallback; controles con focusRing anulan outline */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
   a {
     @apply text-primary transition-colors hover:text-primary/80;
+  }
+
+  /* Landmark enfocable vía skip link (sin anillo al saltar) */
+  #contenido-principal:focus {
+    outline: none;
+  }
+}
+
+@layer components {
+  /* Skip link: oculto hasta Tab / focus-visible */
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skip-link:focus-visible {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    border-radius: var(--radius-md);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+    outline: none;
   }
 }
 
@@ -88,6 +139,94 @@
 
   .score-mono {
     @apply font-mono text-2xl font-semibold tracking-tight tabular-nums;
+  }
+
+  /* Markdown renderizado (playbook preview) */
+  .prose-md {
+    @apply text-foreground;
+  }
+
+  .prose-md :where(h1) {
+    @apply mb-3 mt-0 text-xl font-semibold tracking-tight;
+  }
+
+  .prose-md :where(h2) {
+    @apply mb-2 mt-6 text-lg font-semibold tracking-tight;
+  }
+
+  .prose-md :where(h3) {
+    @apply mb-2 mt-5 text-base font-semibold;
+  }
+
+  .prose-md :where(p) {
+    @apply mb-3 text-muted-foreground;
+  }
+
+  .prose-md :where(ul, ol) {
+    @apply mb-3 list-outside space-y-1 pl-5 text-muted-foreground;
+  }
+
+  .prose-md :where(ul) {
+    @apply list-disc;
+  }
+
+  .prose-md :where(ol) {
+    @apply list-decimal;
+  }
+
+  .prose-md :where(li) {
+    @apply leading-relaxed;
+  }
+
+  .prose-md :where(strong) {
+    @apply font-semibold text-foreground;
+  }
+
+  .prose-md :where(a) {
+    @apply text-primary underline-offset-2 hover:underline;
+  }
+
+  .prose-md :where(code) {
+    @apply rounded bg-muted px-1 py-0.5 font-mono text-[0.85em] text-foreground;
+  }
+
+  .prose-md :where(pre) {
+    @apply mb-3 overflow-auto rounded-md bg-muted/50 p-3 font-mono text-xs text-foreground;
+  }
+
+  .prose-md :where(pre code) {
+    @apply bg-transparent p-0;
+  }
+
+  .prose-md :where(blockquote) {
+    @apply mb-3 border-l-2 border-primary/40 pl-3 text-muted-foreground;
+  }
+
+  .prose-md :where(hr) {
+    @apply my-6 border-border;
+  }
+
+  .prose-md :where(table) {
+    @apply mb-4 w-full border-collapse text-sm;
+  }
+
+  .prose-md :where(th) {
+    @apply border-b border-border px-2 py-2 text-left text-xs font-medium text-muted-foreground;
+  }
+
+  .prose-md :where(td) {
+    @apply border-b border-border/70 px-2 py-2 align-top text-muted-foreground;
+  }
+
+  .prose-md :where(tr:last-child td) {
+    @apply border-b-0;
+  }
+
+  /* Charts: no saturar Tab con paths SVG */
+  .chart-inert :focus,
+  .chart-inert :focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
   }
 }
 

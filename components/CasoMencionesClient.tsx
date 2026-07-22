@@ -4,11 +4,9 @@ import { ExternalLink } from "lucide-react";
 import { useLiveMenciones } from "@/components/LiveMenciones";
 import type { Mencion } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { focusRingInline } from "@/lib/focus";
+import { cn } from "@/lib/utils";
 
 export function CasoMencionesClient({
   casoId,
@@ -50,10 +48,14 @@ export function CasoMencionesClient({
                   href={m.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm no-underline hover:underline"
+                  className={cn(
+                    "inline-flex items-center gap-1.5 text-sm no-underline hover:underline",
+                    focusRingInline,
+                  )}
                 >
                   Abrir fuente
-                  <ExternalLink className="size-3.5" />
+                  <ExternalLink className="size-3.5" aria-hidden />
+                  <span className="sr-only">(se abre en una pestaña nueva)</span>
                 </a>
                 <code className="block break-all font-mono text-[11px] text-muted-foreground">
                   {m.url}
