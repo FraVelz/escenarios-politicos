@@ -37,116 +37,79 @@ export function HomeSituacional({
   const { href } = useCountryPath();
   const a = marco.presidente_ejercicio;
   const b = marco.presidente_electo_o_sucesor;
+  const topSenales = senales.slice(0, 2);
 
   return (
-    <div className="space-y-12">
-      <header className="space-y-5">
-        <Reveal
-          as="p"
-          className="text-xs uppercase tracking-[0.14em] text-muted-foreground"
-        >
-          Mesa situacional · discurso + poder + escenarios
-        </Reveal>
+    <div className="space-y-14">
+      <header className="space-y-3">
         <Reveal
           as="h1"
-          delay={0.04}
           className="max-w-3xl text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl md:leading-[1.1] md:tracking-[-0.03em]"
         >
           {paisNombre}
         </Reveal>
         <Reveal
           as="p"
-          delay={0.08}
-          y={14}
+          delay={0.06}
+          y={12}
           className="max-w-2xl text-sm leading-relaxed text-muted-foreground"
         >
           {marco.pregunta_central}
         </Reveal>
       </header>
 
-      <Reveal
-        delay={0.1}
-        className="border border-border bg-black/80 px-4 py-4 sm:px-5"
-      >
+      <Reveal delay={0.08} className="max-w-2xl space-y-3">
         <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground">
-          Acto · {ESTADO_LABEL[marco.estado_acto]}
+          {ESTADO_LABEL[marco.estado_acto]}
+          {" · "}
+          horizontes {marco.horizontes_dias.join("/")}d
         </p>
-        <p className="mt-2 text-base text-bone">
-          {a.nombre}{" "}
-          <span className="text-muted-foreground">(en ejercicio)</span>
-          {" → "}
-          {b.nombre}{" "}
-          <span className="text-muted-foreground">(electo)</span>
+        <p className="text-lg leading-snug text-white sm:text-xl">
+          {a.nombre}
+          <span className="text-muted-foreground"> → </span>
+          {b.nombre}
           {b.posesion_at ? (
-            <>
-              {" · posesión "}
+            <span className="text-muted-foreground">
+              {" "}
+              · posesión{" "}
               <time dateTime={b.posesion_at}>{b.posesion_at}</time>
-            </>
+            </span>
           ) : null}
-        </p>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Horizontes: {marco.horizontes_dias.join(" / ")} días
         </p>
         <Link
           href={href("/contexto")}
           className={cn(
-            "mt-3 inline-flex text-sm text-bone no-underline hover:text-white",
+            "inline-flex text-sm text-bone no-underline hover:text-white",
             focusRingInline,
           )}
         >
-          Ver contexto y transición →
+          Contexto y transición →
         </Link>
       </Reveal>
 
-      <nav aria-label="Módulos de análisis" className="flex flex-wrap gap-x-5 gap-y-2">
-        {[
-          ["/poder", "Poder"],
-          ["/partidos", "Partidos"],
-          ["/actores", "Actores"],
-          ["/escenarios", "Escenarios"],
-          ["/casos", "Casos"],
-          ["/gaps", "Gaps"],
-        ].map(([path, label]) => (
-          <Link
-            key={path}
-            href={href(path)}
-            className={cn(
-              "text-sm text-smoke no-underline hover:text-white",
-              focusRingInline,
-            )}
-          >
-            {label} →
-          </Link>
-        ))}
-      </nav>
-
-      {senales.length > 0 && (
-        <section>
-          <h2 className="mb-3 text-base font-medium tracking-tight text-white">
-            Señales
-          </h2>
-          <ul className="divide-y divide-border border-y border-border">
-            {senales.map((s) => (
-              <li key={s.id} className="py-3">
-                <p className="text-base text-white">{s.titulo}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{s.detalle}</p>
-                {s.fuente_url ? (
-                  <a
-                    href={s.fuente_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={cn(
-                      "mt-1 inline-block text-xs text-iris no-underline hover:text-iris-glow",
-                      focusRingInline,
-                    )}
-                  >
-                    Fuente →
-                  </a>
-                ) : (
-                  <span className="mt-1 inline-block text-xs text-muted-foreground">
-                    Fuente: N/D
-                  </span>
+      {topSenales.length > 0 && (
+        <section className="max-w-2xl">
+          <div className="mb-3 flex items-baseline justify-between gap-4">
+            <h2 className="text-sm font-medium tracking-tight text-white">
+              Señales
+            </h2>
+            {senales.length > 2 && (
+              <Link
+                href={href("/escenarios")}
+                className={cn(
+                  "text-xs text-muted-foreground no-underline hover:text-white",
+                  focusRingInline,
                 )}
+              >
+                Ver todas →
+              </Link>
+            )}
+          </div>
+          <ul className="space-y-4 border-t border-border pt-4">
+            {topSenales.map((s) => (
+              <li key={s.id}>
+                <p className="text-base text-bone">{s.titulo}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{s.detalle}</p>
               </li>
             ))}
           </ul>

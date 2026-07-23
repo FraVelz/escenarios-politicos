@@ -56,21 +56,11 @@ export function CountrySwitcher({
     };
   }, []);
 
-  if (countries.length === 0) return null;
+  // Un solo país: el nombre ya está en la marca — no duplicar chip.
+  if (countries.length <= 1) return null;
 
   const active =
     countries.find((c) => c.id === countryId) ?? countries[0];
-
-  if (countries.length === 1) {
-    return (
-      <span
-        className="shrink-0 border border-border px-2 py-1 text-xs text-bone"
-        title="Único país con datos analizados"
-      >
-        {active.nombre_corto}
-      </span>
-    );
-  }
 
   return (
     <label className="flex shrink-0 items-center gap-1.5 text-xs text-muted-foreground">

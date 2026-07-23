@@ -52,6 +52,7 @@ for (const item of items) {
         data: {
           reason: 'missing url',
           payload: j,
+          country_id: 'co',
           workflow_id: 'wf-c-rss',
           created_at: new Date().toISOString(),
         },
@@ -66,6 +67,7 @@ for (const item of items) {
       id,
       data: {
         id,
+        country_id: 'co',
         url: String(url),
         titulo: j.title || 'N/D',
         resumen: j.contentSnippet || j.content || j.description || '',

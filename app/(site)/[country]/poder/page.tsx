@@ -66,11 +66,7 @@ export default async function PoderPage({
                             ))}
                           </p>
                         )}
-                        {inst.fuentes.length === 0 ? (
-                          <p className="text-xs text-muted-foreground">
-                            Fuente: N/D
-                          </p>
-                        ) : (
+                        {inst.fuentes.length > 0 && (
                           <ul className="space-y-1">
                             {inst.fuentes.map((f) => (
                               <li

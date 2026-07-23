@@ -24,7 +24,24 @@
     "roles": [
       "Presidente electo"
     ],
-    "caso_ids": [],
+    "caso_ids": [
+      "paz-total-identidad",
+      "seguridad-rural-eslogan",
+      "empleo-con-plan",
+      "empleo-eslogan",
+      "reforma-fiscal-tecnica",
+      "regla-fiscal-relajacion",
+      "salud-plan-hospitales",
+      "salud-eslogan-gratis",
+      "educacion-jornada-unica",
+      "infra-metro-regional",
+      "vivienda-subsidios",
+      "justicia-reforma-procesal",
+      "exterior-discurso-soberania",
+      "energia-transicion-electo",
+      "agro-seguridad-alimentaria",
+      "estado-digital-tramites"
+    ],
     "fuentes": [
       {
         "medio": "El País",

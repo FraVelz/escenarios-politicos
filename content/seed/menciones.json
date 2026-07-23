@@ -2,7 +2,7 @@
   {
     "id": "men-empleo-eslogan-01",
     "caso_id": "empleo-eslogan",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-07-01",
     "url": "https://www.presidencia.gov.co/",
     "cita_corta": "Vamos a crear empleo para todos los colombianos.",
@@ -14,7 +14,7 @@
   {
     "id": "men-empleo-plan-01",
     "caso_id": "empleo-con-plan",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-03-10",
     "url": "https://www.mintrabajo.gov.co/",
     "cita_corta": "Plan de empleo formal con equipo en MinTrabajo, plazos a 18 meses, financiado con reasignación presupuestal e indicadores de formalización.",
@@ -26,7 +26,7 @@
   {
     "id": "men-paz-identidad-01",
     "caso_id": "paz-total-identidad",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-06-15",
     "url": "https://www.presidencia.gov.co/",
     "cita_corta": "La paz es el corazón de este proyecto político; negociamos con estructura y contrastamos el modelo anterior.",
@@ -38,7 +38,7 @@
   {
     "id": "men-seguridad-rural-01",
     "caso_id": "seguridad-rural-eslogan",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-07-10",
     "url": "https://www.presidencia.gov.co/",
     "cita_corta": "Vamos a recuperar la seguridad en el campo.",
@@ -50,7 +50,7 @@
   {
     "id": "men-fiscal-01",
     "caso_id": "reforma-fiscal-tecnica",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-02-01",
     "url": "https://www.minhacienda.gov.co/",
     "cita_corta": "Propuesta técnica de ajuste fiscal con mecanismos y plazos.",
@@ -62,7 +62,7 @@
   {
     "id": "men-regla-fiscal-01",
     "caso_id": "regla-fiscal-relajacion",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-06-01",
     "url": "https://www.minhacienda.gov.co/",
     "cita_corta": "Flexibilizar la regla fiscal con plazos y un mecanismo de transición, frente al status quo.",
@@ -74,7 +74,7 @@
   {
     "id": "men-salud-plan-01",
     "caso_id": "salud-plan-hospitales",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-05-12",
     "url": "https://www.minsalud.gov.co/",
     "cita_corta": "Red hospitalaria regional con equipo gestor, cronograma a 36 meses, fuente de financiamiento e indicadores de cobertura.",
@@ -86,7 +86,7 @@
   {
     "id": "men-salud-eslogan-01",
     "caso_id": "salud-eslogan-gratis",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-07-05",
     "url": "https://www.presidencia.gov.co/",
     "cita_corta": "Salud gratuita para todos.",
@@ -98,7 +98,7 @@
   {
     "id": "men-edu-01",
     "caso_id": "educacion-jornada-unica",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-06-20",
     "url": "https://www.mineducacion.gov.co/",
     "cita_corta": "Piloto de jornada única con equipo en secretarías departamentales y contraste frente al modelo actual.",
@@ -110,7 +110,7 @@
   {
     "id": "men-infra-01",
     "caso_id": "infra-metro-regional",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-05-20",
     "url": "https://www.mintransporte.gov.co/",
     "cita_corta": "Fases de metro/tren regional con plazos y esquema de financiamiento público-privado.",
@@ -122,7 +122,7 @@
   {
     "id": "men-vivienda-01",
     "caso_id": "vivienda-subsidios",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-04-18",
     "url": "https://www.minvivienda.gov.co/",
     "cita_corta": "Cupos anuales de subsidio con equipo implementador y contraste al esquema vigente.",
@@ -134,7 +134,7 @@
   {
     "id": "men-justicia-01",
     "caso_id": "justicia-reforma-procesal",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-02-28",
     "url": "https://www.minjusticia.gov.co/",
     "cita_corta": "Reforma procesal acotada con mecanismo, plazos y costo estimado.",
@@ -146,7 +146,7 @@
   {
     "id": "men-exterior-01",
     "caso_id": "exterior-discurso-soberania",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fecha": "2026-07-08",
     "url": "https://www.cancilleria.gov.co/",
     "cita_corta": "Defenderemos la soberanía en la política exterior.",
@@ -154,5 +154,41 @@
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
     "country_id": "co"
+  },
+  {
+    "id": "men-energia-01",
+    "country_id": "co",
+    "caso_id": "energia-transicion-electo",
+    "actor_id": "co-abelardo-espriella",
+    "fecha": "2026-07-15",
+    "url": "https://www.minenergia.gov.co/",
+    "cita_corta": "En el empalme se discute la transición energética; faltan instrumentos concretos.",
+    "tipo_pieza": "noticia",
+    "ingerido_en": "2026-07-22T20:00:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-agro-01",
+    "country_id": "co",
+    "caso_id": "agro-seguridad-alimentaria",
+    "actor_id": "co-abelardo-espriella",
+    "fecha": "2026-07-12",
+    "url": "https://www.minagricultura.gov.co/",
+    "cita_corta": "Relato de agro y seguridad alimentaria en transición, sin plan operativo publicado.",
+    "tipo_pieza": "noticia",
+    "ingerido_en": "2026-07-22T20:00:00Z",
+    "workflow_id": "seed-manual"
+  },
+  {
+    "id": "men-estado-digital-01",
+    "country_id": "co",
+    "caso_id": "estado-digital-tramites",
+    "actor_id": "co-abelardo-espriella",
+    "fecha": "2026-07-05",
+    "url": "https://www.mintic.gov.co/",
+    "cita_corta": "Propuesta de Estado digital con mecanismos, plazos e indicadores; recursos N/D.",
+    "tipo_pieza": "programa",
+    "ingerido_en": "2026-07-22T20:00:00Z",
+    "workflow_id": "seed-manual"
   }
 ]

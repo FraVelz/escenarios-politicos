@@ -4,6 +4,7 @@ import { ExternalLink } from "lucide-react";
 import { useLiveMenciones } from "@/components/LiveMenciones";
 import type { Mencion } from "@/lib/types";
 import { focusRingInline } from "@/lib/focus";
+import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
 
 export function CasoMencionesClient({
@@ -13,7 +14,11 @@ export function CasoMencionesClient({
   casoId: string;
   initial: Mencion[];
 }) {
-  const { menciones, source } = useLiveMenciones(initial, casoId);
+  const { countryId } = useCountryPath();
+  const { menciones, source } = useLiveMenciones(initial, {
+    casoId,
+    countryId,
+  });
 
   return (
     <section>

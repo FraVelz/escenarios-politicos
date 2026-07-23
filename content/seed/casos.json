@@ -3,9 +3,9 @@
     "id": "paz-total-identidad",
     "titulo": "Paz como eje de identidad de campaña",
     "area": "paz_seguridad",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 8,
+    "n_menciones": 1,
     "primera_mencion_at": "2025-10-01",
     "ultima_mencion_at": "2026-06-15",
     "especificidad": 55,
@@ -17,10 +17,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 72,
+    "credibilidad": 60,
     "credibilidad_desglose": {
       "especificidad": 55,
-      "repeticion_norm": 69,
+      "repeticion_norm": 20,
       "centralidad": 100
     },
     "discurso_identidad": true,
@@ -38,9 +38,9 @@
     "id": "seguridad-rural-eslogan",
     "titulo": "Seguridad en el campo (eslogan repetido)",
     "area": "paz_seguridad",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 25,
+    "n_menciones": 1,
     "primera_mencion_at": "2025-09-01",
     "ultima_mencion_at": "2026-07-10",
     "especificidad": 0,
@@ -52,10 +52,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 45,
+    "credibilidad": 26,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 96,
+      "repeticion_norm": 20,
       "centralidad": 70
     },
     "discurso_identidad": false,
@@ -73,7 +73,7 @@
     "id": "empleo-con-plan",
     "titulo": "Empleo formal con plan y equipo",
     "area": "empleo",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
     "primera_mencion_at": "2026-03-10",
@@ -108,9 +108,9 @@
     "id": "empleo-eslogan",
     "titulo": "Creación de empleo (eslogan sin plan)",
     "area": "empleo",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 15,
+    "n_menciones": 1,
     "primera_mencion_at": "2025-11-01",
     "ultima_mencion_at": "2026-07-01",
     "especificidad": 0,
@@ -122,10 +122,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 27,
+    "credibilidad": 11,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 84,
+      "repeticion_norm": 20,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -145,7 +145,7 @@
     "id": "reforma-fiscal-tecnica",
     "titulo": "Ajuste fiscal técnico (poco mencionado)",
     "area": "fiscal",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
     "primera_mencion_at": "2026-02-01",
@@ -180,12 +180,12 @@
     "id": "regla-fiscal-relajacion",
     "titulo": "Relajación de la regla fiscal",
     "area": "fiscal",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 6,
+    "n_menciones": 1,
     "primera_mencion_at": "2026-01-20",
     "ultima_mencion_at": "2026-06-01",
-    "especificidad": 45,
+    "especificidad": 50,
     "especificidad_checklist": {
       "plan_mecanismo": true,
       "responsables_equipo": false,
@@ -194,10 +194,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 42,
+    "credibilidad": 34,
     "credibilidad_desglose": {
-      "especificidad": 45,
-      "repeticion_norm": 62,
+      "especificidad": 50,
+      "repeticion_norm": 20,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -215,9 +215,9 @@
     "id": "salud-plan-hospitales",
     "titulo": "Red de hospitales regionales con cronograma",
     "area": "salud",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 2,
+    "n_menciones": 1,
     "primera_mencion_at": "2026-04-01",
     "ultima_mencion_at": "2026-05-12",
     "especificidad": 100,
@@ -229,10 +229,10 @@
       "metricas": true,
       "contraste_status_quo": true
     },
-    "credibilidad": 60,
+    "credibilidad": 56,
     "credibilidad_desglose": {
       "especificidad": 100,
-      "repeticion_norm": 36,
+      "repeticion_norm": 20,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -250,9 +250,9 @@
     "id": "salud-eslogan-gratis",
     "titulo": "Salud gratuita para todos (eslogan)",
     "area": "salud",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 12,
+    "n_menciones": 1,
     "primera_mencion_at": "2025-11-15",
     "ultima_mencion_at": "2026-07-05",
     "especificidad": 0,
@@ -264,10 +264,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 26,
+    "credibilidad": 11,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 78,
+      "repeticion_norm": 20,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -285,9 +285,9 @@
     "id": "educacion-jornada-unica",
     "titulo": "Jornada única escolar con piloto departamental",
     "area": "educacion",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 5,
+    "n_menciones": 1,
     "primera_mencion_at": "2026-02-10",
     "ultima_mencion_at": "2026-06-20",
     "especificidad": 55,
@@ -299,10 +299,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 45,
+    "credibilidad": 36,
     "credibilidad_desglose": {
       "especificidad": 55,
-      "repeticion_norm": 58,
+      "repeticion_norm": 20,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -319,9 +319,9 @@
     "id": "infra-metro-regional",
     "titulo": "Metro/tren regional con fases de financiamiento",
     "area": "infraestructura",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 3,
+    "n_menciones": 1,
     "primera_mencion_at": "2026-03-01",
     "ultima_mencion_at": "2026-05-20",
     "especificidad": 60,
@@ -333,10 +333,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 45,
+    "credibilidad": 38,
     "credibilidad_desglose": {
       "especificidad": 60,
-      "repeticion_norm": 46,
+      "repeticion_norm": 20,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -354,9 +354,9 @@
     "id": "vivienda-subsidios",
     "titulo": "Subsidios de vivienda con cupos anuales",
     "area": "vivienda_social",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 4,
+    "n_menciones": 1,
     "primera_mencion_at": "2026-01-08",
     "ultima_mencion_at": "2026-04-18",
     "especificidad": 55,
@@ -368,10 +368,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 44,
+    "credibilidad": 36,
     "credibilidad_desglose": {
       "especificidad": 55,
-      "repeticion_norm": 53,
+      "repeticion_norm": 20,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -388,7 +388,7 @@
     "id": "justicia-reforma-procesal",
     "titulo": "Reforma procesal puntual (mención técnica)",
     "area": "justicia",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
     "primera_mencion_at": "2026-02-28",
@@ -423,9 +423,9 @@
     "id": "exterior-discurso-soberania",
     "titulo": "Soberanía y política exterior (discurso recurrente)",
     "area": "exterior",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 20,
+    "n_menciones": 1,
     "primera_mencion_at": "2025-10-20",
     "ultima_mencion_at": "2026-07-08",
     "especificidad": 0,
@@ -437,10 +437,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 44,
+    "credibilidad": 26,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 90,
+      "repeticion_norm": 20,
       "centralidad": 70
     },
     "discurso_identidad": false,
@@ -460,12 +460,12 @@
     "id": "energia-transicion-electo",
     "titulo": "Transición energética en discurso de empalme",
     "area": "energia_clima",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
-    "n_menciones": 3,
+    "n_menciones": 1,
     "primera_mencion_at": "2026-06-25",
     "ultima_mencion_at": "2026-07-15",
-    "especificidad": 40,
+    "especificidad": 35,
     "especificidad_checklist": {
       "plan_mecanismo": true,
       "responsables_equipo": false,
@@ -474,11 +474,11 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 49,
+    "credibilidad": 27,
     "credibilidad_desglose": {
-      "especificidad": 40,
-      "repeticion_norm": 50,
-      "centralidad": 60
+      "especificidad": 35,
+      "repeticion_norm": 20,
+      "centralidad": 20
     },
     "discurso_identidad": false,
     "importancia": "alta",
@@ -498,12 +498,12 @@
     "id": "agro-seguridad-alimentaria",
     "titulo": "Agro y seguridad alimentaria (relato de transición)",
     "area": "agro_rural",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
-    "n_menciones": 2,
+    "n_menciones": 1,
     "primera_mencion_at": "2026-07-01",
     "ultima_mencion_at": "2026-07-12",
-    "especificidad": 20,
+    "especificidad": 10,
     "especificidad_checklist": {
       "plan_mecanismo": false,
       "responsables_equipo": false,
@@ -512,11 +512,11 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 31,
+    "credibilidad": 16,
     "credibilidad_desglose": {
-      "especificidad": 20,
-      "repeticion_norm": 40,
-      "centralidad": 40
+      "especificidad": 10,
+      "repeticion_norm": 20,
+      "centralidad": 20
     },
     "discurso_identidad": false,
     "importancia": "media",
@@ -536,7 +536,7 @@
     "id": "estado-digital-tramites",
     "titulo": "Estado digital y trámites (propuesta con mecanismo)",
     "area": "tecnologia_estado",
-    "actor_id": "actor-ejemplo-campana",
+    "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
     "n_menciones": 1,
     "primera_mencion_at": "2026-07-05",
@@ -550,11 +550,11 @@
       "metricas": true,
       "contraste_status_quo": true
     },
-    "credibilidad": 50,
+    "credibilidad": 47,
     "credibilidad_desglose": {
       "especificidad": 80,
       "repeticion_norm": 20,
-      "centralidad": 30
+      "centralidad": 20
     },
     "discurso_identidad": false,
     "importancia": "media",

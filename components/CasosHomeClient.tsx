@@ -5,14 +5,16 @@ import { motion, useReducedMotion } from "motion/react";
 import type { Alerta, Caso } from "@/lib/types";
 import { useLiveCasos } from "@/components/LiveCasos";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { CrossCell, CrossGrid, CrossRow } from "@/components/CrossGrid";
 import { Reveal, easeOut, useMotionPresets } from "@/components/motion";
 import { focusRingInline } from "@/lib/focus";
-import { SCORE_MONO } from "@/lib/styles";
 import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
 
-function buildRanking(identidad: Caso[], topCred: Caso[]): Caso[] {
+function buildRanking(casos: Caso[]): Caso[] {
+  const identidad = casos.filter((c) => c.discurso_identidad);
+  const topCred = [...casos]
+    .sort((a, b) => b.credibilidad - a.credibilidad)
+    .slice(0, 5);
   const seen = new Set<string>();
   const out: Caso[] = [];
   for (const c of [...identidad, ...topCred]) {
@@ -20,13 +22,13 @@ function buildRanking(identidad: Caso[], topCred: Caso[]): Caso[] {
     seen.add(c.id);
     out.push(c);
   }
-  return out;
+  return out.slice(0, 5);
 }
 
 export function CasosHomeClient({
   initialCasos,
-  identidad,
-  topCred,
+  identidad: identidadSeed,
+  topCred: topCredSeed,
   alertas,
   gapsCount,
 }: {
@@ -36,49 +38,40 @@ export function CasosHomeClient({
   alertas: Alerta[];
   gapsCount: number;
 }) {
-  const { source } = useLiveCasos(initialCasos);
-  const { stagger, itemBlur, fadeUp } = useMotionPresets();
+  const { countryId, href } = useCountryPath();
+  const { casos, source } = useLiveCasos(initialCasos, countryId);
+  const { stagger, fadeUp } = useMotionPresets();
   const reduce = useReducedMotion();
-  const { href } = useCountryPath();
-  const ranking = buildRanking(identidad, topCred);
+
+  const ranking =
+    source === "firestore"
+      ? buildRanking(casos)
+      : buildRanking([
+          ...identidadSeed,
+          ...topCredSeed.filter(
+            (c) => !identidadSeed.some((i) => i.id === c.id),
+          ),
+        ]);
+
+  const identidadCount =
+    source === "firestore"
+      ? casos.filter((c) => c.discurso_identidad).length
+      : identidadSeed.length;
+  const topPct =
+    source === "firestore"
+      ? [...casos].sort((a, b) => b.credibilidad - a.credibilidad)[0]
+          ?.credibilidad
+      : topCredSeed[0]?.credibilidad;
 
   return (
-    <div className="space-y-12">
-      <CrossGrid
-        cols={4}
-        variants={stagger(0.07)}
-        initial="hidden"
-        animate="show"
-      >
-        <CrossCell variants={itemBlur}>
-          <p className="text-sm text-muted-foreground">Identidad</p>
-          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{identidad.length}</p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Casos con discurso identidad
-          </p>
-        </CrossCell>
-        <CrossCell variants={itemBlur}>
-          <p className="text-sm text-muted-foreground">Top credibilidad</p>
-          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>
-            {topCred[0] ? (
-              <AnimatedNumber value={topCred[0].credibilidad} suffix="%" />
-            ) : (
-              "—"
-            )}
-          </p>
-          <p className="mt-2 truncate text-sm text-muted-foreground">
-            {topCred[0]?.titulo ?? "Sin casos"}
-          </p>
-        </CrossCell>
-        <CrossCell variants={itemBlur}>
-          <p className="text-sm text-muted-foreground">Alertas</p>
-          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{alertas.length}</p>
-          <p className="mt-2 text-sm text-muted-foreground">Señales activas</p>
-        </CrossCell>
-        <CrossCell variants={itemBlur}>
-          <p className="text-sm text-muted-foreground">Gaps</p>
-          <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{gapsCount}</p>
-          <p className="mt-2 text-sm text-muted-foreground">
+    <div className="max-w-2xl space-y-10">
+      <p className="text-sm text-muted-foreground">
+        {identidadCount} identidad
+        {topPct != null ? ` · top ${topPct}%` : ""}
+        {alertas.length > 0 ? ` · ${alertas.length} alertas` : ""}
+        {gapsCount > 0 ? (
+          <>
+            {" · "}
             <Link
               href={href("/gaps")}
               className={cn(
@@ -86,93 +79,104 @@ export function CasosHomeClient({
                 focusRingInline,
               )}
             >
-              Revisar pendientes →
+              {gapsCount} gaps
             </Link>
-          </p>
-        </CrossCell>
-
-        {ranking.length === 0 ? (
-          <CrossRow variants={itemBlur}>
-            <p className="col-span-full text-sm text-muted-foreground">
-              Sin casos en ranking.
-            </p>
-          </CrossRow>
-        ) : (
-          ranking.map((c) => (
-            <CrossRow
-              key={c.id}
-              variants={itemBlur}
-              whileHover={
-                reduce
-                  ? undefined
-                  : { x: 2, transition: { duration: 0.15, ease: easeOut } }
-              }
-            >
-              <div className="min-w-0">
-                <Link
-                  href={href(`/casos/${c.id}`)}
-                  className={cn(
-                    "block text-base text-white no-underline hover:text-iris-glow",
-                    focusRingInline,
-                  )}
-                >
-                  {c.titulo}
-                </Link>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {c.discurso_identidad ? "identidad · " : ""}
-                  factibilidad: {c.factibilidad}
-                </p>
-              </div>
-              <AnimatedNumber
-                value={c.credibilidad}
-                suffix="%"
-                className="text-xl"
-              />
-              <span className="text-sm text-muted-foreground">cred.</span>
-            </CrossRow>
-          ))
-        )}
-      </CrossGrid>
-
-      <Reveal delay={0.2} y={8} as="p" className="text-sm text-muted-foreground">
-        Fuente de datos: <span className="text-bone">{source}</span>
-      </Reveal>
+          </>
+        ) : null}
+        <span className="text-border"> · </span>
+        <span className="text-smoke">{source}</span>
+      </p>
 
       <section>
-        <Reveal as="h2" delay={0.12} y={10} className="mb-4 text-base font-medium tracking-tight text-white">
-          Alertas
-        </Reveal>
-        {alertas.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Sin alertas.</p>
+        <div className="mb-3 flex items-baseline justify-between gap-4">
+          <h2 className="text-sm font-medium tracking-tight text-white">
+            Relatos críticos
+          </h2>
+          <Link
+            href={href("/casos")}
+            className={cn(
+              "text-xs text-muted-foreground no-underline hover:text-white",
+              focusRingInline,
+            )}
+          >
+            Todos →
+          </Link>
+        </div>
+        {ranking.length === 0 ? (
+          <p className="text-sm text-muted-foreground">Sin casos.</p>
         ) : (
+          <ul className="divide-y divide-border border-y border-border">
+            {ranking.map((c) => (
+              <li key={c.id}>
+                <motion.div
+                  className="flex items-baseline justify-between gap-4 py-3"
+                  whileHover={
+                    reduce
+                      ? undefined
+                      : { x: 2, transition: { duration: 0.15, ease: easeOut } }
+                  }
+                >
+                  <div className="min-w-0">
+                    <Link
+                      href={href(`/casos/${c.id}`)}
+                      className={cn(
+                        "text-base text-white no-underline hover:text-iris-glow",
+                        focusRingInline,
+                      )}
+                    >
+                      {c.titulo}
+                    </Link>
+                    <p className="mt-0.5 text-sm text-muted-foreground">
+                      {c.discurso_identidad ? "identidad · " : ""}
+                      fact. {c.factibilidad}
+                    </p>
+                  </div>
+                  <AnimatedNumber
+                    value={c.credibilidad}
+                    suffix="%"
+                    className="shrink-0 text-lg"
+                  />
+                </motion.div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {alertas.length > 0 && (
+        <section>
+          <Reveal
+            as="h2"
+            y={8}
+            className="mb-3 text-sm font-medium tracking-tight text-white"
+          >
+            Alertas
+          </Reveal>
           <motion.ul
-            className="divide-y divide-border border-y border-border"
-            variants={stagger(0.06)}
+            className="space-y-3"
+            variants={stagger(0.05)}
             initial="hidden"
             animate="show"
           >
             {alertas.map((a) => (
-              <motion.li
-                key={a.id}
-                variants={fadeUp}
-                className="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3"
-              >
-                <span className="text-sm text-warn">{a.tipo}</span>
-                <span className="text-base text-bone">{a.mensaje}</span>
+              <motion.li key={a.id} variants={fadeUp} className="text-sm">
+                <span className="text-warn">{a.tipo}</span>
+                <span className="text-muted-foreground"> — </span>
+                <span className="text-bone">{a.mensaje}</span>{" "}
                 <Link
                   href={href(`/casos/${a.caso_id}`)}
                   className={cn(
-                    "text-sm text-iris no-underline hover:text-iris-glow",
+                    "text-iris no-underline hover:text-iris-glow",
                     focusRingInline,
                   )}
                 >
-                  → {a.caso_id}
+                  ver
                 </Link>
               </motion.li>
             ))}
           </motion.ul>
-        )}
-      </section>
+        </section>
+      )}
     </div>
   );
 }

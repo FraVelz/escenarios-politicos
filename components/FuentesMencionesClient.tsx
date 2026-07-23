@@ -16,8 +16,10 @@ export function FuentesMencionesClient({
   initialMenciones: Mencion[];
   casos: Caso[];
 }) {
-  const { menciones, source } = useLiveMenciones(initialMenciones);
-  const { href } = useCountryPath();
+  const { countryId, href } = useCountryPath();
+  const { menciones, source } = useLiveMenciones(initialMenciones, {
+    countryId,
+  });
   const casoMap = Object.fromEntries(casos.map((c) => [c.id, c]));
 
   const byCaso = casos

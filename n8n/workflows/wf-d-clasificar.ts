@@ -35,7 +35,7 @@ for (const item of $input.all()) {
       json: {
         collection: 'ingest_errors',
         id: 'err-wf-d-' + Date.now(),
-        data: { ...(raw.payload || raw), workflow_id: 'wf-d-clasificar', created_at: new Date().toISOString() },
+        data: { ...(raw.payload || raw), country_id: raw.country_id || 'co', workflow_id: 'wf-d-clasificar', created_at: new Date().toISOString() },
       },
     });
     continue;
@@ -47,7 +47,7 @@ for (const item of $input.all()) {
       json: {
         collection: 'ingest_errors',
         id: 'err-wf-d-' + Date.now(),
-        data: { reason: 'missing url', payload: raw, workflow_id: 'wf-d-clasificar', created_at: new Date().toISOString() },
+        data: { reason: 'missing url', payload: raw, country_id: raw.country_id || 'co', workflow_id: 'wf-d-clasificar', created_at: new Date().toISOString() },
       },
     });
     continue;
@@ -57,8 +57,10 @@ for (const item of $input.all()) {
   const n = 1;
   const scores = calcular({ checklist, n, identidad: false });
   const mencionId = 'men-' + Buffer.from(String(url)).toString('base64url').slice(0, 28);
+  const country_id = raw.country_id || j.country_id || 'co';
   const mencion = {
     id: mencionId,
+    country_id,
     caso_id,
     actor_id: 'N/D',
     fecha: raw.fecha || 'N/D',
@@ -71,6 +73,7 @@ for (const item of $input.all()) {
   };
   const caso = {
     id: caso_id,
+    country_id,
     titulo,
     area: 'exterior',
     actor_id: 'N/D',

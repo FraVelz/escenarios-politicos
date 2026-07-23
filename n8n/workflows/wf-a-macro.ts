@@ -73,6 +73,7 @@ const indicador = {
   fecha: latest.date ? String(latest.date) : 'N/D',
   fuente_url: 'https://api.worldbank.org/v2/country/COL/indicator/FP.CPI.TOTL.ZG?format=json',
   pais: 'COL',
+  country_id: 'co',
   unidad: '%',
   updated_at: new Date().toISOString(),
   workflow_id: 'wf-a-macro',
@@ -84,12 +85,13 @@ if (missing.length) {
     json: {
       collection: 'ingest_errors',
       id: 'err-wf-a-' + Date.now(),
-      data: {
-        reason: 'missing fields: ' + missing.join(','),
-        payload: indicador,
-        workflow_id: 'wf-a-macro',
-        created_at: new Date().toISOString(),
-      },
+        data: {
+          reason: 'missing fields: ' + missing.join(','),
+          payload: indicador,
+          country_id: 'co',
+          workflow_id: 'wf-a-macro',
+          created_at: new Date().toISOString(),
+        },
     },
   }];
 }

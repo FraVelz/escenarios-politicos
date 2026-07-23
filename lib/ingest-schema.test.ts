@@ -20,6 +20,32 @@ describe("ingestBodySchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("rechaza country_id con formato inválido", () => {
+    const result = ingestBodySchema.safeParse({
+      collection: "casos",
+      id: "caso-1",
+      data: { workflow_id: "wf-test", country_id: "COL" },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("exige country_id en ingest_errors e indicadores", () => {
+    for (const collection of ["ingest_errors", "indicadores"] as const) {
+      const bad = ingestBodySchema.safeParse({
+        collection,
+        id: "x-1",
+        data: { workflow_id: "wf-a" },
+      });
+      expect(bad.success).toBe(false);
+      const ok = ingestBodySchema.safeParse({
+        collection,
+        id: "x-1",
+        data: { workflow_id: "wf-a", country_id: "co" },
+      });
+      expect(ok.success).toBe(true);
+    }
+  });
+
   it("rechaza colección desconocida", () => {
     const result = ingestBodySchema.safeParse({
       collection: "usuarios",
