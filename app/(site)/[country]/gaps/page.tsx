@@ -1,5 +1,6 @@
 import { gapsFromCasos, listCasosSync } from "@/lib/data";
 import { GapsGrid } from "@/components/GapsGrid";
+import { EmptyState } from "@/components/EmptyState";
 import { PageHeader } from "@/components/PageHeader";
 
 export default async function GapsPage({
@@ -24,7 +25,14 @@ export default async function GapsPage({
           </>
         }
       />
-      <GapsGrid gaps={gaps} />
+      {gaps.length === 0 ? (
+        <EmptyState
+          title="Sin gaps"
+          description="Todos los casos tienen importancia y factibilidad asignadas."
+        />
+      ) : (
+        <GapsGrid gaps={gaps} />
+      )}
     </main>
   );
 }

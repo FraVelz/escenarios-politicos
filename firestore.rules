@@ -26,11 +26,30 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+    match /escenarios/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /instituciones/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /partidos/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /actores/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /marco/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
     match /informes/{id} {
       allow read: if true;
       allow write: if false;
     }
-    // Cola cruda e ingest: no visibles ni escribibles desde el cliente.
     match /raw_items/{id} {
       allow read, write: if false;
     }
@@ -38,8 +57,10 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+    // Errores de ingest: lectura para gaps; escritura solo Admin
     match /ingest_errors/{id} {
-      allow read, write: if false;
+      allow read: if true;
+      allow write: if false;
     }
     match /ingest_runs/{id} {
       allow read, write: if false;

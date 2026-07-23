@@ -7,6 +7,12 @@ export const ALLOWED_COLLECTIONS = [
   "raw_items",
   "eventos",
   "alertas",
+  "instituciones",
+  "partidos",
+  "actores",
+  "escenarios",
+  "senales",
+  "marco",
   "ingest_errors",
   "ingest_runs",
 ] as const;
@@ -14,29 +20,53 @@ export const ALLOWED_COLLECTIONS = [
 export const MAX_BODY_BYTES = 256_000;
 export const MAX_ID_LEN = 128;
 
+const COLLECTIONS_REQUIRE_COUNTRY = new Set([
+  "casos",
+  "menciones",
+  "instituciones",
+  "partidos",
+  "actores",
+  "escenarios",
+  "senales",
+  "marco",
+  "alertas",
+]);
+
 const idSchema = z
   .string()
   .min(1)
   .max(MAX_ID_LEN)
   .regex(/^[a-zA-Z0-9_.:\-]+$/);
 
-export const ingestBodySchema = z.object({
-  collection: z.enum(ALLOWED_COLLECTIONS),
-  id: idSchema,
-  data: z
-    .record(z.string(), z.unknown())
-    .refine((data) => !Array.isArray(data), {
-      message: "data must be an object",
-    })
-    .refine(
-      (data) => {
-        const workflowId = data.workflow_id;
-        return (
-          typeof workflowId === "string" && /^(wf-|seed-)/.test(workflowId)
-        );
-      },
-      { message: "data.workflow_id must start with wf- or seed-" },
-    ),
-});
+export const ingestBodySchema = z
+  .object({
+    collection: z.enum(ALLOWED_COLLECTIONS),
+    id: idSchema,
+    data: z
+      .record(z.string(), z.unknown())
+      .refine((data) => !Array.isArray(data), {
+        message: "data must be an object",
+      })
+      .refine(
+        (data) => {
+          const workflowId = data.workflow_id;
+          return (
+            typeof workflowId === "string" && /^(wf-|seed-)/.test(workflowId)
+          );
+        },
+        { message: "data.workflow_id must start with wf- or seed-" },
+      ),
+  })
+  .superRefine((body, ctx) => {
+    if (!COLLECTIONS_REQUIRE_COUNTRY.has(body.collection)) return;
+    const cid = body.data.country_id;
+    if (typeof cid !== "string" || cid.length < 2) {
+      ctx.addIssue({
+        code: "custom",
+        message: "data.country_id required for this collection",
+        path: ["data", "country_id"],
+      });
+    }
+  });
 
 export type IngestBody = z.infer<typeof ingestBodySchema>;

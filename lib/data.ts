@@ -1,7 +1,22 @@
 import seedCasos from "@/content/seed/casos.json";
 import seedMenciones from "@/content/seed/menciones.json";
 import seedMarco from "@/content/seed/marco.json";
-import type { Alerta, Caso, MarcoPolitico, Mencion } from "./types";
+import seedInstituciones from "@/content/seed/instituciones.json";
+import seedPartidos from "@/content/seed/partidos.json";
+import seedActores from "@/content/seed/actores.json";
+import seedEscenarios from "@/content/seed/escenarios.json";
+import seedSenales from "@/content/seed/senales.json";
+import type {
+  ActorPolitico,
+  Alerta,
+  Caso,
+  EscenarioSeed,
+  Institucion,
+  MarcoPolitico,
+  Mencion,
+  Partido,
+  SenalSeed,
+} from "./types";
 
 function allCasos(): Caso[] {
   return seedCasos as Caso[];
@@ -41,6 +56,31 @@ export function listMencionesSync(opts?: {
     all = all.filter((m) => m.caso_id === opts.casoId);
   }
   return all;
+}
+
+export function listInstitucionesSync(countryId?: string): Institucion[] {
+  const all = seedInstituciones as Institucion[];
+  return countryId ? all.filter((i) => i.country_id === countryId) : all;
+}
+
+export function listPartidosSync(countryId?: string): Partido[] {
+  const all = seedPartidos as Partido[];
+  return countryId ? all.filter((p) => p.country_id === countryId) : all;
+}
+
+export function listActoresSync(countryId?: string): ActorPolitico[] {
+  const all = seedActores as ActorPolitico[];
+  return countryId ? all.filter((a) => a.country_id === countryId) : all;
+}
+
+export function listEscenariosSync(countryId?: string): EscenarioSeed[] {
+  const all = seedEscenarios as EscenarioSeed[];
+  return countryId ? all.filter((e) => e.country_id === countryId) : all;
+}
+
+export function listSenalesSync(countryId?: string): SenalSeed[] {
+  const all = seedSenales as SenalSeed[];
+  return countryId ? all.filter((s) => s.country_id === countryId) : all;
 }
 
 export function listAlertasSync(countryId?: string): Alerta[] {

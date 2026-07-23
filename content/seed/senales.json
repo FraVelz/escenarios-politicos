@@ -1,0 +1,22 @@
+[
+  {
+    "id": "co-sen-posesion-fecha",
+    "country_id": "co",
+    "titulo": "Fecha de posesión 7 ago 2026",
+    "detalle": "Confirmada en medios de referencia.",
+    "escenario_id": "co-esc-base",
+    "caso_id": null,
+    "fuente_url": "https://caracol.com.co/2026/06/21/fecha-de-la-posesion-de-abelardo-de-la-espriella-el-nuevo-presidente-de-colombia-2026-2030/",
+    "created_at": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "co-sen-sede-militar",
+    "country_id": "co",
+    "titulo": "Debate sede de posesión",
+    "detalle": "Disputa política/jurídica según prensa.",
+    "escenario_id": "co-esc-base",
+    "caso_id": null,
+    "fuente_url": "https://www.infobae.com/colombia/2026/07/08/abelardo-de-la-espriella-confirmo-que-se-posesionara-en-una-guarnicion-militar-como-nunca-se-ha-hecho/",
+    "created_at": "2026-07-22T00:00:00Z"
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "co-presidencia",
+    "country_id": "co",
+    "nombre": "Presidencia de la República",
+    "capa": "ejecutivo",
+    "rol": "Jefe de Estado y de Gobierno",
+    "veto_notes": "Agenda ejecutiva y nombramientos; detalle de facultad N/D en este seed.",
+    "caso_ids": [],
+    "fuentes": [
+      {
+        "medio": "Función Pública (normativa)",
+        "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125",
+        "fecha": "N/D",
+        "nota": "Marco constitucional de referencia"
+      }
+    ]
+  },
+  {
+    "id": "co-congreso",
+    "country_id": "co",
+    "nombre": "Congreso de la República",
+    "capa": "legislativo",
+    "rol": "Legislativo bicameral",
+    "veto_notes": "Posesión y leyes; composición de bancadas N/D en este seed.",
+    "caso_ids": [],
+    "fuentes": [
+      {
+        "medio": "Congreso de la República",
+        "url": "https://www.congreso.gov.co/",
+        "fecha": "N/D",
+        "nota": "Portal institucional"
+      }
+    ]
+  },
+  {
+    "id": "co-corte-constitucional",
+    "country_id": "co",
+    "nombre": "Corte Constitucional",
+    "capa": "judicial",
+    "rol": "Control constitucional",
+    "veto_notes": "N/D — capacidad de bloqueo caso a caso requiere fuente.",
+    "caso_ids": [],
+    "fuentes": [
+      {
+        "medio": "Corte Constitucional",
+        "url": "https://www.corteconstitucional.gov.co/",
+        "fecha": "N/D"
+      }
+    ]
+  },
+  {
+    "id": "co-banrep",
+    "country_id": "co",
+    "nombre": "Banco de la República",
+    "capa": "macro",
+    "rol": "Banca central",
+    "veto_notes": "Autonomía monetaria; tensiones públicas solo con fuente.",
+    "caso_ids": [],
+    "fuentes": [
+      {
+        "medio": "Banco de la República",
+        "url": "https://www.banrep.gov.co/",
+        "fecha": "N/D"
+      }
+    ]
+  },
+  {
+    "id": "co-fuerza-publica",
+    "country_id": "co",
+    "nombre": "Fuerza pública (marco institucional)",
+    "capa": "seguridad",
+    "rol": "Seguridad y defensa (nivel institucional)",
+    "veto_notes": "N/D operativo; sin datos sensibles.",
+    "caso_ids": [
+      "seguridad-rural-eslogan"
+    ],
+    "fuentes": []
+  },
+  {
+    "id": "co-regiones",
+    "country_id": "co",
+    "nombre": "Gobiernos territoriales",
+    "capa": "regional",
+    "rol": "Departamentos y municipios",
+    "veto_notes": "N/D — mapa subnacional no cargado.",
+    "caso_ids": [],
+    "fuentes": []
+  },
+  {
+    "id": "co-elites-nd",
+    "country_id": "co",
+    "nombre": "Élites económicas/mediáticas",
+    "capa": "elites",
+    "rol": "N/D",
+    "veto_notes": "N/D — no inventar actores sin fuente.",
+    "caso_ids": [],
+    "fuentes": []
+  }
+]

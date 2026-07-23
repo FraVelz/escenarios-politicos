@@ -2,6 +2,8 @@
 
 Manual operativo para el agente: **estructurar datos**, **investigar el acto/gobierno colombiano** y **registrar múltiples casos** (promesas/temas de discurso) con **credibilidad %** auditable. Doce temas + marco de transición en `marco.json` / `/contexto`.
 
+**Multi-país:** la UI analítica vive bajo `/[country]` (ej. `/co`). Solo se listan países con datos. La arquitectura sensible de plataforma está en local `docs/private/` (no versionada).
+
 ## Cuándo usarlo
 
 - Correr o actualizar el análisis Colombia (`/colombia-actual`).

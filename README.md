@@ -1,10 +1,25 @@
 # Escenarios políticos
 
-Dashboard web multi-país + playbook + n8n → **Firebase Firestore**. País de referencia actual: **Colombia** (`/co`).
+Plataforma web **multi-país** de análisis político (discurso, poder, partidos, escenarios) + playbook + n8n → **Firebase Firestore**.
 
-No es un oráculo: registra **casos** de discurso/promesas con **credibilidad %** auditable (especificidad + repetición + centralidad), factibilidad e importancia por separado.
+País de referencia: **Colombia** (`/co`). El selector solo lista países con datos analizados.
 
-La visión de plataforma de inteligencia política (arquitectura sensible) vive solo en local en `docs/private/` — **no se versiona** en GitHub.
+No es un oráculo: **credibilidad %** auditable (especificidad × repetición × centralidad) ≠ probabilidad de cumplimiento. Cifras y juicios: valor + fecha + fuente, o `N/D`.
+
+Arquitectura sensible de plataforma (intel): solo local en `docs/private/` — **no se versiona** en GitHub.
+
+## Rutas
+
+| Ruta | Contenido |
+|------|-----------|
+| `/` | Redirect al país disponible |
+| `/co` | Mesa situacional |
+| `/co/contexto` | Transición / acto |
+| `/co/poder` | Mapa de poder |
+| `/co/partidos` · `/co/actores` | Fuerzas y actores |
+| `/co/casos` · `/fuentes` · `/gaps` | Discurso y completitud |
+| `/co/escenarios` | Escenarios y señales |
+| `/playbook` | Metodología (global) |
 
 ## Stack
 
@@ -19,37 +34,17 @@ La visión de plataforma de inteligencia política (arquitectura sensible) vive 
 ## Desarrollo
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000).
+Abrir [http://localhost:3000](http://localhost:3000) → redirige a `/co`.
 
 Producción: [https://escenarios-politicos.vercel.app](https://escenarios-politicos.vercel.app)
 
-Variables opcionales: copiar `.env.example` → `.env.local` (ya hay defaults del proyecto Firebase).
-
 ## Playbook / agente
 
-Usar `/colombia-actual` → [`docs/playbook/00-indice.md`](docs/playbook/00-indice.md).
-
-## Credibilidad
-
-Ver [`docs/playbook/02-discurso-de-campana.md`](docs/playbook/02-discurso-de-campana.md) y `lib/credibilidad.ts`.
-
-## Firebase
-
-- Proyecto: `escenarios-politicos-co`
-- Rules: lectura pública de colecciones de visualización; escritura denegada al cliente
-- Seed: `content/seed/*.json` (ya cargado en Firestore)
-
-## n8n
-
-Ver [`n8n/README.md`](n8n/README.md).
-
-## Legacy Python
-
-Scripts en `src/escenarios/` quedan como legado opcional; el camino crítico es web + n8n + Firebase.
+`/colombia-actual` → [`docs/playbook/00-indice.md`](docs/playbook/00-indice.md).
 
 ## Licencia
 

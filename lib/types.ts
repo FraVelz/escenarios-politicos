@@ -110,3 +110,71 @@ export type MarcoPolitico = {
   timeline: MarcoTimelineItem[];
   contraste_ejes: MarcoContrasteEje[];
 };
+
+
+export type CapaPoder =
+  | "ejecutivo"
+  | "legislativo"
+  | "judicial"
+  | "macro"
+  | "seguridad"
+  | "regional"
+  | "elites";
+
+export type FuenteRef = {
+  medio: string;
+  url: string;
+  fecha: string;
+  nota?: string;
+};
+
+export type Institucion = {
+  id: string;
+  country_id: CountryId;
+  nombre: string;
+  capa: CapaPoder;
+  rol: string;
+  veto_notes: string;
+  caso_ids: string[];
+  fuentes: FuenteRef[];
+};
+
+export type Partido = {
+  id: string;
+  country_id: CountryId;
+  nombre: string;
+  coalicion: string;
+  espectro: string;
+  fuentes: FuenteRef[];
+};
+
+export type ActorPolitico = {
+  id: string;
+  country_id: CountryId;
+  nombre: string;
+  partido_id: string | null;
+  roles: string[];
+  caso_ids: string[];
+  fuentes: FuenteRef[];
+};
+
+export type EscenarioSeed = {
+  id: string;
+  country_id: CountryId;
+  tipo: "base" | "optimista" | "pesimista";
+  titulo: string;
+  resumen: string;
+  horizonte_dias: number;
+  fuente_url?: string | null;
+};
+
+export type SenalSeed = {
+  id: string;
+  country_id: CountryId;
+  titulo: string;
+  detalle: string;
+  escenario_id?: string | null;
+  caso_id?: string | null;
+  fuente_url?: string | null;
+  created_at: string;
+};

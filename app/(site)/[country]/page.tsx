@@ -3,11 +3,11 @@ import {
   getMarcoSync,
   listAlertasSync,
   listCasosSync,
+  listSenalesSync,
   gapsFromCasos,
 } from "@/lib/data";
 import { getPaisMeta } from "@/lib/countries";
-import { CasosHomeClient } from "@/components/CasosHomeClient";
-import { HomeHero } from "@/components/HomeHero";
+import { HomeSituacional } from "@/components/HomeSituacional";
 
 export default async function CountryHomePage({
   params,
@@ -21,6 +21,7 @@ export default async function CountryHomePage({
 
   const casos = listCasosSync(country);
   const alertas = listAlertasSync(country);
+  const senales = listSenalesSync(country);
   const gaps = gapsFromCasos(casos);
   const identidad = casos.filter((c) => c.discurso_identidad);
   const topCred = [...casos]
@@ -29,13 +30,15 @@ export default async function CountryHomePage({
 
   return (
     <main>
-      <HomeHero marco={marco} paisNombre={pais.nombre} />
-      <CasosHomeClient
-        initialCasos={casos}
+      <HomeSituacional
+        paisNombre={pais.nombre}
+        marco={marco}
         identidad={identidad}
         topCred={topCred}
         alertas={alertas}
         gapsCount={gaps.length}
+        senales={senales}
+        casos={casos}
       />
     </main>
   );

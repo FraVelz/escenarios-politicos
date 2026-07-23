@@ -1,10 +1,6 @@
-import fs from "fs";
-import path from "path";
-import { notFound } from "next/navigation";
-import { MarkdownEvidence } from "@/components/MarkdownEvidence";
+import { listEscenariosSync, listSenalesSync } from "@/lib/data";
 import { PageHeader } from "@/components/PageHeader";
-import { isCountryAvailableSync } from "@/lib/countries";
-import { markdownToHtml } from "@/lib/markdown";
+import { EmptyState } from "@/components/EmptyState";
 
 export default async function EscenariosPage({
   params,
@@ -12,39 +8,96 @@ export default async function EscenariosPage({
   params: Promise<{ country: string }>;
 }) {
   const { country } = await params;
-  if (!isCountryAvailableSync(country)) notFound();
-
-  // MVP: informe Colombia; otros países → N/D cuando no exista pack
-  if (country !== "co") {
-    return (
-      <main>
-        <PageHeader
-          title="Escenarios"
-          description="Sin informe de escenarios para este país (N/D)."
-        />
-      </main>
-    );
-  }
-
-  const filePath = "content/informes/colombia-2026-07-21.md";
-  const file = path.join(process.cwd(), filePath);
-  const md = fs.readFileSync(file, "utf8");
-  const start = md.indexOf("## 6. Escenarios");
-  const end = md.indexOf("## 7.");
-  const chunk = start >= 0 ? md.slice(start, end > 0 ? end : undefined) : md;
-  const html = await markdownToHtml(chunk);
+  const escenarios = listEscenariosSync(country);
+  const senales = listSenalesSync(country);
 
   return (
     <main>
       <PageHeader
-        title="Escenarios"
-        description="Extraído del informe Colombia 2026-07-21. Credibilidad de casos ≠ probabilidad de escenario."
+        title="Escenarios y señales"
+        description="Base / optimista / pesimista. Credibilidad de casos ≠ probabilidad de escenario. Sin fuente → N/D."
       />
-      <MarkdownEvidence
-        markdown={chunk}
-        html={html}
-        file={`${filePath} · §6`}
-      />
+
+      {escenarios.length === 0 ? (
+        <EmptyState
+          title="Sin escenarios"
+          description="N/D — no hay escenarios tipados para este país."
+        />
+      ) : (
+        <section className="mb-12" aria-labelledby="escenarios-list">
+          <h2
+            id="escenarios-list"
+            className="mb-4 text-lg font-medium tracking-tight text-white"
+          >
+            Escenarios
+          </h2>
+          <ul className="divide-y divide-border border-y border-border">
+            {escenarios.map((e) => (
+              <li key={e.id} className="space-y-2 py-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-iris">
+                  {e.tipo} · {e.horizonte_dias}d
+                </p>
+                <h3 className="text-base font-medium text-white">{e.titulo}</h3>
+                <p className="max-w-2xl text-sm text-muted-foreground">
+                  {e.resumen}
+                </p>
+                {e.fuente_url ? (
+                  <a
+                    href={e.fuente_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block text-xs text-smoke no-underline hover:text-white"
+                  >
+                    Fuente →
+                  </a>
+                ) : (
+                  <span className="text-xs text-muted-foreground">
+                    Fuente: N/D
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section aria-labelledby="senales-list">
+        <h2
+          id="senales-list"
+          className="mb-4 text-lg font-medium tracking-tight text-white"
+        >
+          Señales
+        </h2>
+        {senales.length === 0 ? (
+          <EmptyState
+            title="Sin señales"
+            description="N/D — no hay señales cargadas."
+          />
+        ) : (
+          <ul className="divide-y divide-border border-y border-border">
+            {senales.map((s) => (
+              <li key={s.id} className="space-y-1 py-4">
+                <h3 className="text-base text-white">{s.titulo}</h3>
+                <p className="text-sm text-muted-foreground">{s.detalle}</p>
+                {s.fuente_url ? (
+                  <a
+                    href={s.fuente_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block text-xs text-smoke no-underline hover:text-white"
+                  >
+                    Fuente →
+                  </a>
+                ) : (
+                  <span className="text-xs text-muted-foreground">
+                    Fuente: N/D
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </main>
   );
 }

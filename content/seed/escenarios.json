@@ -1,0 +1,29 @@
+[
+  {
+    "id": "co-esc-base",
+    "country_id": "co",
+    "tipo": "base",
+    "titulo": "Transición institucional con tensión de empalme",
+    "resumen": "Posesión en fecha constitucional; fricciones de empalme documentadas en prensa. Credibilidad de relatos ≠ probabilidad de escenario.",
+    "horizonte_dias": 90,
+    "fuente_url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html"
+  },
+  {
+    "id": "co-esc-opt",
+    "country_id": "co",
+    "tipo": "optimista",
+    "titulo": "Empalme estabilizado y agenda con instrumentos",
+    "resumen": "N/D operativo — ilustrativo; requiere señales con fuente.",
+    "horizonte_dias": 90,
+    "fuente_url": null
+  },
+  {
+    "id": "co-esc-pes",
+    "country_id": "co",
+    "tipo": "pesimista",
+    "titulo": "Bloqueo institucional prolongado",
+    "resumen": "N/D cuantitativo — vigilar vetos con URL+fecha.",
+    "horizonte_dias": 90,
+    "fuente_url": null
+  }
+]

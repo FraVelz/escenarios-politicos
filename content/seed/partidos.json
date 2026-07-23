@@ -1,0 +1,31 @@
+[
+  {
+    "id": "co-partido-nd-saliente",
+    "country_id": "co",
+    "nombre": "Coalición / fuerzas del gobierno saliente",
+    "coalicion": "N/D",
+    "espectro": "N/D",
+    "fuentes": [
+      {
+        "medio": "El País",
+        "url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html",
+        "fecha": "2026-07-17",
+        "nota": "Contexto de transición"
+      }
+    ]
+  },
+  {
+    "id": "co-partido-nd-entrante",
+    "country_id": "co",
+    "nombre": "Fuerzas del presidente electo",
+    "coalicion": "N/D",
+    "espectro": "N/D",
+    "fuentes": [
+      {
+        "medio": "El País",
+        "url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html",
+        "fecha": "2026-07-17"
+      }
+    ]
+  }
+]

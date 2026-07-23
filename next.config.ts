@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
       { source: "/fuentes", destination: `${co}/fuentes`, permanent: true },
       { source: "/gaps", destination: `${co}/gaps`, permanent: true },
       { source: "/escenarios", destination: `${co}/escenarios`, permanent: true },
+      { source: "/poder", destination: `${co}/poder`, permanent: true },
+      { source: "/partidos", destination: `${co}/partidos`, permanent: true },
+      { source: "/actores", destination: `${co}/actores`, permanent: true },
     ];
   },
 };

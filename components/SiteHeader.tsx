@@ -6,7 +6,11 @@ import { motion, useReducedMotion } from "motion/react";
 import { BrandMark } from "@/components/BrandMark";
 import { CountrySwitcher } from "@/components/CountrySwitcher";
 import { easeOut } from "@/components/motion";
-import { listAvailableCountriesSync } from "@/lib/countries";
+import {
+  countryPath,
+  defaultCountryIdSync,
+  listAvailableCountriesSync,
+} from "@/lib/countries";
 import { useCountryPath } from "@/lib/useCountryPath";
 import { focusRing, focusRingNav } from "@/lib/focus";
 import { cn } from "@/lib/utils";
@@ -15,23 +19,30 @@ import type { PaisMeta } from "@/lib/types";
 const NAV_ITEMS: { path: string; label: string; global?: boolean }[] = [
   { path: "", label: "Inicio" },
   { path: "/contexto", label: "Contexto" },
+  { path: "/poder", label: "Poder" },
+  { path: "/partidos", label: "Partidos" },
+  { path: "/actores", label: "Actores" },
   { path: "/casos", label: "Casos" },
-  { path: "/gaps", label: "Gaps" },
   { path: "/escenarios", label: "Escenarios" },
   { path: "/fuentes", label: "Fuentes" },
+  { path: "/gaps", label: "Gaps" },
   { path: "/playbook", label: "Playbook", global: true },
 ];
 
-export function SiteHeader({
-  countries,
-}: {
-  countries?: PaisMeta[];
-}) {
+export function SiteHeader({ countries }: { countries?: PaisMeta[] }) {
   const pathname = usePathname();
   const reduce = useReducedMotion();
   const { href, countryId } = useCountryPath();
   const available = countries ?? listAvailableCountriesSync();
-  const activePais = available.find((p) => p.id === countryId);
+  const effectiveCountry = countryId ?? defaultCountryIdSync();
+  const activePais = available.find((p) => p.id === effectiveCountry);
+
+  function navHref(path: string, global?: boolean): string {
+    if (global) return path;
+    if (countryId) return href(path);
+    if (effectiveCountry) return countryPath(effectiveCountry, path);
+    return path || "/";
+  }
 
   return (
     <motion.header
@@ -42,9 +53,9 @@ export function SiteHeader({
     >
       <div className="mx-auto flex h-14 max-w-[1200px] items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
         <Link
-          href={countryId ? href("") : "/"}
+          href={effectiveCountry ? countryPath(effectiveCountry) : "/"}
           className={cn(
-            "flex items-center gap-2.5 rounded-none text-white no-underline hover:text-white",
+            "flex shrink-0 items-center gap-2.5 rounded-none text-white no-underline hover:text-white",
             focusRing,
           )}
         >
@@ -56,7 +67,7 @@ export function SiteHeader({
           >
             <BrandMark />
           </motion.span>
-          <span className="text-sm font-medium tracking-tight text-white">
+          <span className="hidden text-sm font-medium tracking-tight text-white sm:inline">
             Escenarios
             {activePais ? ` ${activePais.nombre_corto}` : ""}
           </span>
@@ -69,11 +80,12 @@ export function SiteHeader({
           aria-label="Principal"
         >
           {NAV_ITEMS.map((l) => {
-            const target = l.global ? l.path : href(l.path);
+            const target = navHref(l.path, l.global);
             const active = l.global
               ? pathname === l.path || pathname.startsWith(`${l.path}/`)
               : l.path === ""
-                ? pathname === `/${countryId}` || pathname === `/${countryId}/`
+                ? pathname === `/${effectiveCountry}` ||
+                  pathname === `/${effectiveCountry}/`
                 : pathname === target || pathname.startsWith(`${target}/`);
             return (
               <Link
@@ -81,7 +93,7 @@ export function SiteHeader({
                 href={target}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "group relative rounded-none px-2.5 py-1.5 text-bone no-underline transition-colors duration-150 hover:bg-transparent hover:text-white",
+                  "group relative shrink-0 rounded-none px-2 py-1.5 text-bone no-underline transition-colors duration-150 hover:bg-transparent hover:text-white sm:px-2.5",
                   focusRingNav,
                   active && "text-white",
                 )}
@@ -89,13 +101,13 @@ export function SiteHeader({
                 {l.label}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-0 -translate-x-1/2 bg-primary/70 transition-[width] duration-150 ease-out group-hover:w-[calc(100%-1.25rem)]"
+                  className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-0 -translate-x-1/2 bg-primary/70 transition-[width] duration-150 ease-out group-hover:w-[calc(100%-1rem)]"
                 />
                 {active && (
                   <motion.span
                     layoutId={reduce ? undefined : "nav-active"}
                     aria-hidden
-                    className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-[calc(100%-1.25rem)] -translate-x-1/2 bg-primary"
+                    className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-[calc(100%-1rem)] -translate-x-1/2 bg-primary"
                     transition={{ type: "spring", stiffness: 320, damping: 34 }}
                   />
                 )}

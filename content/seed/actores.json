@@ -1,0 +1,53 @@
+[
+  {
+    "id": "co-gustavo-petro",
+    "country_id": "co",
+    "nombre": "Gustavo Petro",
+    "partido_id": "co-partido-nd-saliente",
+    "roles": [
+      "Presidente en ejercicio"
+    ],
+    "caso_ids": [],
+    "fuentes": [
+      {
+        "medio": "Infobae",
+        "url": "https://www.infobae.com/colombia/2026/06/17/esta-es-la-fecha-en-la-que-gustavo-petro-entregara-la-presidencia-de-colombia-a-su-sucesor/",
+        "fecha": "2026-06-17"
+      }
+    ]
+  },
+  {
+    "id": "co-abelardo-espriella",
+    "country_id": "co",
+    "nombre": "Abelardo de la Espriella",
+    "partido_id": "co-partido-nd-entrante",
+    "roles": [
+      "Presidente electo"
+    ],
+    "caso_ids": [],
+    "fuentes": [
+      {
+        "medio": "El País",
+        "url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html",
+        "fecha": "2026-07-17"
+      }
+    ]
+  },
+  {
+    "id": "co-jm-restrepo",
+    "country_id": "co",
+    "nombre": "José Manuel Restrepo",
+    "partido_id": "co-partido-nd-entrante",
+    "roles": [
+      "Vicepresidente electo (prensa)"
+    ],
+    "caso_ids": [],
+    "fuentes": [
+      {
+        "medio": "El País",
+        "url": "https://elpais.com/america-colombia/2026-07-17/toma-de-posesion-en-colombia-cuando-asume-la-presidencia-abelardo-de-la-espriella.html",
+        "fecha": "2026-07-17"
+      }
+    ]
+  }
+]
