@@ -1,5 +1,5 @@
 ---
-description: Git commits — no AI co-author trailers
+description: Git commits — English only, no AI co-author trailers
 alwaysApply: true
 ---
 
@@ -7,6 +7,7 @@ alwaysApply: true
 
 When creating or amending commits on behalf of the user:
 
+- **Language:** commit subjects and bodies **must be in English** (Conventional Commits). Do not write commit messages in Spanish.
 - **Never** add `Co-authored-by:`, `Signed-off-by:` for Cursor, or any AI/IDE co-author line unless the user explicitly asks for it.
 - The commit message must contain only what the user requested (Conventional Commits subject/body, etc.).
 - **Always** commit with a message file, not inline `-m`:

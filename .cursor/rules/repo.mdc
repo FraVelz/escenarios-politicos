@@ -12,7 +12,7 @@ Dashboard **Next.js** + playbook + n8n → **Firebase Firestore**. Metodología 
 - Solo Colombia; múltiples casos con credibilidad % auditable.
 - Web en `app/`; seed en `content/`; schemas en `schemas/`.
 - Respuestas al usuario en **español**.
-- Commits: ver `git-commits.mdc`.
+- Commits en **inglés** (Conventional Commits): ver `git-commits.mdc`.
 - Agente: `/colombia-actual` → playbook.
 
 ## Prohibido

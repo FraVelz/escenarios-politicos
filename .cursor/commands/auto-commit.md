@@ -1,33 +1,37 @@
 # Autocommit — escenarios-politicos
 
-Usar cuando el usuario pida **hacer commit**. **No** push salvo petición explícita.
+Use when the user asks to **make a commit**. **Do not** push unless explicitly requested.
 
-## Prohibido (co-autor Cursor)
+## Commit language
 
-Cumplir [`.cursor/rules/git-commits.mdc`](../rules/git-commits.mdc): sin `Co-authored-by: Cursor`, commit con `-F`, verificar con `git log -1 --format=%B` antes de push.
+**All commit messages must be in English** (Conventional Commits). Never use Spanish for subject or body.
 
-## Antes de commitear
+## Forbidden (Cursor co-author)
+
+Follow [`.cursor/rules/git-commits.mdc`](../rules/git-commits.mdc): no `Co-authored-by: Cursor`, commit with `-F`, verify with `git log -1 --format=%B` before push.
+
+## Before committing
 
 1. `git status` / `git diff` / `git log -12 --oneline`
-2. Respetar borrados: no restaurar archivos eliminados salvo petición.
-3. No incluir `.env`, secretos ni datos sensibles.
+2. Respect deletions: do not restore deleted files unless asked.
+3. Do not include `.env`, secrets, or sensitive data.
 
-## Estilo de mensaje
+## Message style
 
-Conventional Commits en español o inglés claro:
+Conventional Commits in **English**:
 
 ```text
-feat: scaffold metodología y scripts de escenarios
-docs: actualizar brief de Colombia
-fix: validar secciones obligatorias del informe
+feat: scaffold methodology and scenario scripts
+docs: update Colombia brief
+fix: validate required report sections
 ```
 
-Tipos: `feat`, `docs`, `fix`, `chore`, `refactor`.
+Types: `feat`, `docs`, `fix`, `chore`, `refactor`.
 
 ## Commit
 
 ```bash
-printf '%s\n' "mensaje" > /tmp/commit-msg.txt
+printf '%s\n' "message" > /tmp/commit-msg.txt
 git commit -F /tmp/commit-msg.txt
 git log -1 --format=%B
 ```
