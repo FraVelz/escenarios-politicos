@@ -4,6 +4,14 @@ allowBuilds:
   sharp: false
   unrs-resolver: false
 
-# Endurecimiento supply-chain (react-doctor / pnpm)
-minimumReleaseAge: 10080
+# Supply-chain hardening. Age window kept short so Next security patches
+# (e.g. 15.5.21) remain installable; exclude optional platform packages.
+minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - next
+  - "@next/*"
+  - eslint-config-next
+  - "@tailwindcss/*"
+  - "@img/*"
+  - sharp
 trustPolicy: no-downgrade

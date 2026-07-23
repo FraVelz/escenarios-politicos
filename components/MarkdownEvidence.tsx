@@ -6,7 +6,6 @@ import { Check, Code2, Copy, Eye } from "lucide-react";
 import { easeOut } from "@/lib/ease";
 import { Button } from "@/components/ui/button";
 import { focusRingNav } from "@/lib/focus";
-import { sanitizeHtml } from "@/lib/sanitize-html";
 import { cn } from "@/lib/utils";
 
 type Mode = "preview" | "codigo";
@@ -146,7 +145,7 @@ export function MarkdownEvidence({
           >
             <article
               className="prose prose-invert max-w-none text-sm leading-relaxed prose-headings:font-medium prose-a:text-iris-glow prose-code:rounded-none prose-code:border prose-code:border-border prose-code:bg-transparent prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-iris prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-none prose-pre:border prose-pre:border-border prose-pre:bg-black"
-              dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
+              dangerouslySetInnerHTML={{ __html: html }}
             />
           </m.div>
         ) : (

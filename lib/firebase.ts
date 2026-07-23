@@ -1,38 +1,51 @@
 /** Firebase client — solo lectura; escritura denegada por rules (Admin SDK en /api/ingest). */
-import { initializeApp, getApps } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
+import { getFirestore, type Firestore } from "firebase/firestore";
 
-function requirePublicConfig() {
-  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
-  const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
-  if (process.env.VERCEL && (!apiKey || !projectId)) {
-    throw new Error(
-      "NEXT_PUBLIC_FIREBASE_API_KEY y NEXT_PUBLIC_FIREBASE_PROJECT_ID son obligatorios en Vercel",
-    );
-  }
+/**
+ * Config pública del SDK web. Preferir env en Vercel; fallbacks del proyecto
+ * (las API keys web no son secretas — las rules bloquean writes).
+ * No lanzar en import: rompe `next build` / prerender si faltan env.
+ */
+function publicFirebaseConfig() {
   return {
-    apiKey: apiKey || "AIzaSyC1Xf7w4ZRGaw_LuiHQC3UY8OREK-McejY",
+    apiKey:
+      process.env.NEXT_PUBLIC_FIREBASE_API_KEY ||
+      "AIzaSyC1Xf7w4ZRGaw_LuiHQC3UY8OREK-McejY",
     authDomain:
       process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ||
       "escenarios-politicos-co.firebaseapp.com",
-    projectId: projectId || "escenarios-politicos-co",
+    projectId:
+      process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ||
+      "escenarios-politicos-co",
     storageBucket:
       process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ||
       "escenarios-politicos-co.firebasestorage.app",
     messagingSenderId:
-      process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "774079660369",
+      process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ||
+      "774079660369",
     appId:
       process.env.NEXT_PUBLIC_FIREBASE_APP_ID ||
       "1:774079660369:web:c49c61892801bd12ec1370",
   };
 }
 
-const firebaseConfig = requirePublicConfig();
+let app: FirebaseApp | undefined;
+let db: Firestore | undefined;
 
-export function getFirebaseApp() {
-  return getApps().length ? getApps()[0]! : initializeApp(firebaseConfig);
+export function getFirebaseApp(): FirebaseApp {
+  if (app) return app;
+  const existing = getApps()[0];
+  if (existing) {
+    app = existing;
+    return app;
+  }
+  app = initializeApp(publicFirebaseConfig());
+  return app;
 }
 
-export function getDb() {
-  return getFirestore(getFirebaseApp());
+export function getDb(): Firestore {
+  if (db) return db;
+  db = getFirestore(getFirebaseApp());
+  return db;
 }
