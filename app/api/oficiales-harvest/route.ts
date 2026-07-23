@@ -1,3 +1,4 @@
+import { createHash } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { clientKey, requireIngestSecret } from "@/lib/ingest-auth";
 import { getAdminDb } from "@/lib/firebaseAdmin";
@@ -8,6 +9,10 @@ import {
   checkRateLimit,
   ingestRateLimitConfig,
 } from "@/lib/rate-limit";
+
+function eventoIdFromUrl(url: string): string {
+  return `evt-${createHash("sha256").update(url).digest("base64url").slice(0, 32)}`;
+}
 
 export const runtime = "nodejs";
 
@@ -85,7 +90,7 @@ export async function POST(req: NextRequest) {
           continue;
         }
         const hit = matchCasoCatalog(`${it.title} ${it.summary}`);
-        const id = `evt-${Buffer.from(it.link).toString("base64url").slice(0, 36)}`;
+        const id = eventoIdFromUrl(it.link);
         await db.collection("eventos").doc(id).set(
           {
             id,

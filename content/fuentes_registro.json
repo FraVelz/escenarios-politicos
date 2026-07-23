@@ -66,8 +66,8 @@
     "clase": "medio",
     "linea": "centro",
     "url_base": "https://www.elespectador.com",
-    "rss_url": "https://www.elespectador.com/rss.xml",
-    "activo": true,
+    "rss_url": "",
+    "activo": false,
     "peso_contraste": 1,
     "country_id": "co"
   },
@@ -99,8 +99,8 @@
     "clase": "medio",
     "linea": "otra",
     "url_base": "https://www.portafolio.co",
-    "rss_url": "https://www.portafolio.co/rss/economia",
-    "activo": true,
+    "rss_url": "",
+    "activo": false,
     "peso_contraste": 1,
     "country_id": "co"
   },

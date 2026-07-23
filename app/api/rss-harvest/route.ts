@@ -1,3 +1,4 @@
+import { createHash } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { clientKey, requireIngestSecret } from "@/lib/ingest-auth";
 import { getAdminDb } from "@/lib/firebaseAdmin";
@@ -7,6 +8,10 @@ import {
   checkRateLimit,
   ingestRateLimitConfig,
 } from "@/lib/rate-limit";
+
+function rawIdFromUrl(url: string): string {
+  return `raw-${createHash("sha256").update(url).digest("base64url").slice(0, 32)}`;
+}
 
 export const runtime = "nodejs";
 
@@ -93,7 +98,7 @@ export async function POST(req: NextRequest) {
         }
         if (seen.has(url)) continue;
         seen.add(url);
-        const id = `raw-${Buffer.from(url).toString("base64url").slice(0, 40)}`;
+        const id = rawIdFromUrl(url);
         await db.collection("raw_items").doc(id).set(
           {
             id,

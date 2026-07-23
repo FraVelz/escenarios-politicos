@@ -1,3 +1,4 @@
+import { createHash } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { clientKey, requireIngestSecret } from "@/lib/ingest-auth";
 import {
@@ -13,6 +14,10 @@ import {
   ingestRateLimitConfig,
 } from "@/lib/rate-limit";
 import type { MencionEvidencia } from "@/lib/evidencia";
+
+function mencionIdFrom(url: string, casoId: string): string {
+  return `men-${createHash("sha256").update(`${url}|${casoId}`).digest("base64url").slice(0, 28)}`;
+}
 
 export const runtime = "nodejs";
 
@@ -108,7 +113,7 @@ export async function POST(req: NextRequest) {
 
     const cita = String(resumen || titulo).slice(0, 280) || "N/D";
     const checklist = heuristicChecklistFromText(cita);
-    const mencionId = `men-${Buffer.from(`${url}|${hit.id}`).toString("base64url").slice(0, 28)}`;
+    const mencionId = mencionIdFrom(url, hit.id);
     const mencion = {
       id: mencionId,
       country_id: countryId,
