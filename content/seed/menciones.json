@@ -8,7 +8,8 @@
     "cita_corta": "Vamos a crear empleo para todos los colombianos.",
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-empleo-plan-01",
@@ -19,7 +20,8 @@
     "cita_corta": "Plan de empleo formal con equipo en MinTrabajo, plazos a 18 meses, financiado con reasignación presupuestal e indicadores de formalización.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-paz-identidad-01",
@@ -30,7 +32,8 @@
     "cita_corta": "La paz es el corazón de este proyecto político; negociamos con estructura y contrastamos el modelo anterior.",
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-seguridad-rural-01",
@@ -41,7 +44,8 @@
     "cita_corta": "Vamos a recuperar la seguridad en el campo.",
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-fiscal-01",
@@ -52,7 +56,8 @@
     "cita_corta": "Propuesta técnica de ajuste fiscal con mecanismos y plazos.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-regla-fiscal-01",
@@ -63,7 +68,8 @@
     "cita_corta": "Flexibilizar la regla fiscal con plazos y un mecanismo de transición, frente al status quo.",
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-salud-plan-01",
@@ -74,7 +80,8 @@
     "cita_corta": "Red hospitalaria regional con equipo gestor, cronograma a 36 meses, fuente de financiamiento e indicadores de cobertura.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-salud-eslogan-01",
@@ -85,7 +92,8 @@
     "cita_corta": "Salud gratuita para todos.",
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-edu-01",
@@ -96,7 +104,8 @@
     "cita_corta": "Piloto de jornada única con equipo en secretarías departamentales y contraste frente al modelo actual.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-infra-01",
@@ -107,7 +116,8 @@
     "cita_corta": "Fases de metro/tren regional con plazos y esquema de financiamiento público-privado.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-vivienda-01",
@@ -118,7 +128,8 @@
     "cita_corta": "Cupos anuales de subsidio con equipo implementador y contraste al esquema vigente.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-justicia-01",
@@ -129,7 +140,8 @@
     "cita_corta": "Reforma procesal acotada con mecanismo, plazos y costo estimado.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "men-exterior-01",
@@ -140,6 +152,7 @@
     "cita_corta": "Defenderemos la soberanía en la política exterior.",
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   }
 ]

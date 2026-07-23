@@ -5,6 +5,7 @@ import { CasoCredibilidadPanel } from "@/components/CasoCredibilidadPanel";
 import { CasoMetricsGrid } from "@/components/CasoMetricsGrid";
 import { CasoMencionesClient } from "@/components/CasoMencionesClient";
 import { areaLabel } from "@/lib/areas";
+import { countryPath } from "@/lib/countries";
 import { getCasoSync, listMencionesSync } from "@/lib/data";
 import { focusRingInline } from "@/lib/focus";
 import { cn } from "@/lib/utils";
@@ -12,12 +13,12 @@ import { cn } from "@/lib/utils";
 export default async function CasoDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ country: string; id: string }>;
 }) {
-  const { id } = await params;
-  const caso = getCasoSync(id);
+  const { country, id } = await params;
+  const caso = getCasoSync(id, country);
   if (!caso) notFound();
-  const menciones = listMencionesSync(id);
+  const menciones = listMencionesSync({ casoId: id, countryId: country });
   const d = caso.credibilidad_desglose;
 
   const meta = [
@@ -30,7 +31,7 @@ export default async function CasoDetailPage({
   return (
     <main>
       <Link
-        href="/casos"
+        href={countryPath(country, "/casos")}
         className={cn(
           "mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground no-underline hover:text-white",
           focusRingInline,
@@ -44,9 +45,7 @@ export default async function CasoDetailPage({
         <h1 className="max-w-3xl text-2xl font-medium tracking-tight text-white sm:text-3xl md:text-4xl md:tracking-[-0.02em]">
           {caso.titulo}
         </h1>
-        <p className="text-sm text-muted-foreground">
-          {meta.join(" · ")}
-        </p>
+        <p className="text-sm text-muted-foreground">{meta.join(" · ")}</p>
       </header>
 
       <div className="mb-8 grid gap-0 md:grid-cols-2">

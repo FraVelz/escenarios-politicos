@@ -11,6 +11,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    const co = "/co";
+    return [
+      { source: "/casos", destination: `${co}/casos`, permanent: true },
+      { source: "/casos/:id", destination: `${co}/casos/:id`, permanent: true },
+      { source: "/contexto", destination: `${co}/contexto`, permanent: true },
+      { source: "/fuentes", destination: `${co}/fuentes`, permanent: true },
+      { source: "/gaps", destination: `${co}/gaps`, permanent: true },
+      { source: "/escenarios", destination: `${co}/escenarios`, permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

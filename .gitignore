@@ -36,3 +36,8 @@ serviceAccount*.json
 *-firebase-adminsdk*.json
 .firebase-admin.json
 .vercel
+
+# Arquitectura / intel de plataforma (solo local; no versionar)
+docs/private/
+
+*.tsbuildinfo

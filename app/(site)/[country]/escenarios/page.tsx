@@ -1,10 +1,31 @@
 import fs from "fs";
 import path from "path";
+import { notFound } from "next/navigation";
 import { MarkdownEvidence } from "@/components/MarkdownEvidence";
 import { PageHeader } from "@/components/PageHeader";
+import { isCountryAvailableSync } from "@/lib/countries";
 import { markdownToHtml } from "@/lib/markdown";
 
-export default async function EscenariosPage() {
+export default async function EscenariosPage({
+  params,
+}: {
+  params: Promise<{ country: string }>;
+}) {
+  const { country } = await params;
+  if (!isCountryAvailableSync(country)) notFound();
+
+  // MVP: informe Colombia; otros países → N/D cuando no exista pack
+  if (country !== "co") {
+    return (
+      <main>
+        <PageHeader
+          title="Escenarios"
+          description="Sin informe de escenarios para este país (N/D)."
+        />
+      </main>
+    );
+  }
+
   const filePath = "content/informes/colombia-2026-07-21.md";
   const file = path.join(process.cwd(), filePath);
   const md = fs.readFileSync(file, "utf8");

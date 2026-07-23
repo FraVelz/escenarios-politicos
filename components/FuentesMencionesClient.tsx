@@ -6,6 +6,7 @@ import { useLiveMenciones } from "@/components/LiveMenciones";
 import { areaLabel } from "@/lib/areas";
 import type { Caso, Mencion } from "@/lib/types";
 import { focusRingInline } from "@/lib/focus";
+import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
 
 export function FuentesMencionesClient({
@@ -16,6 +17,7 @@ export function FuentesMencionesClient({
   casos: Caso[];
 }) {
   const { menciones, source } = useLiveMenciones(initialMenciones);
+  const { href } = useCountryPath();
   const casoMap = Object.fromEntries(casos.map((c) => [c.id, c]));
 
   const byCaso = casos
@@ -48,7 +50,7 @@ export function FuentesMencionesClient({
               className="mb-1.5 text-lg font-medium tracking-tight text-white"
             >
               <Link
-                href={`/casos/${caso.id}`}
+                href={href(`/casos/${caso.id}`)}
                 className={cn(
                   "text-white no-underline hover:text-iris-glow",
                   focusRingInline,

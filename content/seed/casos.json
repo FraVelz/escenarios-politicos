@@ -31,7 +31,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Discurso identidad: máxima centralidad.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "seguridad-rural-eslogan",
@@ -65,7 +66,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Alta repetición y centralidad de cierre; sin plan operativo.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "empleo-con-plan",
@@ -99,7 +101,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Una mención detallada supera al eslogan repetido.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "empleo-eslogan",
@@ -135,7 +138,8 @@
     ],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Mucha repetición, cero detalle.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "reforma-fiscal-tecnica",
@@ -169,7 +173,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Baja frecuencia / alta importancia.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "regla-fiscal-relajacion",
@@ -203,7 +208,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Relato atractivo; choque probable con ancla fiscal.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "salud-plan-hospitales",
@@ -237,7 +243,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Alta especificidad en salud.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "salud-eslogan-gratis",
@@ -271,7 +278,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Ruido vacío en salud.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "educacion-jornada-unica",
@@ -304,7 +312,8 @@
     "revision": "en_seguimiento",
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "infra-metro-regional",
@@ -338,7 +347,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Credibilidad media del relato; factibilidad baja por caja y tiempos.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "vivienda-subsidios",
@@ -371,7 +381,8 @@
     "revision": "en_seguimiento",
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "justicia-reforma-procesal",
@@ -405,7 +416,8 @@
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Poco ruido; factibilidad relativa alta.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "exterior-discurso-soberania",
@@ -441,7 +453,8 @@
     ],
     "updated_at": "2026-07-21T21:30:00Z",
     "notas": "Tema de cierre sin instrumentos concretos.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "energia-transicion-electo",
@@ -478,7 +491,8 @@
     ],
     "updated_at": "2026-07-22T15:00:00Z",
     "notas": "Caso semilla transición 2026; contrastar con plan de gobierno cuando haya fuente primaria.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "agro-seguridad-alimentaria",
@@ -515,7 +529,8 @@
     ],
     "updated_at": "2026-07-22T15:00:00Z",
     "notas": "Baja especificidad; pendiente de menciones con URL en ingest.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   },
   {
     "id": "estado-digital-tramites",
@@ -551,6 +566,7 @@
     ],
     "updated_at": "2026-07-22T15:00:00Z",
     "notas": "Alta especificidad relativa; poca repetición aún.",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "country_id": "co"
   }
 ]

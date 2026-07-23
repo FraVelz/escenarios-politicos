@@ -16,9 +16,11 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FadeIn } from "@/components/motion";
 import { focusRingInline } from "@/lib/focus";
+import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
 
 function CasosTable({ casos }: { casos: Caso[] }) {
+  const { href } = useCountryPath();
   return (
     <div className="overflow-hidden border border-border">
       <Table>
@@ -38,7 +40,7 @@ function CasosTable({ casos }: { casos: Caso[] }) {
             <TableRow key={c.id}>
               <TableCell>
                 <Link
-                  href={`/casos/${c.id}`}
+                  href={href(`/casos/${c.id}`)}
                   className={cn(
                     "text-base text-white no-underline hover:text-iris-glow",
                     focusRingInline,
@@ -48,7 +50,7 @@ function CasosTable({ casos }: { casos: Caso[] }) {
                 </Link>
                 <div className="mt-1 text-sm text-muted-foreground">
                   <Link
-                    href="/fuentes"
+                    href={href("/fuentes")}
                     className={cn(
                       "text-smoke no-underline hover:text-white",
                       focusRingInline,

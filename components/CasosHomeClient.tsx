@@ -9,6 +9,7 @@ import { CrossCell, CrossGrid, CrossRow } from "@/components/CrossGrid";
 import { Reveal, easeOut, useMotionPresets } from "@/components/motion";
 import { focusRingInline } from "@/lib/focus";
 import { SCORE_MONO } from "@/lib/styles";
+import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
 
 function buildRanking(identidad: Caso[], topCred: Caso[]): Caso[] {
@@ -38,6 +39,7 @@ export function CasosHomeClient({
   const { source } = useLiveCasos(initialCasos);
   const { stagger, itemBlur, fadeUp } = useMotionPresets();
   const reduce = useReducedMotion();
+  const { href } = useCountryPath();
   const ranking = buildRanking(identidad, topCred);
 
   return (
@@ -78,7 +80,7 @@ export function CasosHomeClient({
           <p className={cn(SCORE_MONO, "mt-2 text-3xl")}>{gapsCount}</p>
           <p className="mt-2 text-sm text-muted-foreground">
             <Link
-              href="/gaps"
+              href={href("/gaps")}
               className={cn(
                 "text-muted-foreground no-underline hover:text-white",
                 focusRingInline,
@@ -108,7 +110,7 @@ export function CasosHomeClient({
             >
               <div className="min-w-0">
                 <Link
-                  href={`/casos/${c.id}`}
+                  href={href(`/casos/${c.id}`)}
                   className={cn(
                     "block text-base text-white no-underline hover:text-iris-glow",
                     focusRingInline,
@@ -158,7 +160,7 @@ export function CasosHomeClient({
                 <span className="text-sm text-warn">{a.tipo}</span>
                 <span className="text-base text-bone">{a.mensaje}</span>
                 <Link
-                  href={`/casos/${a.caso_id}`}
+                  href={href(`/casos/${a.caso_id}`)}
                   className={cn(
                     "text-sm text-iris no-underline hover:text-iris-glow",
                     focusRingInline,

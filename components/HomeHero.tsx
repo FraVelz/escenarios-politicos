@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Reveal } from "@/components/motion";
+import { useCountryPath } from "@/lib/useCountryPath";
 import { focusRingInline } from "@/lib/focus";
 import { cn } from "@/lib/utils";
 import type { MarcoPolitico } from "@/lib/types";
@@ -13,7 +14,14 @@ const ESTADO_LABEL: Record<MarcoPolitico["estado_acto"], string> = {
   sin_sucesor_conocido: "Sin sucesor conocido",
 };
 
-export function HomeHero({ marco }: { marco: MarcoPolitico }) {
+export function HomeHero({
+  marco,
+  paisNombre,
+}: {
+  marco: MarcoPolitico;
+  paisNombre: string;
+}) {
+  const { href } = useCountryPath();
   const a = marco.presidente_ejercicio;
   const b = marco.presidente_electo_o_sucesor;
 
@@ -30,7 +38,7 @@ export function HomeHero({ marco }: { marco: MarcoPolitico }) {
         delay={0.04}
         className="max-w-3xl text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl md:leading-[1.1] md:tracking-[-0.03em]"
       >
-        Colombia — casos y credibilidad
+        {paisNombre} — casos y credibilidad
       </Reveal>
       <Reveal
         as="p"
@@ -64,7 +72,7 @@ export function HomeHero({ marco }: { marco: MarcoPolitico }) {
       </Reveal>
       <Reveal delay={0.16} y={10} className="flex flex-wrap gap-x-5 gap-y-2">
         <Link
-          href="/contexto"
+          href={href("/contexto")}
           className={cn(
             "inline-flex text-sm text-bone no-underline hover:text-white",
             focusRingInline,
@@ -73,7 +81,7 @@ export function HomeHero({ marco }: { marco: MarcoPolitico }) {
           Ver contexto y transición →
         </Link>
         <Link
-          href="/casos"
+          href={href("/casos")}
           className={cn(
             "inline-flex text-sm text-smoke no-underline hover:text-white",
             focusRingInline,

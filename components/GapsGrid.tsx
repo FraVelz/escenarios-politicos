@@ -4,12 +4,14 @@ import Link from "next/link";
 import { CrossCell, CrossGrid } from "@/components/CrossGrid";
 import { useMotionPresets } from "@/components/motion";
 import { focusRingInline } from "@/lib/focus";
+import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
 
 type GapItem = { caso_id: string; campos: string[] };
 
 export function GapsGrid({ gaps }: { gaps: GapItem[] }) {
   const { stagger, itemBlur } = useMotionPresets();
+  const { href } = useCountryPath();
 
   if (gaps.length === 0) {
     return <p className="text-sm text-muted-foreground">Sin gaps.</p>;
@@ -30,7 +32,7 @@ export function GapsGrid({ gaps }: { gaps: GapItem[] }) {
           className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
         >
           <Link
-            href={`/casos/${g.caso_id}`}
+            href={href(`/casos/${g.caso_id}`)}
             className={cn(
               "text-base text-white no-underline hover:text-iris-glow",
               focusRingInline,

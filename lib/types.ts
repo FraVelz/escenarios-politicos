@@ -1,8 +1,19 @@
 import type { EspecificidadChecklist, CredibilidadDesglose } from "./credibilidad";
 import type { AreaId } from "./areas";
 
+/** Slug ISO-ish en minúsculas (`co`, `mx`, …). */
+export type CountryId = string;
+
+export type PaisMeta = {
+  id: CountryId;
+  nombre: string;
+  nombre_corto: string;
+  locale: string;
+};
+
 export type Caso = {
   id: string;
+  country_id: CountryId;
   titulo: string;
   area: AreaId;
   actor_id: string;
@@ -27,6 +38,7 @@ export type Caso = {
 
 export type Mencion = {
   id: string;
+  country_id: CountryId;
   caso_id: string;
   actor_id: string;
   fecha: string;
@@ -87,6 +99,7 @@ export type EstadoActo =
   | "sin_sucesor_conocido";
 
 export type MarcoPolitico = {
+  country_id: CountryId;
   tipo_analisis: string;
   estado_acto: EstadoActo;
   actualizado_at: string;

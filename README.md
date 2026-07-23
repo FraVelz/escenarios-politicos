@@ -1,8 +1,10 @@
-# Escenarios políticos — Colombia
+# Escenarios políticos
 
-Dashboard web + playbook + n8n → **Firebase Firestore**.
+Dashboard web multi-país + playbook + n8n → **Firebase Firestore**. País de referencia actual: **Colombia** (`/co`).
 
 No es un oráculo: registra **casos** de discurso/promesas con **credibilidad %** auditable (especificidad + repetición + centralidad), factibilidad e importancia por separado.
+
+La visión de plataforma de inteligencia política (arquitectura sensible) vive solo en local en `docs/private/` — **no se versiona** en GitHub.
 
 ## Stack
 

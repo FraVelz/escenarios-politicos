@@ -34,7 +34,7 @@ export default function NotFound() {
             ← Inicio
           </Link>
           <Link
-            href="/casos"
+            href="/co/casos"
             className={cn(
               "text-bone no-underline hover:text-white",
               focusRingInline,

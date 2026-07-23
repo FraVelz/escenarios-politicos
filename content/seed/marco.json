@@ -1,9 +1,14 @@
 {
+  "country_id": "co",
   "tipo_analisis": "Análisis de discurso político colombiano con credibilidad % auditable (especificidad × repetición × centralidad) y escenarios base/optimista/pesimista. No es pronóstico electoral ni probabilidad inventada de cumplimiento.",
   "estado_acto": "transicion_pre_posesion",
   "actualizado_at": "2026-07-22T15:00:00Z",
   "pregunta_central": "En la transición Petro → De la Espriella, ¿qué temas de discurso tienen relato creíble frente a factibilidad en horizontes 30/90/365 días?",
-  "horizontes_dias": [30, 90, 365],
+  "horizontes_dias": [
+    30,
+    90,
+    365
+  ],
   "presidente_ejercicio": {
     "nombre": "Gustavo Petro",
     "rol_label": "Presidente en ejercicio",

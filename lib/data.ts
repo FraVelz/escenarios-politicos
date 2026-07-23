@@ -3,25 +3,48 @@ import seedMenciones from "@/content/seed/menciones.json";
 import seedMarco from "@/content/seed/marco.json";
 import type { Alerta, Caso, MarcoPolitico, Mencion } from "./types";
 
-export function getMarcoSync(): MarcoPolitico {
-  return seedMarco as MarcoPolitico;
-}
-
-export function listCasosSync(): Caso[] {
+function allCasos(): Caso[] {
   return seedCasos as Caso[];
 }
 
-export function getCasoSync(id: string): Caso | null {
-  return (seedCasos as Caso[]).find((c) => c.id === id) ?? null;
+function allMenciones(): Mencion[] {
+  return seedMenciones as Mencion[];
 }
 
-export function listMencionesSync(casoId?: string): Mencion[] {
-  const all = seedMenciones as Mencion[];
-  return casoId ? all.filter((m) => m.caso_id === casoId) : all;
+export function getMarcoSync(countryId?: string): MarcoPolitico | null {
+  const marco = seedMarco as MarcoPolitico;
+  if (countryId && marco.country_id !== countryId) return null;
+  return marco;
 }
 
-export function listAlertasSync(): Alerta[] {
-  return [
+export function listCasosSync(countryId?: string): Caso[] {
+  const all = allCasos();
+  return countryId ? all.filter((c) => c.country_id === countryId) : all;
+}
+
+export function getCasoSync(id: string, countryId?: string): Caso | null {
+  const c = allCasos().find((x) => x.id === id) ?? null;
+  if (!c) return null;
+  if (countryId && c.country_id !== countryId) return null;
+  return c;
+}
+
+export function listMencionesSync(opts?: {
+  casoId?: string;
+  countryId?: string;
+}): Mencion[] {
+  let all = allMenciones();
+  if (opts?.countryId) {
+    all = all.filter((m) => m.country_id === opts.countryId);
+  }
+  if (opts?.casoId) {
+    all = all.filter((m) => m.caso_id === opts.casoId);
+  }
+  return all;
+}
+
+export function listAlertasSync(countryId?: string): Alerta[] {
+  const alertas: Alerta[] = [
     {
       id: "ruido-empleo-eslogan",
       tipo: "ruido_vacio",
@@ -37,6 +60,9 @@ export function listAlertasSync(): Alerta[] {
       created_at: "2026-07-21T20:00:00Z",
     },
   ];
+  if (!countryId) return alertas;
+  const casoIds = new Set(listCasosSync(countryId).map((c) => c.id));
+  return alertas.filter((a) => casoIds.has(a.caso_id));
 }
 
 export function gapsFromCasos(casos: Caso[]): { caso_id: string; campos: string[] }[] {

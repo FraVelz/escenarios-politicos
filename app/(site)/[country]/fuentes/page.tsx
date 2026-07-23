@@ -7,13 +7,18 @@ import { Separator } from "@/components/ui/separator";
 import { listCasosSync, listMencionesSync } from "@/lib/data";
 import { markdownToHtml } from "@/lib/markdown";
 
-export default async function FuentesPage() {
+export default async function FuentesPage({
+  params,
+}: {
+  params: Promise<{ country: string }>;
+}) {
+  const { country } = await params;
   const filePath = "docs/colombia/01-fuentes.md";
   const file = path.join(process.cwd(), filePath);
   const md = fs.readFileSync(file, "utf8");
   const html = await markdownToHtml(md);
-  const casos = listCasosSync();
-  const menciones = listMencionesSync();
+  const casos = listCasosSync(country);
+  const menciones = listMencionesSync({ countryId: country });
 
   return (
     <main>

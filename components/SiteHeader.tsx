@@ -4,23 +4,34 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { BrandMark } from "@/components/BrandMark";
+import { CountrySwitcher } from "@/components/CountrySwitcher";
 import { easeOut } from "@/components/motion";
+import { listAvailableCountriesSync } from "@/lib/countries";
+import { useCountryPath } from "@/lib/useCountryPath";
 import { focusRing, focusRingNav } from "@/lib/focus";
 import { cn } from "@/lib/utils";
+import type { PaisMeta } from "@/lib/types";
 
-const links = [
-  { href: "/", label: "Inicio" },
-  { href: "/contexto", label: "Contexto" },
-  { href: "/casos", label: "Casos" },
-  { href: "/gaps", label: "Gaps" },
-  { href: "/escenarios", label: "Escenarios" },
-  { href: "/fuentes", label: "Fuentes" },
-  { href: "/playbook", label: "Playbook" },
+const NAV_ITEMS: { path: string; label: string; global?: boolean }[] = [
+  { path: "", label: "Inicio" },
+  { path: "/contexto", label: "Contexto" },
+  { path: "/casos", label: "Casos" },
+  { path: "/gaps", label: "Gaps" },
+  { path: "/escenarios", label: "Escenarios" },
+  { path: "/fuentes", label: "Fuentes" },
+  { path: "/playbook", label: "Playbook", global: true },
 ];
 
-export function SiteHeader() {
+export function SiteHeader({
+  countries,
+}: {
+  countries?: PaisMeta[];
+}) {
   const pathname = usePathname();
   const reduce = useReducedMotion();
+  const { href, countryId } = useCountryPath();
+  const available = countries ?? listAvailableCountriesSync();
+  const activePais = available.find((p) => p.id === countryId);
 
   return (
     <motion.header
@@ -29,9 +40,9 @@ export function SiteHeader() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduce ? 0 : 0.35, ease: easeOut }}
     >
-      <div className="mx-auto flex h-14 max-w-[1200px] items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-[1200px] items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
         <Link
-          href="/"
+          href={countryId ? href("") : "/"}
           className={cn(
             "flex items-center gap-2.5 rounded-none text-white no-underline hover:text-white",
             focusRing,
@@ -46,22 +57,28 @@ export function SiteHeader() {
             <BrandMark />
           </motion.span>
           <span className="text-sm font-medium tracking-tight text-white">
-            Escenarios Colombia
+            Escenarios
+            {activePais ? ` ${activePais.nombre_corto}` : ""}
           </span>
         </Link>
+
+        <CountrySwitcher initial={available} />
+
         <nav
           className="ml-auto flex max-w-full items-center gap-0.5 overflow-x-auto text-sm"
           aria-label="Principal"
         >
-          {links.map((l) => {
-            const active =
-              l.href === "/"
-                ? pathname === "/"
-                : pathname === l.href || pathname.startsWith(`${l.href}/`);
+          {NAV_ITEMS.map((l) => {
+            const target = l.global ? l.path : href(l.path);
+            const active = l.global
+              ? pathname === l.path || pathname.startsWith(`${l.path}/`)
+              : l.path === ""
+                ? pathname === `/${countryId}` || pathname === `/${countryId}/`
+                : pathname === target || pathname.startsWith(`${target}/`);
             return (
               <Link
-                key={l.href}
-                href={l.href}
+                key={l.label}
+                href={target}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "group relative rounded-none px-2.5 py-1.5 text-bone no-underline transition-colors duration-150 hover:bg-transparent hover:text-white",

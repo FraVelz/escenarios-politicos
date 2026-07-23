@@ -2,8 +2,13 @@ import { gapsFromCasos, listCasosSync } from "@/lib/data";
 import { GapsGrid } from "@/components/GapsGrid";
 import { PageHeader } from "@/components/PageHeader";
 
-export default function GapsPage() {
-  const gaps = gapsFromCasos(listCasosSync());
+export default async function GapsPage({
+  params,
+}: {
+  params: Promise<{ country: string }>;
+}) {
+  const { country } = await params;
+  const gaps = gapsFromCasos(listCasosSync(country));
 
   return (
     <main>
