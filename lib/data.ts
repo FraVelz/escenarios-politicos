@@ -112,20 +112,18 @@ export function listAlertasSync(countryId?: string): Alerta[] {
   return alertas;
 }
 
-export function gapsFromCasos(casos: Caso[]): { caso_id: string; campos: string[] }[] {
-  return casos
-    .filter(
-      (c) =>
-        (c.campos_pendientes?.length ?? 0) > 0 ||
-        c.importancia === "N/D" ||
-        c.factibilidad === "N/D",
-    )
-    .map((c) => ({
-      caso_id: c.id,
-      campos: [
-        ...(c.campos_pendientes ?? []),
-        ...(c.importancia === "N/D" ? ["importancia"] : []),
-        ...(c.factibilidad === "N/D" ? ["factibilidad"] : []),
-      ].filter((v, i, a) => a.indexOf(v) === i),
-    }));
+export function gapsFromCasos(
+  casos: Caso[],
+): { caso_id: string; campos: string[] }[] {
+  const out: { caso_id: string; campos: string[] }[] = [];
+  for (const c of casos) {
+    const campos = [
+      ...(c.campos_pendientes ?? []),
+      ...(c.importancia === "N/D" ? ["importancia"] : []),
+      ...(c.factibilidad === "N/D" ? ["factibilidad"] : []),
+    ].filter((v, i, a) => a.indexOf(v) === i);
+    if (campos.length === 0) continue;
+    out.push({ caso_id: c.id, campos });
+  }
+  return out;
 }

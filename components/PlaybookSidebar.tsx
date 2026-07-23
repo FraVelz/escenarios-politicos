@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { Stagger, StaggerItem } from "@/components/motion";
 import { focusRingNav } from "@/lib/focus";
 import { cn } from "@/lib/utils";
@@ -47,7 +47,7 @@ export function PlaybookSidebar({ items }: { items: PlaybookNavItem[] }) {
                     )}
                   >
                     {active && (
-                      <motion.span
+                      <m.span
                         layoutId={reduce ? undefined : "playbook-active"}
                         className="absolute left-0 top-1/2 h-3 w-px -translate-y-1/2 bg-primary"
                         transition={{

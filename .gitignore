@@ -8,9 +8,16 @@ dist/
 build/
 .venv/
 venv/
+
+# Env / secrets
 .env
-.env.local
-.env*.local
+.env.*
+!.env.example
+serviceAccount*.json
+*-firebase-adminsdk*.json
+.firebase-admin.json
+credentials.json
+secrets.json
 
 # Node / Next
 node_modules/
@@ -18,6 +25,7 @@ node_modules/
 out/
 package-lock.json
 yarn.lock
+.vercel
 
 # IDE / OS
 .idea/
@@ -32,13 +40,8 @@ data/processed/*
 !data/processed/.gitkeep
 
 *.local.md
-serviceAccount*.json
-*-firebase-adminsdk*.json
-.firebase-admin.json
-.vercel
 
 # Arquitectura / intel de plataforma (solo local; no versionar)
 docs/private/
 
-*.tsbuildinfo
 *.tsbuildinfo

@@ -1,5 +1,9 @@
 allowBuilds:
-  '@firebase/util': false
+  "@firebase/util": false
   protobufjs: false
   sharp: false
   unrs-resolver: false
+
+# Endurecimiento supply-chain (react-doctor / pnpm)
+minimumReleaseAge: 10080
+trustPolicy: no-downgrade

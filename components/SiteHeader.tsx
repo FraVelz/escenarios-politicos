@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { BrandMark } from "@/components/BrandMark";
 import { CountrySwitcher } from "@/components/CountrySwitcher";
-import { easeOut } from "@/components/motion";
+import { easeOut } from "@/lib/ease";
 import {
   countryPath,
   defaultCountryIdSync,
@@ -40,6 +41,10 @@ export function SiteHeader({ countries }: { countries?: PaisMeta[] }) {
   const effectiveCountry = countryId ?? defaultCountryIdSync();
   const activePais = available.find((p) => p.id === effectiveCountry);
 
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+  const moreMenuId = useId();
+
   function navHref(path: string, global?: boolean): string {
     if (global) return path;
     if (countryId) return href(path);
@@ -55,10 +60,30 @@ export function SiteHeader({ countries }: { countries?: PaisMeta[] }) {
     return pathname === target || pathname.startsWith(`${target}/`);
   }
 
-  const moreActive = MORE.some((m) => isActive(m.path, m.global));
+  const moreActive = MORE.some((item) => isActive(item.path, item.global));
+
+  useEffect(() => {
+    setMoreOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    function onPointerDown(e: MouseEvent) {
+      if (!moreRef.current?.contains(e.target as Node)) setMoreOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMoreOpen(false);
+    }
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [moreOpen]);
 
   return (
-    <motion.header
+    <m.header
       className="sticky top-0 z-40 border-b border-border bg-black/95 backdrop-blur-[25px]"
       initial={reduce ? false : { opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
@@ -72,14 +97,14 @@ export function SiteHeader({ countries }: { countries?: PaisMeta[] }) {
             focusRing,
           )}
         >
-          <motion.span
+          <m.span
             className="inline-flex"
             whileHover={reduce ? undefined : { scale: 1.05 }}
             whileTap={reduce ? undefined : { scale: 0.96 }}
             transition={{ duration: 0.15 }}
           >
             <BrandMark />
-          </motion.span>
+          </m.span>
           <span className="text-sm font-medium tracking-tight text-white">
             Escenarios
             {activePais ? (
@@ -91,68 +116,86 @@ export function SiteHeader({ countries }: { countries?: PaisMeta[] }) {
           </span>
         </Link>
 
-        {/* Solo visible si hay ≥2 países; con uno el nombre ya va en la marca */}
         <CountrySwitcher initial={available} />
 
         <nav
-          className="ml-auto flex max-w-full items-center gap-0.5 overflow-x-auto text-sm"
+          className="ml-auto flex min-w-0 items-center gap-0.5 text-sm"
           aria-label="Principal"
         >
-          {PRIMARY.map((l) => {
-            const target = navHref(l.path);
-            const active = isActive(l.path);
-            return (
-              <Link
-                key={l.label}
-                href={target}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "group relative shrink-0 rounded-none px-2.5 py-1.5 text-bone no-underline transition-colors duration-150 hover:text-white",
-                  focusRingNav,
-                  active && "text-white",
-                )}
-              >
-                {l.label}
-                {active && (
-                  <motion.span
-                    layoutId={reduce ? undefined : "nav-active"}
-                    aria-hidden
-                    className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-[calc(100%-1.25rem)] -translate-x-1/2 bg-primary"
-                    transition={{ type: "spring", stiffness: 320, damping: 34 }}
-                  />
-                )}
-              </Link>
-            );
-          })}
+          <div className="flex max-w-full items-center gap-0.5 overflow-x-auto">
+            {PRIMARY.map((l) => {
+              const target = navHref(l.path);
+              const active = isActive(l.path);
+              return (
+                <Link
+                  key={l.label}
+                  href={target}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "group relative shrink-0 rounded-none px-2.5 py-1.5 text-bone no-underline transition-colors duration-150 hover:text-white",
+                    focusRingNav,
+                    active && "text-white",
+                  )}
+                >
+                  {l.label}
+                  {active && (
+                    <m.span
+                      layoutId={reduce ? undefined : "nav-active"}
+                      aria-hidden
+                      className="pointer-events-none absolute bottom-0.5 left-1/2 h-px w-[calc(100%-1.25rem)] -translate-x-1/2 bg-primary"
+                      transition={{
+                        type: "spring",
+                        stiffness: 320,
+                        damping: 34,
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
 
-          <details className="relative shrink-0">
-            <summary
+          <div ref={moreRef} className="relative shrink-0">
+            <button
+              type="button"
+              aria-expanded={moreOpen}
+              aria-haspopup="menu"
+              aria-controls={moreMenuId}
+              onClick={() => setMoreOpen((o) => !o)}
               className={cn(
-                "cursor-pointer list-none px-2.5 py-1.5 text-bone marker:content-none hover:text-white [&::-webkit-details-marker]:hidden",
+                "rounded-none px-2.5 py-1.5 text-bone transition-colors duration-150 hover:text-white",
                 focusRingNav,
-                moreActive && "text-white",
+                (moreOpen || moreActive) && "text-white",
               )}
             >
               Más
-            </summary>
-            <div className="absolute right-0 top-full z-50 mt-1 min-w-[10rem] border border-border bg-black py-1 shadow-lg">
-              {MORE.map((m) => (
-                <Link
-                  key={m.label}
-                  href={navHref(m.path, m.global)}
-                  className={cn(
-                    "block px-3 py-2 text-sm text-bone no-underline hover:bg-white/5 hover:text-white",
-                    focusRingNav,
-                    isActive(m.path, m.global) && "text-white",
-                  )}
-                >
-                  {m.label}
-                </Link>
-              ))}
-            </div>
-          </details>
+            </button>
+            {moreOpen && (
+              <div
+                id={moreMenuId}
+                role="menu"
+                className="absolute right-0 top-full z-50 mt-1 min-w-[10rem] border border-border bg-black py-1"
+              >
+                {MORE.map((item) => (
+                  <Link
+                    key={item.label}
+                    role="menuitem"
+                    href={navHref(item.path, item.global)}
+                    onClick={() => setMoreOpen(false)}
+                    className={cn(
+                      "block px-3 py-2 text-sm text-bone no-underline hover:bg-white/5 hover:text-white",
+                      focusRingNav,
+                      isActive(item.path, item.global) && "text-white",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
       </div>
-    </motion.header>
+    </m.header>
   );
 }

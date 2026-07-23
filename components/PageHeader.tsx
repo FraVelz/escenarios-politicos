@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
-import { easeOut } from "@/components/motion";
+import { easeOut } from "@/lib/ease";
 import { cn } from "@/lib/utils";
 
 export function PageHeader({
@@ -19,7 +19,7 @@ export function PageHeader({
   const reduce = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className={cn("mb-8 space-y-2", className)}
       initial={
         reduce ? false : { opacity: 0, y: 16, filter: "blur(6px)" }
@@ -31,7 +31,7 @@ export function PageHeader({
         {title}
       </h1>
       {description && (
-        <motion.div
+        <m.div
           className="max-w-2xl text-sm text-muted-foreground sm:text-[0.95rem]"
           initial={reduce ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,10 +42,10 @@ export function PageHeader({
           }}
         >
           {description}
-        </motion.div>
+        </m.div>
       )}
       {children && (
-        <motion.div
+        <m.div
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
@@ -55,8 +55,8 @@ export function PageHeader({
           }}
         >
           {children}
-        </motion.div>
+        </m.div>
       )}
-    </motion.div>
+    </m.div>
   );
 }

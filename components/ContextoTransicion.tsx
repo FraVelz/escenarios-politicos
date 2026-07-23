@@ -24,19 +24,21 @@ function initials(nombre: string): string {
 }
 
 function ActorPortrait({ actor }: { actor: MarcoActor }) {
-  const [broken, setBroken] = useState(!actor.imagen_url);
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  const showImage =
+    Boolean(actor.imagen_url) && failedUrl !== actor.imagen_url;
 
   return (
     <article className="flex flex-col gap-4 border border-border bg-black p-5 sm:p-6">
       <div className="relative aspect-[3/4] w-full max-w-[220px] overflow-hidden border border-border bg-zinc-950">
-        {!broken && actor.imagen_url ? (
+        {showImage && actor.imagen_url ? (
           <Image
             src={actor.imagen_url}
             alt={`Retrato de ${actor.nombre}`}
             fill
             className="object-cover object-top"
             sizes="220px"
-            onError={() => setBroken(true)}
+            onError={() => setFailedUrl(actor.imagen_url ?? null)}
           />
         ) : (
           <div
@@ -82,10 +84,10 @@ function ActorPortrait({ actor }: { actor: MarcoActor }) {
             Vice: {actor.vice_nombre}
           </p>
         )}
-        {(broken || !actor.imagen_url) && (
+        {!showImage && (
           <p className="text-xs text-muted-foreground">Imagen: N/D</p>
         )}
-        {actor.imagen_credito && !broken && actor.imagen_url && (
+        {actor.imagen_credito && showImage && (
           <p className="text-xs text-muted-foreground">
             Foto: {actor.imagen_credito}
             {actor.imagen_fuente_url && (

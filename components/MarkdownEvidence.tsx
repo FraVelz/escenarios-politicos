@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import { Check, Code2, Copy, Eye } from "lucide-react";
-import { easeOut } from "@/components/motion";
+import { easeOut } from "@/lib/ease";
 import { Button } from "@/components/ui/button";
 import { focusRingNav } from "@/lib/focus";
+import { sanitizeHtml } from "@/lib/sanitize-html";
 import { cn } from "@/lib/utils";
 
 type Mode = "preview" | "codigo";
@@ -108,7 +109,7 @@ export function MarkdownEvidence({
             aria-label={copied ? "Copiado" : "Copiar markdown"}
           >
             <AnimatePresence mode="wait" initial={false}>
-              <motion.span
+              <m.span
                 key={copied ? "ok" : "copy"}
                 className="inline-flex items-center gap-1.5"
                 initial={reduce ? false : { opacity: 0, y: 4 }}
@@ -127,7 +128,7 @@ export function MarkdownEvidence({
                     Copiar
                   </>
                 )}
-              </motion.span>
+              </m.span>
             </AnimatePresence>
           </Button>
         )}
@@ -135,7 +136,7 @@ export function MarkdownEvidence({
 
       <AnimatePresence mode="wait" initial={false}>
         {mode === "preview" ? (
-          <motion.div
+          <m.div
             key="preview"
             role="tabpanel"
             initial={reduce ? false : { opacity: 0, y: 8, filter: "blur(4px)" }}
@@ -145,11 +146,11 @@ export function MarkdownEvidence({
           >
             <article
               className="prose prose-invert max-w-none text-sm leading-relaxed prose-headings:font-medium prose-a:text-iris-glow prose-code:rounded-none prose-code:border prose-code:border-border prose-code:bg-transparent prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-iris prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-none prose-pre:border prose-pre:border-border prose-pre:bg-black"
-              dangerouslySetInnerHTML={{ __html: html }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
             />
-          </motion.div>
+          </m.div>
         ) : (
-          <motion.div
+          <m.div
             key="codigo"
             role="tabpanel"
             initial={reduce ? false : { opacity: 0, y: 8, filter: "blur(4px)" }}
@@ -160,7 +161,7 @@ export function MarkdownEvidence({
             <pre className="whitespace-pre-wrap break-words rounded-none border border-border bg-black p-5 font-mono text-xs leading-relaxed text-bone">
               {markdown}
             </pre>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

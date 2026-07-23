@@ -45,10 +45,3 @@ export function countryPath(countryId: string, path = ""): string {
   if (!clean || clean === "/") return `/${countryId}`;
   return `/${countryId}${clean}`;
 }
-
-/** Extrae country_id del pathname `/co/casos` → `co`. */
-export function countryFromPathname(pathname: string): string | null {
-  const m = pathname.match(/^\/([a-z]{2})(?:\/|$)/);
-  if (!m) return null;
-  return isCountryAvailableSync(m[1]) ? m[1] : null;
-}

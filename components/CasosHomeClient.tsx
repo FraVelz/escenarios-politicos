@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import type { Alerta, Caso } from "@/lib/types";
 import { useLiveCasos } from "@/components/LiveCasos";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { Reveal, easeOut, useMotionPresets } from "@/components/motion";
+import { Reveal, useMotionPresets } from "@/components/motion";
+import { easeOut } from "@/lib/ease";
 import { focusRingInline } from "@/lib/focus";
 import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
@@ -31,12 +32,15 @@ export function CasosHomeClient({
   topCred: topCredSeed,
   alertas,
   gapsCount,
+  /** Si true, omite alertas (el padre las renderiza a ancho completo). */
+  hideAlertas = false,
 }: {
   initialCasos: Caso[];
   identidad: Caso[];
   topCred: Caso[];
   alertas: Alerta[];
   gapsCount: number;
+  hideAlertas?: boolean;
 }) {
   const { countryId, href } = useCountryPath();
   const { casos, source } = useLiveCasos(initialCasos, countryId);
@@ -64,7 +68,7 @@ export function CasosHomeClient({
       : topCredSeed[0]?.credibilidad;
 
   return (
-    <div className="max-w-2xl space-y-10">
+    <div className="space-y-10">
       <p className="text-sm text-muted-foreground">
         {identidadCount} identidad
         {topPct != null ? ` · top ${topPct}%` : ""}
@@ -108,7 +112,7 @@ export function CasosHomeClient({
           <ul className="divide-y divide-border border-y border-border">
             {ranking.map((c) => (
               <li key={c.id}>
-                <motion.div
+                <m.div
                   className="flex items-baseline justify-between gap-4 py-3"
                   whileHover={
                     reduce
@@ -136,14 +140,14 @@ export function CasosHomeClient({
                     suffix="%"
                     className="shrink-0 text-lg"
                   />
-                </motion.div>
+                </m.div>
               </li>
             ))}
           </ul>
         )}
       </section>
 
-      {alertas.length > 0 && (
+      {alertas.length > 0 && !hideAlertas && (
         <section>
           <Reveal
             as="h2"
@@ -152,14 +156,14 @@ export function CasosHomeClient({
           >
             Alertas
           </Reveal>
-          <motion.ul
+          <m.ul
             className="space-y-3"
             variants={stagger(0.05)}
             initial="hidden"
             animate="show"
           >
             {alertas.map((a) => (
-              <motion.li key={a.id} variants={fadeUp} className="text-sm">
+              <m.li key={a.id} variants={fadeUp} className="text-sm">
                 <span className="text-warn">{a.tipo}</span>
                 <span className="text-muted-foreground"> — </span>
                 <span className="text-bone">{a.mensaje}</span>{" "}
@@ -172,11 +176,57 @@ export function CasosHomeClient({
                 >
                   ver
                 </Link>
-              </motion.li>
+              </m.li>
             ))}
-          </motion.ul>
+          </m.ul>
         </section>
       )}
     </div>
+  );
+}
+
+export function HomeAlertas({ alertas }: { alertas: Alerta[] }) {
+  const { href } = useCountryPath();
+  const { stagger, fadeUp } = useMotionPresets();
+
+  if (alertas.length === 0) return null;
+
+  return (
+    <section>
+      <Reveal
+        as="h2"
+        y={8}
+        className="mb-3 text-sm font-medium tracking-tight text-white"
+      >
+        Alertas
+      </Reveal>
+      <m.ul
+        className="grid gap-3 sm:grid-cols-2"
+        variants={stagger(0.05)}
+        initial="hidden"
+        animate="show"
+      >
+        {alertas.map((a) => (
+          <m.li
+            key={a.id}
+            variants={fadeUp}
+            className="border-t border-border pt-3 text-sm"
+          >
+            <span className="text-warn">{a.tipo}</span>
+            <span className="text-muted-foreground"> — </span>
+            <span className="text-bone">{a.mensaje}</span>{" "}
+            <Link
+              href={href(`/casos/${a.caso_id}`)}
+              className={cn(
+                "text-iris no-underline hover:text-iris-glow",
+                focusRingInline,
+              )}
+            >
+              ver
+            </Link>
+          </m.li>
+        ))}
+      </m.ul>
+    </section>
   );
 }

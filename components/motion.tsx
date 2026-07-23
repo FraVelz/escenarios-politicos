@@ -1,15 +1,13 @@
 "use client";
 
 import {
-  motion,
+  m,
   useReducedMotion,
   type HTMLMotionProps,
   type Variants,
 } from "motion/react";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
-
-export const easeOut = [0.22, 1, 0.36, 1] as const;
+import { easeOut } from "@/lib/ease";
 
 export function useMotionPresets() {
   const reduce = useReducedMotion();
@@ -87,7 +85,7 @@ export function FadeIn({
 }: HTMLMotionProps<"div"> & { delay?: number; y?: number; blur?: boolean }) {
   const reduce = useReducedMotion();
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={
         reduce
@@ -105,7 +103,7 @@ export function FadeIn({
       {...props}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -139,17 +137,17 @@ export function Reveal({
 
   switch (as) {
     case "h1":
-      return <motion.h1 {...motionProps} />;
+      return <m.h1 {...motionProps} />;
     case "h2":
-      return <motion.h2 {...motionProps} />;
+      return <m.h2 {...motionProps} />;
     case "p":
-      return <motion.p {...motionProps} />;
+      return <m.p {...motionProps} />;
     case "header":
-      return <motion.header {...motionProps} />;
+      return <m.header {...motionProps} />;
     case "section":
-      return <motion.section {...motionProps} />;
+      return <m.section {...motionProps} />;
     default:
-      return <motion.div {...motionProps} />;
+      return <m.div {...motionProps} />;
   }
 }
 
@@ -164,14 +162,14 @@ export function Stagger({
 }) {
   const { stagger } = useMotionPresets();
   return (
-    <motion.div
+    <m.div
       className={className}
       variants={stagger(gap)}
       initial="hidden"
       animate="show"
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -186,56 +184,8 @@ export function StaggerItem({
 }) {
   const { item, itemBlur } = useMotionPresets();
   return (
-    <motion.div className={className} variants={blur ? itemBlur : item}>
+    <m.div className={className} variants={blur ? itemBlur : item}>
       {children}
-    </motion.div>
-  );
-}
-
-/** Hover sutil para filas / links de ranking */
-export function MotionRow({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={cn(className)}
-      whileHover={
-        reduce
-          ? undefined
-          : { x: 3, transition: { duration: 0.15, ease: easeOut } }
-      }
-      whileTap={reduce ? undefined : { scale: 0.995 }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-/** @deprecated Prefer MotionRow; hover lift mínimo */
-export function MotionCard({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={cn("h-full", className)}
-      whileHover={
-        reduce
-          ? undefined
-          : { y: -2, transition: { duration: 0.2, ease: easeOut } }
-      }
-      whileTap={reduce ? undefined : { scale: 0.985 }}
-    >
-      {children}
-    </motion.div>
+    </m.div>
   );
 }

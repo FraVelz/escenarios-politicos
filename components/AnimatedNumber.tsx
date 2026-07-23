@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { SCORE_MONO } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,7 @@ export function AnimatedNumber({
   }, [value, reduce]);
 
   return (
-    <motion.span
+    <m.span
       className={cn(SCORE_MONO, "tabular-nums", className)}
       initial={reduce ? false : { opacity: 0.4 }}
       animate={{ opacity: 1 }}
@@ -46,6 +46,6 @@ export function AnimatedNumber({
     >
       {display}
       {suffix}
-    </motion.span>
+    </m.span>
   );
 }

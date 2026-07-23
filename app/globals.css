@@ -140,6 +140,22 @@
   --tw-prose-invert-td-borders: var(--color-border);
 }
 
+/* React Flow — mapa de poder (dark / sharp) */
+.poder-flow .react-flow__attribution {
+  background: transparent !important;
+  color: #a1a4a5 !important;
+  font-size: 10px !important;
+}
+.poder-flow .react-flow__attribution a {
+  color: #abafb4 !important;
+}
+.poder-flow .react-flow__controls-button {
+  border-radius: 0 !important;
+}
+.poder-flow .react-flow__node {
+  border-radius: 0 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

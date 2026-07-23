@@ -23,6 +23,3 @@ export const CROSS_GRID =
 
 export const CROSS_CELL =
   "relative border-b border-r border-border p-5 transition-colors duration-150 hover:bg-white/[0.03] after:pointer-events-none after:absolute after:right-[-1.5px] after:bottom-[-1.5px] after:z-[1] after:size-[3px] after:bg-[#464a4d] after:content-['']";
-
-export const CROSS_ROW =
-  "col-span-full grid grid-cols-[minmax(0,1fr)_auto_auto] items-baseline gap-x-6 gap-y-4 border-b border-r border-border py-4 pl-5 pr-5 transition-colors duration-150 hover:bg-white/[0.03] after:pointer-events-none after:absolute after:right-[-1.5px] after:bottom-[-1.5px] after:z-[1] after:size-[3px] after:bg-[#464a4d] after:content-[''] relative";

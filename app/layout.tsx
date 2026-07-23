@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SkipLink } from "@/components/SkipLink";
 import { PageAtmosphere } from "@/components/PageAtmosphere";
+import { MotionProvider } from "@/components/MotionProvider";
 import { listAvailableCountriesSync } from "@/lib/countries";
 import "./globals.css";
 
@@ -50,16 +51,18 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="relative min-h-full bg-black font-sans text-foreground">
-        <PageAtmosphere />
-        <SkipLink />
-        <SiteHeader countries={countries} />
-        <div
-          id="contenido-principal"
-          tabIndex={-1}
-          className="relative z-0 mx-auto max-w-[1200px] px-4 pb-16 pt-8 outline-none sm:px-6 lg:px-8"
-        >
-          {children}
-        </div>
+        <MotionProvider>
+          <PageAtmosphere />
+          <SkipLink />
+          <SiteHeader countries={countries} />
+          <div
+            id="contenido-principal"
+            tabIndex={-1}
+            className="relative z-0 mx-auto max-w-[1200px] px-4 pb-16 pt-8 outline-none sm:px-6 lg:px-8"
+          >
+            {children}
+          </div>
+        </MotionProvider>
       </body>
     </html>
   );

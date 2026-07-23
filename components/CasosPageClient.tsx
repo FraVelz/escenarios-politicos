@@ -89,12 +89,13 @@ export function CasosPageClient({ all }: { all: Caso[] }) {
   const { countryId } = useCountryPath();
   const { casos, source } = useLiveCasos(all, countryId);
 
-  const byArea = AREA_ORDER.map((area) => ({
-    area,
-    casos: casos
+  const byArea: { area: (typeof AREA_ORDER)[number]; casos: Caso[] }[] = [];
+  for (const area of AREA_ORDER) {
+    const areaCasos = casos
       .filter((c) => c.area === area)
-      .sort((a, b) => b.credibilidad - a.credibilidad),
-  })).filter((g) => g.casos.length > 0);
+      .sort((a, b) => b.credibilidad - a.credibilidad);
+    if (areaCasos.length > 0) byArea.push({ area, casos: areaCasos });
+  }
 
   const sinArea = casos.filter((c) => !c.area || !AREA_ORDER.includes(c.area));
 

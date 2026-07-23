@@ -1,0 +1,28 @@
+{
+  "$schema": "https://react.doctor/schema/config.json",
+  "ignore": {
+    "files": [
+      ".venv/**",
+      ".next/**",
+      "node_modules/**",
+      "src/escenarios/**",
+      "outputs/**",
+      "data/**"
+    ],
+    "rules": [
+      "react-doctor/firebase-permissive-rules",
+      "react-doctor/artifact-baas-authority-surface",
+      "react-doctor/command-execution-input-risk"
+    ],
+    "overrides": [
+      {
+        "files": ["components/motion.tsx"],
+        "rules": ["react-doctor/only-export-components"]
+      },
+      {
+        "files": ["components/CredibilidadDesgloseChartInner.tsx"],
+        "rules": ["react-doctor/prefer-dynamic-import"]
+      }
+    ]
+  }
+}

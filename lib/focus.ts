@@ -8,10 +8,6 @@ export const focusRing =
 export const focusRingNav =
   "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset";
 
-/** Card clickable (Link envolviendo Card) */
-export const focusRingCard =
-  "rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
-
 /** Link inline en tablas / párrafos */
 export const focusRingInline =
   "rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background";

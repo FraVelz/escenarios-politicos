@@ -22,14 +22,14 @@ export function FuentesMencionesClient({
   });
   const casoMap = Object.fromEntries(casos.map((c) => [c.id, c]));
 
-  const byCaso = casos
-    .map((c) => ({
-      caso: c,
-      items: menciones
-        .filter((m) => m.caso_id === c.id)
-        .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))),
-    }))
-    .filter((g) => g.items.length > 0);
+  const byCaso: { caso: (typeof casos)[number]; items: typeof menciones }[] =
+    [];
+  for (const c of casos) {
+    const items = menciones
+      .filter((m) => m.caso_id === c.id)
+      .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)));
+    if (items.length > 0) byCaso.push({ caso: c, items });
+  }
 
   const huerfanas = menciones.filter((m) => !casoMap[m.caso_id]);
 
