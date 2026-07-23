@@ -12,13 +12,17 @@ Pipeline hacia Firebase vía APIs en `https://escenarios-politicos.vercel.app` (
 | `wf-d-clasificar.ts` | CO WF-D Clasificar | `POST /api/classify-queue` |
 | `wf-e-alertas.ts` | CO WF-E Alertas | `POST /api/alertas-refresh` |
 
-Cloud IDs existentes (republicar tras sync del repo):
+Cloud (v2 API cron → endpoints; asignar credencial y publicar):
 
-| ID | Nombre |
-|----|--------|
-| `UoFg7Y0mGtt8yM9H` | CO WF-A Macro World Bank |
-| `sNfo0AZ9qb1vLr0T` | CO WF-C RSS Discurso/Medios |
-| `yXUW38FtfTgFLIt9` | CO WF-D Clasificar Credibilidad |
+| ID | Nombre | URL |
+|----|--------|-----|
+| `UoFg7Y0mGtt8yM9H` | CO WF-A Macro World Bank | legacy A (sigue válido) |
+| `a2mH5UL7sLgiP45T` | CO WF-B Oficiales Harvest | https://fravelz.app.n8n.cloud/workflow/a2mH5UL7sLgiP45T |
+| `wStdB7ofRqBM3mCu` | CO WF-C RSS Harvest | https://fravelz.app.n8n.cloud/workflow/wStdB7ofRqBM3mCu |
+| `aIJ8pdz0BFkszQt4` | CO WF-D Classify Queue | https://fravelz.app.n8n.cloud/workflow/aIJ8pdz0BFkszQt4 |
+| `wjJIc0uLaIVk4Kup` | CO WF-E Alertas Refresh | https://fravelz.app.n8n.cloud/workflow/wjJIc0uLaIVk4Kup |
+
+Legacy RSS/clasificar (`sNfo0AZ9qb1vLr0T`, `yXUW38FtfTgFLIt9`): desactivar al publicar v2.
 
 ## Credencial (obligatoria)
 
