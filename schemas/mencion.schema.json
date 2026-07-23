@@ -40,6 +40,25 @@
         "metricas": { "type": "boolean" },
         "contraste_status_quo": { "type": "boolean" }
       }
+    },
+    "fuente_id": { "type": "string" },
+    "fuente_clase": {
+      "type": "string",
+      "enum": ["oficial", "datos", "medio"]
+    },
+    "fuente_linea": {
+      "type": "string",
+      "enum": ["institucional", "centro", "critica", "otra"]
+    },
+    "evidencia_estado": {
+      "type": "string",
+      "enum": [
+        "candidato",
+        "contrastado",
+        "fundado",
+        "en_conflicto",
+        "rechazado"
+      ]
     }
   }
 }

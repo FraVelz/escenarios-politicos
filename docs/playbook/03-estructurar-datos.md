@@ -18,6 +18,25 @@
 
 Schemas: [`schemas/`](../../schemas/).
 
+## Niveles de evidencia y promoción
+
+Una sola fuente **nunca** mueve conclusiones. Estados de mención:
+
+| Estado | Significado | Cuenta en credibilidad |
+|--------|-------------|------------------------|
+| `candidato` | Sin contraste multi-fuente | No |
+| `contrastado` | ≥2 líneas independientes, o (oficial\|datos)+medio | Sí |
+| `fundado` | contrastado + checklist parcial con cita+URL | Sí + alimenta checklist del caso |
+| `en_conflicto` | Contradicción material | No → `ingest_errors` |
+| `rechazado` | Spam / URL inválida / fuera de registro | No |
+
+Nivel del caso (`evidencia_nivel`): `insuficiente` | `contraste_parcial` | `fundado`.
+
+- `n_menciones` / `repeticion_norm` = solo `contrastado|fundado`.
+- `n_menciones_candidato` = cola en cuarentena.
+- Registro de fuentes: [`content/fuentes_registro.json`](../../content/fuentes_registro.json).
+- Ventana de contraste: 90 días.
+
 ## Completitud
 
 1. Validar contra schema **antes** de escribir.

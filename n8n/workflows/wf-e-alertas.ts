@@ -7,27 +7,34 @@ import {
   newCredential,
 } from '@n8n/workflow-sdk';
 
-const every6h = trigger({
+const daily = trigger({
   type: 'n8n-nodes-base.scheduleTrigger',
   version: 1.3,
   config: {
-    name: 'Every 6h',
+    name: 'Daily alertas',
     parameters: {
       rule: {
-        interval: [{ field: 'hours', hoursInterval: 6 }],
+        interval: [
+          {
+            field: 'days',
+            daysInterval: 1,
+            triggerAtHour: 10,
+            triggerAtMinute: 0,
+          },
+        ],
       },
     },
   },
 });
 
-const harvest = node({
+const refresh = node({
   type: 'n8n-nodes-base.httpRequest',
   version: 4.4,
   config: {
-    name: 'POST rss-harvest',
+    name: 'POST alertas-refresh',
     parameters: {
       method: 'POST',
-      url: 'https://escenarios-politicos.vercel.app/api/rss-harvest?country_id=co',
+      url: 'https://escenarios-politicos.vercel.app/api/alertas-refresh?country_id=co',
       authentication: 'genericCredentialType',
       genericAuthType: 'httpHeaderAuth',
       sendHeaders: true,
@@ -37,7 +44,7 @@ const harvest = node({
       sendBody: true,
       contentType: 'json',
       specifyBody: 'json',
-      jsonBody: expr('={{ JSON.stringify({ trigger: "wf-c-rss" }) }}'),
+      jsonBody: expr('={{ JSON.stringify({ trigger: "wf-e-alertas" }) }}'),
     },
     credentials: {
       httpHeaderAuth: newCredential('Escenarios Ingest'),
@@ -46,10 +53,10 @@ const harvest = node({
 });
 
 const note = sticky(
-  'WF-C: POST /api/rss-harvest cosecha ≥3 RSS del registro (líneas distintas) → raw_items + ingest_runs.',
+  'WF-E: POST /api/alertas-refresh materializa alertas del playbook desde casos Firestore.',
 );
 
-export default workflow('wf-c-rss-colombia', 'CO WF-C RSS Discurso/Medios')
-  .add(every6h)
-  .to(harvest)
+export default workflow('wf-e-alertas-colombia', 'CO WF-E Alertas')
+  .add(daily)
+  .to(refresh)
   .add(note);

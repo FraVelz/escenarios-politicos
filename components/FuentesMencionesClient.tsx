@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { useLiveMenciones } from "@/components/LiveMenciones";
+import { EvidenciaEstadoBadge } from "@/components/EvidenciaBadge";
 import { areaLabel } from "@/lib/areas";
 import type { Caso, Mencion } from "@/lib/types";
 import { focusRingInline } from "@/lib/focus";
@@ -22,23 +23,40 @@ export function FuentesMencionesClient({
   });
   const casoMap = Object.fromEntries(casos.map((c) => [c.id, c]));
 
-  const byCaso: { caso: (typeof casos)[number]; items: typeof menciones }[] =
+  const filtered = menciones.filter(
+    (m) =>
+      m.evidencia_estado !== "rechazado" &&
+      !String(m.url || "").includes("example.com") &&
+      m.workflow_id !== "wf-test-ingest",
+  );
+
+  const byCaso: { caso: (typeof casos)[number]; items: typeof filtered }[] =
     [];
   for (const c of casos) {
-    const items = menciones
+    const items = filtered
       .filter((m) => m.caso_id === c.id)
       .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)));
     if (items.length > 0) byCaso.push({ caso: c, items });
   }
 
-  const huerfanas = menciones.filter((m) => !casoMap[m.caso_id]);
+  const huerfanas = filtered.filter((m) => !casoMap[m.caso_id]);
 
   return (
     <div className="space-y-6">
       <p className="text-sm text-muted-foreground">
         Menciones en vivo · fuente: <span className="text-bone">{source}</span> ·{" "}
-        {menciones.length} registro{menciones.length === 1 ? "" : "s"}
+        {filtered.length} registro{filtered.length === 1 ? "" : "s"} (sin
+        rechazados/test)
       </p>
+
+      <div className="mb-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
+        <span className="border border-border px-2 py-0.5">
+          candidato = cuarentena
+        </span>
+        <span className="border border-border px-2 py-0.5">
+          contrastado/fundado = cuenta en credibilidad
+        </span>
+      </div>
 
       <div className="divide-y divide-border border-y border-border">
         {byCaso.map(({ caso, items }) => (
@@ -72,6 +90,14 @@ export function FuentesMencionesClient({
                     <span className="text-iris">{m.tipo_pieza}</span>
                     <span className="mx-2 text-border">·</span>
                     {m.fecha}
+                    <span className="mx-2 text-border">·</span>
+                    <EvidenciaEstadoBadge estado={m.evidencia_estado} />
+                    {m.fuente_linea ? (
+                      <>
+                        <span className="mx-2 text-border">·</span>
+                        <span className="font-mono text-xs">{m.fuente_linea}</span>
+                      </>
+                    ) : null}
                   </p>
                   <blockquote className="border-l border-border pl-4 text-base leading-relaxed text-bone">
                     {m.cita_corta}

@@ -40,6 +40,19 @@ const EMPTY_CHECKLIST: EspecificidadChecklist = {
 /** Niveles de centralidad del playbook (no valores arbitrarios). */
 const ALLOWED_CENTRALIDAD = new Set([10, 20, 70, 100]);
 
+const evidenciaEstado = z.enum([
+  "candidato",
+  "contrastado",
+  "fundado",
+  "en_conflicto",
+  "rechazado",
+]);
+
+const evidenciaNivel = z.enum(["insuficiente", "contraste_parcial", "fundado"]);
+
+const fuenteClase = z.enum(["oficial", "datos", "medio"]);
+const fuenteLinea = z.enum(["institucional", "centro", "critica", "otra"]);
+
 const casoDomainSchema = z.strictObject({
   id: z.string().min(1),
   country_id: countryId,
@@ -48,6 +61,11 @@ const casoDomainSchema = z.strictObject({
   actor_id: z.string().min(1),
   fase: z.enum(["campana", "transicion", "gobierno"]),
   n_menciones: z.number().int().min(0),
+  n_menciones_candidato: z.number().int().min(0).optional(),
+  n_menciones_credibles: z.number().int().min(0).optional(),
+  lineas_fuente: z.array(z.string()).optional(),
+  evidencia_nivel: evidenciaNivel.optional(),
+  evidencia_resumen: z.string().optional(),
   especificidad: z.number().min(0).max(100),
   especificidad_checklist: checklist,
   credibilidad: z.number().min(0).max(100),
@@ -81,6 +99,10 @@ const mencionDomainSchema = z.strictObject({
   ingerido_en: z.string().min(1),
   workflow_id: workflowId,
   evidencia_checklist: checklist,
+  fuente_id: z.string().optional(),
+  fuente_clase: fuenteClase.optional(),
+  fuente_linea: fuenteLinea.optional(),
+  evidencia_estado: evidenciaEstado.optional(),
 });
 
 const indicadorDomainSchema = z.strictObject({
@@ -130,8 +152,11 @@ const rawItemDomainSchema = z.strictObject({
   resumen: z.string().optional(),
   fecha: z.string().optional(),
   fuente: z.string().optional(),
+  fuente_id: z.string().optional(),
+  linea: fuenteLinea.optional(),
   ingerido_en: z.string().optional(),
   clasificado: z.boolean().optional(),
+  estado_cola: z.enum(["pendiente", "procesado", "error"]).optional(),
 });
 
 const alertaDomainSchema = z.strictObject({
@@ -285,6 +310,8 @@ const ingestRunDomainSchema = z.strictObject({
   country_id: countryId.optional(),
   stats: z.record(z.string(), z.unknown()).optional(),
   error: z.string().max(2000).optional(),
+  n_ok: z.number().int().min(0).optional(),
+  n_error: z.number().int().min(0).optional(),
 });
 
 const DOMAIN_BY_COLLECTION: Record<string, z.ZodType<Record<string, unknown>>> = {

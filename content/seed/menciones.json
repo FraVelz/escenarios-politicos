@@ -9,7 +9,11 @@
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "presidencia-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-empleo-plan-01",
@@ -21,7 +25,11 @@
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "mintrabajo-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-paz-identidad-01",
@@ -33,7 +41,11 @@
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "presidencia-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-seguridad-rural-01",
@@ -45,7 +57,11 @@
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "presidencia-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-fiscal-01",
@@ -57,7 +73,11 @@
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "minhacienda-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-regla-fiscal-01",
@@ -69,7 +89,11 @@
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "minhacienda-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-salud-plan-01",
@@ -81,7 +105,11 @@
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "minsalud-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-salud-eslogan-01",
@@ -93,7 +121,11 @@
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "presidencia-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-edu-01",
@@ -105,7 +137,11 @@
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "mineducacion-co",
+    "fuente_clase": "oficial",
+    "fuente_linea": "institucional",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-infra-01",
@@ -117,7 +153,11 @@
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "seed-piloto",
+    "fuente_clase": "medio",
+    "fuente_linea": "otra",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-vivienda-01",
@@ -129,7 +169,11 @@
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "seed-piloto",
+    "fuente_clase": "medio",
+    "fuente_linea": "otra",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-justicia-01",
@@ -141,7 +185,11 @@
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "seed-piloto",
+    "fuente_clase": "medio",
+    "fuente_linea": "otra",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-exterior-01",
@@ -153,7 +201,11 @@
     "tipo_pieza": "discurso",
     "ingerido_en": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "fuente_id": "seed-piloto",
+    "fuente_clase": "medio",
+    "fuente_linea": "otra",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-energia-01",
@@ -165,7 +217,11 @@
     "cita_corta": "En el empalme se discute la transición energética; faltan instrumentos concretos.",
     "tipo_pieza": "noticia",
     "ingerido_en": "2026-07-22T20:00:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "fuente_id": "seed-piloto",
+    "fuente_clase": "medio",
+    "fuente_linea": "otra",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-agro-01",
@@ -177,7 +233,11 @@
     "cita_corta": "Relato de agro y seguridad alimentaria en transición, sin plan operativo publicado.",
     "tipo_pieza": "noticia",
     "ingerido_en": "2026-07-22T20:00:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "fuente_id": "seed-piloto",
+    "fuente_clase": "medio",
+    "fuente_linea": "otra",
+    "evidencia_estado": "candidato"
   },
   {
     "id": "men-estado-digital-01",
@@ -189,6 +249,10 @@
     "cita_corta": "Propuesta de Estado digital con mecanismos, plazos e indicadores; recursos N/D.",
     "tipo_pieza": "programa",
     "ingerido_en": "2026-07-22T20:00:00Z",
-    "workflow_id": "seed-manual"
+    "workflow_id": "seed-manual",
+    "fuente_id": "seed-piloto",
+    "fuente_clase": "medio",
+    "fuente_linea": "otra",
+    "evidencia_estado": "candidato"
   }
 ]

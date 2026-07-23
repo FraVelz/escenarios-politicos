@@ -6,11 +6,13 @@ import seedPartidos from "@/content/seed/partidos.json";
 import seedActores from "@/content/seed/actores.json";
 import seedEscenarios from "@/content/seed/escenarios.json";
 import seedSenales from "@/content/seed/senales.json";
+import seedIndicadores from "@/content/seed/indicadores.json";
 import type {
   ActorPolitico,
   Alerta,
   Caso,
   EscenarioSeed,
+  Indicador,
   Institucion,
   MarcoPolitico,
   Mencion,
@@ -83,6 +85,11 @@ export function listSenalesSync(countryId?: string): SenalSeed[] {
   return countryId ? all.filter((s) => s.country_id === countryId) : all;
 }
 
+export function listIndicadoresSync(countryId?: string): Indicador[] {
+  const all = seedIndicadores as Indicador[];
+  return countryId ? all.filter((i) => i.country_id === countryId) : all;
+}
+
 export function listAlertasSync(countryId?: string): Alerta[] {
   const casos = listCasosSync(countryId);
   const created_at = "2026-07-22T20:00:00Z";
@@ -112,18 +119,5 @@ export function listAlertasSync(countryId?: string): Alerta[] {
   return alertas;
 }
 
-export function gapsFromCasos(
-  casos: Caso[],
-): { caso_id: string; campos: string[] }[] {
-  const out: { caso_id: string; campos: string[] }[] = [];
-  for (const c of casos) {
-    const campos = [
-      ...(c.campos_pendientes ?? []),
-      ...(c.importancia === "N/D" ? ["importancia"] : []),
-      ...(c.factibilidad === "N/D" ? ["factibilidad"] : []),
-    ].filter((v, i, a) => a.indexOf(v) === i);
-    if (campos.length === 0) continue;
-    out.push({ caso_id: c.id, campos });
-  }
-  return out;
-}
+export { gapsFromCasos } from "./gaps";
+

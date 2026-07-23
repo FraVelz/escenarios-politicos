@@ -19,28 +19,39 @@ describe("integridad seed", () => {
     }
   });
 
-  it("n_menciones cuadra con menciones", () => {
-    const counts = new Map<string, number>();
+  it("n_menciones (credibles) cuadra; candidatos aparte", () => {
+    const credCounts = new Map<string, number>();
+    const candCounts = new Map<string, number>();
     for (const m of menciones) {
-      counts.set(m.caso_id, (counts.get(m.caso_id) || 0) + 1);
       expect(casoIds.has(m.caso_id)).toBe(true);
       expect(m.country_id).toBeTruthy();
       expect(actorIds.has(m.actor_id)).toBe(true);
+      expect(m.evidencia_estado).toBeTruthy();
+      if (m.evidencia_estado === "contrastado" || m.evidencia_estado === "fundado") {
+        credCounts.set(m.caso_id, (credCounts.get(m.caso_id) || 0) + 1);
+      }
+      if (m.evidencia_estado === "candidato") {
+        candCounts.set(m.caso_id, (candCounts.get(m.caso_id) || 0) + 1);
+      }
     }
     for (const c of casosList) {
-      expect(c.n_menciones).toBe(counts.get(c.id) || 0);
+      expect(c.n_menciones).toBe(credCounts.get(c.id) || 0);
+      expect(c.n_menciones_credibles ?? c.n_menciones).toBe(
+        credCounts.get(c.id) || 0,
+      );
+      expect(c.n_menciones_candidato ?? 0).toBe(candCounts.get(c.id) || 0);
+      expect(c.evidencia_nivel).toBeTruthy();
     }
   });
 
-  it("credibilidad y especificidad auditan con la fórmula", () => {
+  it("credibilidad audita con repetición solo de credibles", () => {
     for (const c of casosList) {
       expect(c.especificidad_checklist).toBeTruthy();
       expect(scoreEspecificidad(c.especificidad_checklist!)).toBe(
         c.especificidad,
       );
-      expect(scoreRepeticion(c.n_menciones)).toBe(
-        c.credibilidad_desglose.repeticion_norm,
-      );
+      const nCred = c.n_menciones_credibles ?? c.n_menciones;
+      expect(scoreRepeticion(nCred)).toBe(c.credibilidad_desglose.repeticion_norm);
       const { especificidad, repeticion_norm, centralidad } =
         c.credibilidad_desglose;
       const expected = Math.round(

@@ -30,6 +30,7 @@ const MORE: { path: string; label: string; global?: boolean }[] = [
   { path: "/partidos", label: "Partidos" },
   { path: "/actores", label: "Actores" },
   { path: "/gaps", label: "Gaps" },
+  { path: "/informes", label: "Informes" },
   { path: "/playbook", label: "Playbook", global: true },
 ];
 

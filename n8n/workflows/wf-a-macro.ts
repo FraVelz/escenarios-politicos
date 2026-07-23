@@ -28,6 +28,64 @@ const schedule = trigger({
   },
 });
 
+const runStart = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Run meta',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      language: 'javaScript',
+      jsCode: `const runId = 'run-wf-a-' + Date.now();
+const started = new Date().toISOString();
+return [{
+  json: {
+    run_id: runId,
+    started_at: started,
+    collection: 'ingest_runs',
+    id: runId,
+    data: {
+      id: runId,
+      workflow_id: 'wf-a-macro',
+      started_at: started,
+      status: 'partial',
+      country_id: 'co',
+      n_ok: 0,
+      n_error: 0,
+    },
+  },
+}];`,
+    },
+  },
+});
+
+const postRunStart = node({
+  type: 'n8n-nodes-base.httpRequest',
+  version: 4.4,
+  config: {
+    name: 'POST ingest_run start',
+    parameters: {
+      method: 'POST',
+      url: 'https://escenarios-politicos.vercel.app/api/ingest',
+      authentication: 'genericCredentialType',
+      genericAuthType: 'httpHeaderAuth',
+      sendHeaders: true,
+      headerParameters: {
+        parameters: [{ name: 'Content-Type', value: 'application/json' }],
+      },
+      sendBody: true,
+      contentType: 'json',
+      specifyBody: 'json',
+      jsonBody: expr(
+        '={{ JSON.stringify({ collection: $json.collection, id: $json.id, data: $json.data }) }}',
+      ),
+    },
+    credentials: {
+      httpHeaderAuth: newCredential('Escenarios Ingest'),
+    },
+  },
+});
+
 const fetchWb = node({
   type: 'n8n-nodes-base.httpRequest',
   version: 4.4,
@@ -35,7 +93,7 @@ const fetchWb = node({
     name: 'World Bank COL CPI',
     parameters: {
       method: 'GET',
-      url: 'https://api.worldbank.org/v2/country/COL/indicator/FP.CPI.TOTL.ZG?format=json&per_page=5',
+      url: 'https://api.worldbank.org/v2/country/COL/indicator/FP.CPI.TOTL.ZG?format=json&per_page=20',
       authentication: 'none',
     },
   },
@@ -49,7 +107,9 @@ const normalize = node({
     parameters: {
       mode: 'runOnceForAllItems',
       language: 'javaScript',
-      jsCode: `const items = $input.all().map(i => i.json);
+      jsCode: `const runId = $('Run meta').first().json.run_id;
+const started = $('Run meta').first().json.started_at;
+const items = $input.all().map(i => i.json);
 let rows = [];
 const first = items[0];
 if (Array.isArray(first) && Array.isArray(first[1])) {
@@ -65,11 +125,12 @@ if (Array.isArray(first) && Array.isArray(first[1])) {
   }
 }
 const latest = rows.find(r => r && r.value !== null && r.value !== undefined) || rows[0] || {};
+const hasValue = latest.value !== null && latest.value !== undefined && latest.value !== '';
 const indicador = {
   id: 'ind-inflacion-col',
   codigo: 'FP.CPI.TOTL.ZG',
   nombre: 'Inflacion IPC (World Bank)',
-  valor: latest.value ?? 'N/D',
+  valor: hasValue ? latest.value : 'N/D',
   fecha: latest.date ? String(latest.date) : 'N/D',
   fuente_url: 'https://api.worldbank.org/v2/country/COL/indicator/FP.CPI.TOTL.ZG?format=json',
   pais: 'COL',
@@ -78,30 +139,38 @@ const indicador = {
   updated_at: new Date().toISOString(),
   workflow_id: 'wf-a-macro',
 };
-const required = ['id','codigo','valor','fecha','fuente_url','pais'];
-const missing = required.filter(k => indicador[k] === undefined || indicador[k] === null || indicador[k] === '');
-if (missing.length) {
-  return [{
+const out = [];
+if (!hasValue) {
+  out.push({
     json: {
       collection: 'ingest_errors',
       id: 'err-wf-a-' + Date.now(),
-        data: {
-          reason: 'missing fields: ' + missing.join(','),
-          payload: { id: indicador.id, codigo: indicador.codigo },
-          country_id: 'co',
-          workflow_id: 'wf-a-macro',
-          created_at: new Date().toISOString(),
-        },
+      data: {
+        reason: 'world_bank_value_missing',
+        payload: { id: indicador.id, codigo: indicador.codigo, fecha: indicador.fecha },
+        country_id: 'co',
+        workflow_id: 'wf-a-macro',
+        created_at: new Date().toISOString(),
+      },
+      run_id: runId,
+      started_at: started,
+      n_ok: 0,
+      n_error: 1,
     },
-  }];
+  });
 }
-return [{
+out.push({
   json: {
     collection: 'indicadores',
     id: indicador.id,
     data: indicador,
+    run_id: runId,
+    started_at: started,
+    n_ok: hasValue ? 1 : 0,
+    n_error: hasValue ? 0 : 1,
   },
-}];`,
+});
+return out;`,
     },
   },
 });
@@ -126,6 +195,76 @@ const postIngest = node({
       jsonBody: expr(
         '={{ JSON.stringify({ collection: $json.collection, id: $json.id, data: $json.data }) }}',
       ),
+      options: {
+        batching: {
+          batch: { batchSize: 5, batchInterval: 400 },
+        },
+      },
+    },
+    credentials: {
+      httpHeaderAuth: newCredential('Escenarios Ingest'),
+    },
+  },
+});
+
+const finishRun = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Finish run meta',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      language: 'javaScript',
+      jsCode: `const meta = $('Normalize Indicador').all().map(i => i.json);
+const runId = meta[0]?.run_id || ('run-wf-a-' + Date.now());
+const started = meta[0]?.started_at || new Date().toISOString();
+let nOk = 0, nErr = 0;
+for (const m of meta) {
+  nOk += Number(m.n_ok || 0);
+  nErr += Number(m.n_error || 0);
+}
+const status = nErr && nOk ? 'partial' : nErr ? 'error' : 'ok';
+return [{
+  json: {
+    collection: 'ingest_runs',
+    id: runId,
+    data: {
+      id: runId,
+      workflow_id: 'wf-a-macro',
+      started_at: started,
+      finished_at: new Date().toISOString(),
+      status,
+      country_id: 'co',
+      n_ok: nOk,
+      n_error: nErr,
+      stats: { indicator: 'FP.CPI.TOTL.ZG' },
+    },
+  },
+}];`,
+    },
+  },
+});
+
+const postRunEnd = node({
+  type: 'n8n-nodes-base.httpRequest',
+  version: 4.4,
+  config: {
+    name: 'POST ingest_run end',
+    parameters: {
+      method: 'POST',
+      url: 'https://escenarios-politicos.vercel.app/api/ingest',
+      authentication: 'genericCredentialType',
+      genericAuthType: 'httpHeaderAuth',
+      sendHeaders: true,
+      headerParameters: {
+        parameters: [{ name: 'Content-Type', value: 'application/json' }],
+      },
+      sendBody: true,
+      contentType: 'json',
+      specifyBody: 'json',
+      jsonBody: expr(
+        '={{ JSON.stringify({ collection: $json.collection, id: $json.id, data: $json.data }) }}',
+      ),
     },
     credentials: {
       httpHeaderAuth: newCredential('Escenarios Ingest'),
@@ -134,12 +273,16 @@ const postIngest = node({
 });
 
 const note = sticky(
-  'WF-A → /api/ingest (Admin SDK). Credencial Header Auth "Escenarios Ingest": Name=x-ingest-secret, Value=<INGEST_SECRET de Vercel>. Nunca pegar el secreto en el nodo.',
+  'WF-A → indicadores + ingest_runs. Credencial Header Auth "Escenarios Ingest".',
 );
 
 export default workflow('wf-a-macro-colombia', 'CO WF-A Macro World Bank')
   .add(schedule)
+  .to(runStart)
+  .to(postRunStart)
   .to(fetchWb)
   .to(normalize)
   .to(postIngest)
+  .to(finishRun)
+  .to(postRunEnd)
   .add(note);

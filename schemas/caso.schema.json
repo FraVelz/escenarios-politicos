@@ -46,6 +46,17 @@
     "actor_id": { "type": "string", "minLength": 1 },
     "fase": { "type": "string", "enum": ["campana", "transicion", "gobierno"] },
     "n_menciones": { "type": "integer", "minimum": 0 },
+    "n_menciones_candidato": { "type": "integer", "minimum": 0 },
+    "n_menciones_credibles": { "type": "integer", "minimum": 0 },
+    "lineas_fuente": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidencia_nivel": {
+      "type": "string",
+      "enum": ["insuficiente", "contraste_parcial", "fundado"]
+    },
+    "evidencia_resumen": { "type": "string" },
     "primera_mencion_at": { "type": ["string", "null"] },
     "ultima_mencion_at": { "type": ["string", "null"] },
     "especificidad": { "type": "number", "minimum": 0, "maximum": 100 },

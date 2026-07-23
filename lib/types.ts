@@ -11,6 +11,18 @@ export type PaisMeta = {
   locale: string;
 };
 
+export type EvidenciaEstado =
+  | "candidato"
+  | "contrastado"
+  | "fundado"
+  | "en_conflicto"
+  | "rechazado";
+
+export type EvidenciaNivel =
+  | "insuficiente"
+  | "contraste_parcial"
+  | "fundado";
+
 export type Caso = {
   id: string;
   country_id: CountryId;
@@ -18,7 +30,13 @@ export type Caso = {
   area: AreaId;
   actor_id: string;
   fase: "campana" | "transicion" | "gobierno";
+  /** Conteo de menciones credibles (contrastado|fundado) — entrada a repetición. */
   n_menciones: number;
+  n_menciones_candidato?: number;
+  n_menciones_credibles?: number;
+  lineas_fuente?: string[];
+  evidencia_nivel?: EvidenciaNivel;
+  evidencia_resumen?: string;
   primera_mencion_at?: string | null;
   ultima_mencion_at?: string | null;
   especificidad: number;
@@ -47,6 +65,36 @@ export type Mencion = {
   tipo_pieza: string;
   ingerido_en: string;
   workflow_id: string;
+  fuente_id?: string;
+  fuente_clase?: "oficial" | "datos" | "medio";
+  fuente_linea?: "institucional" | "centro" | "critica" | "otra";
+  evidencia_estado?: EvidenciaEstado;
+  evidencia_checklist?: EspecificidadChecklist;
+};
+
+export type Indicador = {
+  id: string;
+  country_id: CountryId;
+  codigo: string;
+  nombre?: string;
+  valor: number | string;
+  fecha: string;
+  fuente_url: string;
+  pais: string;
+  unidad?: string;
+  updated_at?: string;
+  workflow_id: string;
+};
+
+export type IngestRun = {
+  id: string;
+  workflow_id: string;
+  started_at: string;
+  finished_at?: string;
+  status: "ok" | "error" | "partial";
+  country_id?: CountryId;
+  stats?: Record<string, unknown>;
+  error?: string;
 };
 
 export type Alerta = {

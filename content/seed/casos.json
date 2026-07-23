@@ -5,7 +5,7 @@
     "area": "paz_seguridad",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-06-15",
     "ultima_mencion_at": "2026-06-15",
     "especificidad": 55,
@@ -17,10 +17,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 60,
+    "credibilidad": 55,
     "credibilidad_desglose": {
       "especificidad": 55,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 100
     },
     "discurso_identidad": true,
@@ -28,11 +28,18 @@
     "factibilidad": "baja",
     "funcion_retorica": "votos",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Discurso identidad: máxima centralidad.",
+    "notas": "Discurso identidad: máxima centralidad. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "seguridad-rural-eslogan",
@@ -40,7 +47,7 @@
     "area": "paz_seguridad",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-07-10",
     "ultima_mencion_at": "2026-07-10",
     "especificidad": 0,
@@ -52,10 +59,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 26,
+    "credibilidad": 21,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 70
     },
     "discurso_identidad": false,
@@ -63,11 +70,18 @@
     "factibilidad": "media",
     "funcion_retorica": "votos",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Una mención seed; relato de cierre sin plan operativo. Frecuencia aún baja.",
+    "notas": "Una mención seed; relato de cierre sin plan operativo. Frecuencia aún baja. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "empleo-con-plan",
@@ -75,7 +89,7 @@
     "area": "empleo",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-03-10",
     "ultima_mencion_at": "2026-03-10",
     "especificidad": 100,
@@ -87,10 +101,10 @@
       "metricas": true,
       "contraste_status_quo": true
     },
-    "credibilidad": 56,
+    "credibilidad": 51,
     "credibilidad_desglose": {
       "especificidad": 100,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -98,11 +112,18 @@
     "factibilidad": "media",
     "funcion_retorica": "agenda",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Una mención detallada supera al eslogan repetido.",
+    "notas": "Una mención detallada supera al eslogan repetido. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "empleo-eslogan",
@@ -110,7 +131,7 @@
     "area": "empleo",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-07-01",
     "ultima_mencion_at": "2026-07-01",
     "especificidad": 0,
@@ -122,10 +143,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 11,
+    "credibilidad": 6,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -134,12 +155,18 @@
     "funcion_retorica": "votos",
     "revision": "en_seguimiento",
     "campos_pendientes": [
-      "factibilidad"
+      "factibilidad",
+      "evidencia_contraste"
     ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Una mención seed; eslogan sin plan. Credibilidad baja por especificidad 0, no por volumen.",
+    "notas": "Una mención seed; eslogan sin plan. Credibilidad baja por especificidad 0, no por volumen. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "reforma-fiscal-tecnica",
@@ -147,7 +174,7 @@
     "area": "fiscal",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-02-01",
     "ultima_mencion_at": "2026-02-01",
     "especificidad": 60,
@@ -159,10 +186,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 35,
+    "credibilidad": 30,
     "credibilidad_desglose": {
       "especificidad": 60,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 10
     },
     "discurso_identidad": false,
@@ -170,11 +197,18 @@
     "factibilidad": "media",
     "funcion_retorica": "agenda",
     "revision": "pendiente",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Baja frecuencia en seed / alta importancia: no perder por rareza.",
+    "notas": "Baja frecuencia en seed / alta importancia: no perder por rareza. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "regla-fiscal-relajacion",
@@ -182,7 +216,7 @@
     "area": "fiscal",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-06-01",
     "ultima_mencion_at": "2026-06-01",
     "especificidad": 50,
@@ -194,10 +228,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 34,
+    "credibilidad": 29,
     "credibilidad_desglose": {
       "especificidad": 50,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -205,11 +239,18 @@
     "factibilidad": "baja",
     "funcion_retorica": "ambiguedad",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Relato atractivo; choque probable con ancla fiscal.",
+    "notas": "Relato atractivo; choque probable con ancla fiscal. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "salud-plan-hospitales",
@@ -217,7 +258,7 @@
     "area": "salud",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-05-12",
     "ultima_mencion_at": "2026-05-12",
     "especificidad": 100,
@@ -229,10 +270,10 @@
       "metricas": true,
       "contraste_status_quo": true
     },
-    "credibilidad": 56,
+    "credibilidad": 51,
     "credibilidad_desglose": {
       "especificidad": 100,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -240,11 +281,18 @@
     "factibilidad": "media",
     "funcion_retorica": "agenda",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Alta especificidad en salud.",
+    "notas": "Alta especificidad en salud. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "salud-eslogan-gratis",
@@ -252,7 +300,7 @@
     "area": "salud",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-07-05",
     "ultima_mencion_at": "2026-07-05",
     "especificidad": 0,
@@ -264,10 +312,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 11,
+    "credibilidad": 6,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -275,11 +323,18 @@
     "factibilidad": "baja",
     "funcion_retorica": "votos",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Eslogan de gratuidad sin instrumentos en la mención seed.",
+    "notas": "Eslogan de gratuidad sin instrumentos en la mención seed. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "educacion-jornada-unica",
@@ -287,7 +342,7 @@
     "area": "educacion",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-06-20",
     "ultima_mencion_at": "2026-06-20",
     "especificidad": 55,
@@ -299,10 +354,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 36,
+    "credibilidad": 31,
     "credibilidad_desglose": {
       "especificidad": 55,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -310,10 +365,18 @@
     "factibilidad": "media",
     "funcion_retorica": "agenda",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)",
+    "notas": "Piloto: menciones en estado candidato hasta contraste multi-fuente."
   },
   {
     "id": "infra-metro-regional",
@@ -321,7 +384,7 @@
     "area": "infraestructura",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-05-20",
     "ultima_mencion_at": "2026-05-20",
     "especificidad": 60,
@@ -333,10 +396,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 38,
+    "credibilidad": 33,
     "credibilidad_desglose": {
       "especificidad": 60,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -344,11 +407,18 @@
     "factibilidad": "baja",
     "funcion_retorica": "votos",
     "revision": "pendiente",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Credibilidad media del relato; factibilidad baja por caja y tiempos.",
+    "notas": "Credibilidad media del relato; factibilidad baja por caja y tiempos. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "vivienda-subsidios",
@@ -356,7 +426,7 @@
     "area": "vivienda_social",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-04-18",
     "ultima_mencion_at": "2026-04-18",
     "especificidad": 55,
@@ -368,10 +438,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 36,
+    "credibilidad": 31,
     "credibilidad_desglose": {
       "especificidad": 55,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -379,10 +449,18 @@
     "factibilidad": "media",
     "funcion_retorica": "votos",
     "revision": "en_seguimiento",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)",
+    "notas": "Piloto: menciones en estado candidato hasta contraste multi-fuente."
   },
   {
     "id": "justicia-reforma-procesal",
@@ -390,7 +468,7 @@
     "area": "justicia",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-02-28",
     "ultima_mencion_at": "2026-02-28",
     "especificidad": 60,
@@ -402,10 +480,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 35,
+    "credibilidad": 30,
     "credibilidad_desglose": {
       "especificidad": 60,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 10
     },
     "discurso_identidad": false,
@@ -413,11 +491,18 @@
     "factibilidad": "alta",
     "funcion_retorica": "agenda",
     "revision": "pendiente",
-    "campos_pendientes": [],
+    "campos_pendientes": [
+      "evidencia_contraste"
+    ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Plan procesal con factibilidad relativa alta; volumen de menciones aún bajo.",
+    "notas": "Plan procesal con factibilidad relativa alta; volumen de menciones aún bajo. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "exterior-discurso-soberania",
@@ -425,7 +510,7 @@
     "area": "exterior",
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-07-08",
     "ultima_mencion_at": "2026-07-08",
     "especificidad": 0,
@@ -437,10 +522,10 @@
       "metricas": false,
       "contraste_status_quo": false
     },
-    "credibilidad": 26,
+    "credibilidad": 21,
     "credibilidad_desglose": {
       "especificidad": 0,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 70
     },
     "discurso_identidad": false,
@@ -449,12 +534,18 @@
     "funcion_retorica": "votos",
     "revision": "en_seguimiento",
     "campos_pendientes": [
-      "factibilidad"
+      "factibilidad",
+      "evidencia_contraste"
     ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Tema de cierre sin instrumentos concretos.",
+    "notas": "Tema de cierre sin instrumentos concretos. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "energia-transicion-electo",
@@ -462,7 +553,7 @@
     "area": "energia_clima",
     "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-07-15",
     "ultima_mencion_at": "2026-07-15",
     "especificidad": 35,
@@ -474,10 +565,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 27,
+    "credibilidad": 22,
     "credibilidad_desglose": {
       "especificidad": 35,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -487,12 +578,18 @@
     "revision": "pendiente",
     "campos_pendientes": [
       "factibilidad",
-      "recursos"
+      "recursos",
+      "evidencia_contraste"
     ],
     "updated_at": "2026-07-22T15:00:00Z",
-    "notas": "Caso semilla transición 2026; contrastar con plan de gobierno cuando haya fuente primaria.",
+    "notas": "Caso semilla transición 2026; contrastar con plan de gobierno cuando haya fuente primaria. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "agro-seguridad-alimentaria",
@@ -500,7 +597,7 @@
     "area": "agro_rural",
     "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-07-12",
     "ultima_mencion_at": "2026-07-12",
     "especificidad": 10,
@@ -512,10 +609,10 @@
       "metricas": false,
       "contraste_status_quo": true
     },
-    "credibilidad": 16,
+    "credibilidad": 11,
     "credibilidad_desglose": {
       "especificidad": 10,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -525,12 +622,18 @@
     "revision": "pendiente",
     "campos_pendientes": [
       "factibilidad",
-      "plan_mecanismo"
+      "plan_mecanismo",
+      "evidencia_contraste"
     ],
     "updated_at": "2026-07-22T15:00:00Z",
-    "notas": "Baja especificidad; pendiente de menciones con URL en ingest.",
+    "notas": "Baja especificidad; pendiente de menciones con URL en ingest. Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   },
   {
     "id": "estado-digital-tramites",
@@ -538,7 +641,7 @@
     "area": "tecnologia_estado",
     "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
-    "n_menciones": 1,
+    "n_menciones": 0,
     "primera_mencion_at": "2026-07-05",
     "ultima_mencion_at": "2026-07-05",
     "especificidad": 80,
@@ -550,10 +653,10 @@
       "metricas": true,
       "contraste_status_quo": true
     },
-    "credibilidad": 47,
+    "credibilidad": 42,
     "credibilidad_desglose": {
       "especificidad": 80,
-      "repeticion_norm": 20,
+      "repeticion_norm": 0,
       "centralidad": 20
     },
     "discurso_identidad": false,
@@ -562,11 +665,17 @@
     "funcion_retorica": "agenda",
     "revision": "en_seguimiento",
     "campos_pendientes": [
-      "recursos"
+      "recursos",
+      "evidencia_contraste"
     ],
     "updated_at": "2026-07-22T15:00:00Z",
-    "notas": "Alta especificidad relativa en checklist; poca repetición (n=1).",
+    "notas": "Alta especificidad relativa en checklist; poca repetición (n=1). Piloto: menciones en estado candidato hasta contraste multi-fuente.",
     "workflow_id": "seed-manual",
-    "country_id": "co"
+    "country_id": "co",
+    "n_menciones_candidato": 1,
+    "n_menciones_credibles": 0,
+    "lineas_fuente": [],
+    "evidencia_nivel": "insuficiente",
+    "evidencia_resumen": "0 credibles / 1 candidatos / 1 total; nivel=insuficiente (piloto metodológico)"
   }
 ]

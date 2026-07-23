@@ -23,6 +23,14 @@
         { "fieldPath": "country_id", "order": "ASCENDING" },
         { "fieldPath": "credibilidad", "order": "DESCENDING" }
       ]
+    },
+    {
+      "collectionGroup": "raw_items",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "country_id", "order": "ASCENDING" },
+        { "fieldPath": "clasificado", "order": "ASCENDING" }
+      ]
     }
   ],
   "fieldOverrides": []

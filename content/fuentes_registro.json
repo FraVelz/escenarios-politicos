@@ -1,0 +1,147 @@
+[
+  {
+    "id": "presidencia-co",
+    "nombre": "Presidencia de la República",
+    "clase": "oficial",
+    "linea": "institucional",
+    "url_base": "https://www.presidencia.gov.co",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "congreso-co",
+    "nombre": "Congreso de la República",
+    "clase": "oficial",
+    "linea": "institucional",
+    "url_base": "https://www.congreso.gov.co",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "banrep-co",
+    "nombre": "Banco de la República",
+    "clase": "datos",
+    "linea": "institucional",
+    "url_base": "https://www.banrep.gov.co",
+    "rss_url": "https://www.banrep.gov.co/es/rss.xml",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "dane-co",
+    "nombre": "DANE",
+    "clase": "datos",
+    "linea": "institucional",
+    "url_base": "https://www.dane.gov.co",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "worldbank",
+    "nombre": "World Bank Open Data",
+    "clase": "datos",
+    "linea": "institucional",
+    "url_base": "https://api.worldbank.org",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "minhacienda-co",
+    "nombre": "Ministerio de Hacienda",
+    "clase": "oficial",
+    "linea": "institucional",
+    "url_base": "https://www.minhacienda.gov.co",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "el-espectador",
+    "nombre": "El Espectador",
+    "clase": "medio",
+    "linea": "centro",
+    "url_base": "https://www.elespectador.com",
+    "rss_url": "https://www.elespectador.com/rss.xml",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "el-tiempo",
+    "nombre": "El Tiempo",
+    "clase": "medio",
+    "linea": "centro",
+    "url_base": "https://www.eltiempo.com",
+    "rss_url": "https://www.eltiempo.com/rss/colombia.xml",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "la-silla-vacia",
+    "nombre": "La Silla Vacía",
+    "clase": "medio",
+    "linea": "critica",
+    "url_base": "https://www.lasillavacia.com",
+    "rss_url": "https://www.lasillavacia.com/feed/",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "portafolio",
+    "nombre": "Portafolio",
+    "clase": "medio",
+    "linea": "otra",
+    "url_base": "https://www.portafolio.co",
+    "rss_url": "https://www.portafolio.co/rss/economia",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "mintrabajo-co",
+    "nombre": "Ministerio del Trabajo",
+    "clase": "oficial",
+    "linea": "institucional",
+    "url_base": "https://www.mintrabajo.gov.co",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "minsalud-co",
+    "nombre": "Ministerio de Salud",
+    "clase": "oficial",
+    "linea": "institucional",
+    "url_base": "https://www.minsalud.gov.co",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "mineducacion-co",
+    "nombre": "Ministerio de Educación",
+    "clase": "oficial",
+    "linea": "institucional",
+    "url_base": "https://www.mineducacion.gov.co",
+    "activo": true,
+    "peso_contraste": 1,
+    "country_id": "co"
+  },
+  {
+    "id": "seed-piloto",
+    "nombre": "Seed metodológico (piloto)",
+    "clase": "medio",
+    "linea": "otra",
+    "url_base": "https://escenarios-politicos.vercel.app",
+    "activo": true,
+    "peso_contraste": 0,
+    "country_id": "co"
+  }
+]

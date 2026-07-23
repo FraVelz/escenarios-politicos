@@ -86,6 +86,15 @@ export function HomeSituacional({
         </Reveal>
       </header>
 
+      <p className="border border-border px-4 py-3 text-sm text-muted-foreground">
+        Piloto metodológico: las menciones seed están en cuarentena (
+        <span className="text-bone">candidato</span>) hasta contraste
+        multi-fuente. Credibilidad del relato ≠ probabilidad de cumplimiento.
+        Ver <Link href={href("/gaps")} className="text-bone no-underline hover:text-white">/gaps</Link>{" "}
+        y{" "}
+        <Link href={href("/fuentes")} className="text-bone no-underline hover:text-white">/fuentes</Link>.
+      </p>
+
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
         {topSenales.length > 0 ? (
           <section>

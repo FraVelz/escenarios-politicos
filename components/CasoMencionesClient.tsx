@@ -2,10 +2,14 @@
 
 import { ExternalLink } from "lucide-react";
 import { useLiveMenciones } from "@/components/LiveMenciones";
+import {
+  EvidenciaEstadoBadge,
+} from "@/components/EvidenciaBadge";
 import type { Mencion } from "@/lib/types";
 import { focusRingInline } from "@/lib/focus";
 import { useCountryPath } from "@/lib/useCountryPath";
 import { cn } from "@/lib/utils";
+import { isCreditableEstado } from "@/lib/evidencia";
 
 export function CasoMencionesClient({
   casoId,
@@ -20,29 +24,49 @@ export function CasoMencionesClient({
     countryId,
   });
 
+  const visible = menciones.filter(
+    (m) =>
+      m.evidencia_estado !== "rechazado" &&
+      !String(m.url || "").includes("example.com") &&
+      m.workflow_id !== "wf-test-ingest",
+  );
+  const credibles = visible.filter((m) =>
+    isCreditableEstado(m.evidencia_estado),
+  );
+  const candidatos = visible.filter(
+    (m) => (m.evidencia_estado || "candidato") === "candidato",
+  );
+
   return (
     <section>
       <h2 className="mb-1 text-base font-medium tracking-tight text-white">
         Menciones y fuentes
       </h2>
       <p className="mb-6 text-sm text-muted-foreground">
-        Datos: <span className="text-bone">{source}</span> · {menciones.length}{" "}
-        mención
-        {menciones.length === 1 ? "" : "es"}
+        Datos: <span className="text-bone">{source}</span> · {credibles.length}{" "}
+        credibles · {candidatos.length} en cuarentena (candidato)
       </p>
-      {menciones.length === 0 && (
+      {visible.length === 0 && (
         <p className="text-sm text-muted-foreground">Sin menciones.</p>
       )}
       <ul className="space-y-6">
-        {menciones
+        {visible
           .slice()
           .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)))
           .map((m) => (
             <li key={m.id}>
-              <p className="mb-2 text-sm text-muted-foreground">
+              <p className="mb-2 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 <span className="text-iris">{m.tipo_pieza}</span>
-                <span className="mx-2 text-border">·</span>
+                <span className="text-border">·</span>
                 {m.fecha}
+                <span className="text-border">·</span>
+                <EvidenciaEstadoBadge estado={m.evidencia_estado} />
+                {m.fuente_linea ? (
+                  <>
+                    <span className="text-border">·</span>
+                    <span className="font-mono text-xs">{m.fuente_linea}</span>
+                  </>
+                ) : null}
               </p>
               <blockquote className="border-l border-border pl-4 text-base leading-relaxed text-bone">
                 {m.cita_corta}
@@ -67,6 +91,7 @@ export function CasoMencionesClient({
               </div>
               <p className="mt-1 pl-4 text-xs text-muted-foreground">
                 {m.workflow_id} · {m.id}
+                {m.fuente_id ? ` · ${m.fuente_id}` : ""}
               </p>
             </li>
           ))}

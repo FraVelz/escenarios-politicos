@@ -61,6 +61,10 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+    match /ops_summary/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
     // Errores de ingest: lectura pública solo de metadatos sanitizados
     // (reason, workflow_id, country_id, created_at). Pipelines no deben
     // persistir secretos ni cuerpos completos en payload.
