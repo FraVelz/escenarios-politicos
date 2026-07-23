@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, limit, query } from "firebase/firestore";
 import { getDb } from "@/lib/firebase";
 import {
   listAvailableCountriesSync,
@@ -38,9 +38,21 @@ export function CountrySwitcher({
       try {
         const db = getDb();
         const ids = new Set<string>();
-        for (const colName of ["casos", "marco"] as const) {
-          const snap = await getDocs(collection(db, colName));
-          for (const doc of snap.docs) {
+        // Preferir colección paises (barata) antes de escanear casos/marco.
+        const paisesSnap = await getDocs(
+          query(collection(db, "paises"), limit(50)),
+        );
+        for (const doc of paisesSnap.docs) {
+          const id = doc.id || doc.data()?.id;
+          if (typeof id === "string" && id.length >= 2) ids.add(id);
+          const cid = doc.data()?.country_id;
+          if (typeof cid === "string" && cid.length >= 2) ids.add(cid);
+        }
+        if (ids.size === 0) {
+          const marcoSnap = await getDocs(
+            query(collection(db, "marco"), limit(20)),
+          );
+          for (const doc of marcoSnap.docs) {
             const cid = doc.data()?.country_id;
             if (typeof cid === "string" && cid.length >= 2) ids.add(cid);
           }
@@ -78,7 +90,7 @@ export function CountrySwitcher({
       >
         {countries.map((c) => (
           <option key={c.id} value={c.id}>
-            {c.nombre_corto}
+            {c.nombre_corto || c.nombre}
           </option>
         ))}
       </select>

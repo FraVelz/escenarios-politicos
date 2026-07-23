@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AREA_ORDER, areaLabel } from "@/lib/areas";
 import type { Caso } from "@/lib/types";
 import { CasoFlags } from "@/components/CasoFlags";
+import { useLiveCasos } from "@/components/LiveCasos";
 import { PageHeader } from "@/components/PageHeader";
 import {
   Table,
@@ -85,21 +86,24 @@ function CasosTable({ casos }: { casos: Caso[] }) {
 }
 
 export function CasosPageClient({ all }: { all: Caso[] }) {
+  const { countryId } = useCountryPath();
+  const { casos, source } = useLiveCasos(all, countryId);
+
   const byArea = AREA_ORDER.map((area) => ({
     area,
-    casos: all
+    casos: casos
       .filter((c) => c.area === area)
       .sort((a, b) => b.credibilidad - a.credibilidad),
   })).filter((g) => g.casos.length > 0);
 
-  const sinArea = all.filter((c) => !c.area || !AREA_ORDER.includes(c.area));
+  const sinArea = casos.filter((c) => !c.area || !AREA_ORDER.includes(c.area));
 
   const tabs = [
-    ...byArea.map(({ area, casos }) => ({
+    ...byArea.map(({ area, casos: areaCasos }) => ({
       id: area,
       label: areaLabel(area),
-      count: casos.length,
-      casos,
+      count: areaCasos.length,
+      casos: areaCasos,
     })),
     ...(sinArea.length > 0
       ? [
@@ -122,7 +126,8 @@ export function CasosPageClient({ all }: { all: Caso[] }) {
         description="Agrupados por área. Dentro de cada área: credibilidad %, frecuencia y factibilidad."
       >
         <p className="text-sm text-muted-foreground">
-          {all.length} casos · {byArea.length} áreas
+          {casos.length} casos · {byArea.length} áreas · fuente:{" "}
+          <span className="text-smoke">{source}</span>
         </p>
       </PageHeader>
 

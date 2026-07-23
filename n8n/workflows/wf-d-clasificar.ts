@@ -21,12 +21,7 @@ const classify = node({
     parameters: {
       mode: 'runOnceForAllItems',
       language: 'javaScript',
-      jsCode: `const POINTS = { plan_mecanismo:25, responsables_equipo:20, plazos:15, recursos:20, metricas:10, contraste_status_quo:10 };
-function scoreEspecificidad(c){ let s=0; for (const k of Object.keys(POINTS)) if (c[k]) s += POINTS[k]; return Math.min(100,s); }
-function scoreRepeticion(n){ if(n<=0)return 0; if(n===1)return 20; if(n>=30)return 100; return Math.round(20+(Math.log10(n)/Math.log10(30))*80); }
-function calcular({checklist,n,identidad}){ const e=scoreEspecificidad(checklist); const r=scoreRepeticion(n); const cen=identidad?100:20; const cr=Math.round(Math.min(100,Math.max(0,0.45*e+0.25*r+0.3*cen))); return {credibilidad:cr,desglose:{especificidad:e,repeticion_norm:r,centralidad:cen}}; }
-
-/** Catálogo CO: no inventar casos desde títulos RSS. */
+      jsCode: `/** Catálogo CO: no inventar casos desde títulos RSS. */
 const CATALOG = [
   { id:'paz-total-identidad', actor_id:'co-abelardo-espriella', area:'paz_seguridad', keys:['paz total','paz','seguridad'] },
   { id:'seguridad-rural-eslogan', actor_id:'co-abelardo-espriella', area:'paz_seguridad', keys:['seguridad rural','rural'] },
@@ -126,8 +121,6 @@ for (const item of $input.all()) {
     continue;
   }
   const checklist = { plan_mecanismo:false, responsables_equipo:false, plazos:false, recursos:false, metricas:false, contraste_status_quo:false };
-  const n = 1;
-  const scores = calcular({ checklist, n, identidad: false });
   const mencionId = 'men-' + Buffer.from(String(url)).toString('base64url').slice(0, 28);
   const mencion = {
     id: mencionId,
@@ -142,34 +135,7 @@ for (const item of $input.all()) {
     workflow_id: 'wf-d-clasificar',
     evidencia_checklist: checklist,
   };
-  // Solo mención + gap de caso (no inventar actor N/D ni slug nuevo).
-  // Recalcular n_menciones/credibilidad queda a un job de consolidación / revisión humana.
-  const casoPatch = {
-    id: hit.id,
-    country_id,
-    titulo: hit.id,
-    area: hit.area,
-    actor_id: hit.actor_id,
-    fase: 'campana',
-    n_menciones: n,
-    especificidad: scores.desglose.especificidad,
-    especificidad_checklist: checklist,
-    credibilidad: scores.credibilidad,
-    credibilidad_desglose: scores.desglose,
-    discurso_identidad: false,
-    importancia: 'N/D',
-    factibilidad: 'N/D',
-    revision: 'pendiente',
-    campos_pendientes: ['importancia','factibilidad','recalcular_n_menciones'],
-    updated_at: new Date().toISOString(),
-    workflow_id: 'wf-d-clasificar',
-  };
   out.push({ json: { collection: 'menciones', id: mencion.id, data: mencion } });
-  // No overwrite título del caso seed: omitir casoPatch si solo queremos mención.
-  // Emite ingest_runs marker vía campos_pendientes en mención; caso solo si raw.force_caso_patch.
-  if (raw.force_caso_patch) {
-    out.push({ json: { collection: 'casos', id: casoPatch.id, data: casoPatch } });
-  }
 }
 return out;`,
     },
@@ -209,7 +175,7 @@ const postIngest = node({
 });
 
 const note = sticky(
-  'WF-D: empareja raw a catálogo CO (sin inventar casos/actor N/D). unmatched → ingest_errors. force_caso_patch=true para parchear caso.',
+  'WF-D: empareja raw a catálogo CO. unmatched → ingest_errors. /api/ingest consolida n/cred del caso.',
 );
 
 export default workflow('wf-d-clasificar-colombia', 'CO WF-D Clasificar Credibilidad')

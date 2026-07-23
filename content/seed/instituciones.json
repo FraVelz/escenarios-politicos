@@ -6,7 +6,11 @@
     "capa": "ejecutivo",
     "rol": "Jefe de Estado y de Gobierno",
     "veto_notes": "Agenda ejecutiva y nombramientos; detalle de facultad N/D en este seed.",
-    "caso_ids": [],
+    "caso_ids": [
+      "energia-transicion-electo",
+      "estado-digital-tramites",
+      "exterior-discurso-soberania"
+    ],
     "fuentes": [
       {
         "medio": "Función Pública (normativa)",
@@ -23,7 +27,11 @@
     "capa": "legislativo",
     "rol": "Legislativo bicameral",
     "veto_notes": "Posesión y leyes; composición de bancadas N/D en este seed.",
-    "caso_ids": [],
+    "caso_ids": [
+      "reforma-fiscal-tecnica",
+      "justicia-reforma-procesal",
+      "salud-plan-hospitales"
+    ],
     "fuentes": [
       {
         "medio": "Congreso de la República",
@@ -40,7 +48,9 @@
     "capa": "judicial",
     "rol": "Control constitucional",
     "veto_notes": "N/D — capacidad de bloqueo caso a caso requiere fuente.",
-    "caso_ids": [],
+    "caso_ids": [
+      "justicia-reforma-procesal"
+    ],
     "fuentes": [
       {
         "medio": "Corte Constitucional",
@@ -56,7 +66,9 @@
     "capa": "macro",
     "rol": "Banca central",
     "veto_notes": "Autonomía monetaria; tensiones públicas solo con fuente.",
-    "caso_ids": [],
+    "caso_ids": [
+      "regla-fiscal-relajacion"
+    ],
     "fuentes": [
       {
         "medio": "Banco de la República",
@@ -73,7 +85,8 @@
     "rol": "Seguridad y defensa (nivel institucional)",
     "veto_notes": "N/D operativo; sin datos sensibles.",
     "caso_ids": [
-      "seguridad-rural-eslogan"
+      "seguridad-rural-eslogan",
+      "paz-total-identidad"
     ],
     "fuentes": []
   },
@@ -84,7 +97,11 @@
     "capa": "regional",
     "rol": "Departamentos y municipios",
     "veto_notes": "N/D — mapa subnacional no cargado.",
-    "caso_ids": [],
+    "caso_ids": [
+      "agro-seguridad-alimentaria",
+      "vivienda-subsidios",
+      "infra-metro-regional"
+    ],
     "fuentes": []
   },
   {

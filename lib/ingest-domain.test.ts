@@ -83,4 +83,28 @@ describe("validateDomainPayload", () => {
     });
     expect(ok.ok).toBe(true);
   });
+
+  it("sanitiza payload grueso de ingest_errors", () => {
+    const result = validateDomainPayload("ingest_errors", {
+      id: "e2",
+      country_id: "co",
+      workflow_id: "wf-d-clasificar",
+      reason: "x",
+      created_at: "2026-07-22T00:00:00Z",
+      payload: {
+        url: "https://example.com/a",
+        titulo: "Hola",
+        secret: "should-drop",
+        body: "full article text",
+      },
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.data.payload).toEqual({
+        url: "https://example.com/a",
+        titulo: "Hola",
+        fecha: null,
+      });
+    }
+  });
 });

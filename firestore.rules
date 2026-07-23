@@ -46,6 +46,10 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+    match /paises/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
     match /informes/{id} {
       allow read: if true;
       allow write: if false;

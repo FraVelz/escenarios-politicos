@@ -3,7 +3,7 @@
     "id": "co-sen-posesion-fecha",
     "country_id": "co",
     "titulo": "Fecha de posesión 7 ago 2026",
-    "detalle": "Confirmada en medios de referencia.",
+    "detalle": "Confirmada en medios de referencia. Señal de confirmación del escenario base.",
     "escenario_id": "co-esc-base",
     "caso_id": null,
     "fuente_url": "https://caracol.com.co/2026/06/21/fecha-de-la-posesion-de-abelardo-de-la-espriella-el-nuevo-presidente-de-colombia-2026-2030/",
@@ -13,10 +13,30 @@
     "id": "co-sen-sede-militar",
     "country_id": "co",
     "titulo": "Debate sede de posesión",
-    "detalle": "Disputa política/jurídica según prensa.",
+    "detalle": "Disputa política/jurídica según prensa. Vigilar fricción de empalme (base).",
     "escenario_id": "co-esc-base",
     "caso_id": null,
     "fuente_url": "https://www.infobae.com/colombia/2026/07/08/abelardo-de-la-espriella-confirmo-que-se-posesionara-en-una-guarnicion-militar-como-nunca-se-ha-hecho/",
     "created_at": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "co-sen-opt-instrumentos",
+    "country_id": "co",
+    "titulo": "Instrumentos de agenda publicados (umbral)",
+    "detalle": "N/D — señal de confirmación del escenario optimista cuando haya plan/mecanismos con URL+fecha primaria.",
+    "escenario_id": "co-esc-opt",
+    "caso_id": "estado-digital-tramites",
+    "fuente_url": null,
+    "created_at": "2026-07-22T20:00:00Z"
+  },
+  {
+    "id": "co-sen-pes-veto-congreso",
+    "country_id": "co",
+    "titulo": "Veto legislativo prolongado",
+    "detalle": "N/D — señal de confirmación del escenario pesimista si hay bloqueo documentado en Congreso con fuente.",
+    "escenario_id": "co-esc-pes",
+    "caso_id": "reforma-fiscal-tecnica",
+    "fuente_url": null,
+    "created_at": "2026-07-22T20:00:00Z"
   }
 ]
