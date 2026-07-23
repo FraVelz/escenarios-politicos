@@ -4,16 +4,27 @@
   "title": "Indicador",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "codigo", "valor", "fecha", "fuente_url", "pais"],
+  "required": [
+    "id",
+    "country_id",
+    "codigo",
+    "valor",
+    "fecha",
+    "fuente_url",
+    "pais",
+    "workflow_id"
+  ],
   "properties": {
     "id": { "type": "string" },
+    "country_id": { "type": "string", "minLength": 2, "maxLength": 8 },
     "codigo": { "type": "string" },
     "nombre": { "type": "string" },
     "valor": { "type": ["number", "string"] },
     "fecha": { "type": "string" },
     "fuente_url": { "type": "string" },
-    "pais": { "type": "string", "const": "COL" },
+    "pais": { "type": "string" },
     "unidad": { "type": "string" },
-    "updated_at": { "type": "string" }
+    "updated_at": { "type": "string" },
+    "workflow_id": { "type": "string" }
   }
 }

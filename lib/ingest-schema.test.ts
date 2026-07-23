@@ -73,12 +73,18 @@ describe("ingestBodySchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("raw_items no exige country_id", () => {
-    const result = ingestBodySchema.safeParse({
+  it("raw_items exige country_id", () => {
+    const bad = ingestBodySchema.safeParse({
       collection: "raw_items",
       id: "r-1",
       data: { workflow_id: "wf-a" },
     });
-    expect(result.success).toBe(true);
+    expect(bad.success).toBe(false);
+    const ok = ingestBodySchema.safeParse({
+      collection: "raw_items",
+      id: "r-1",
+      data: { workflow_id: "wf-a", country_id: "co" },
+    });
+    expect(ok.success).toBe(true);
   });
 });

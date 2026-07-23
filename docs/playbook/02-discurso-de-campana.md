@@ -58,7 +58,7 @@ Escala log (aprox.):
 
 Fórmula práctica: `min(100, round(20 * log10(n_menciones) / log10(30) * 5))` o tabla anterior. El spam no debe dominar al detalle.
 
-Implementación de referencia en `src/credibilidad.ts` (web) / lógica equivalente en n8n Code node.
+Implementación de referencia en `lib/credibilidad.ts` (web) / lógica equivalente en n8n Code node.
 
 ### Centralidad (peso 30%)
 

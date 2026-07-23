@@ -34,6 +34,7 @@ const COLLECTIONS_REQUIRE_COUNTRY = new Set([
   "ingest_errors",
   "eventos",
   "indicadores",
+  "raw_items",
 ]);
 
 const countryIdSchema = z

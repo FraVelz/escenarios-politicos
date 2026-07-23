@@ -51,7 +51,7 @@ for (const item of items) {
         id: 'err-wf-c-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
         data: {
           reason: 'missing url',
-          payload: j,
+          payload: { titulo: j.title || null },
           country_id: 'co',
           workflow_id: 'wf-c-rss',
           created_at: new Date().toISOString(),

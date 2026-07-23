@@ -4,12 +4,16 @@
   "title": "IngestError",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "workflow_id", "reason", "payload", "created_at"],
+  "required": ["id", "country_id", "workflow_id", "reason", "created_at"],
   "properties": {
     "id": { "type": "string" },
+    "country_id": { "type": "string", "minLength": 2, "maxLength": 8 },
     "workflow_id": { "type": "string" },
     "reason": { "type": "string" },
-    "payload": {},
+    "payload": {
+      "type": "object",
+      "description": "Sanitizado: sin secretos ni cuerpos completos de fuente."
+    },
     "created_at": { "type": "string" }
   }
 }

@@ -86,6 +86,7 @@
       "items": { "type": "string" }
     },
     "updated_at": { "type": "string" },
-    "notas": { "type": "string" }
+    "notas": { "type": "string" },
+    "workflow_id": { "type": "string" }
   }
 }

@@ -20,12 +20,13 @@ En n8n → Credentials → **Header Auth** llamada `Escenarios Ingest`:
 ## Seguridad
 
 - Firestore: lectura pública de tablero; **write solo Admin**.
-- `/api/ingest` exige secreto; sin fallback; body ≤ 256 KB.
-- `raw_items` / `ingest_*` no son legibles desde el cliente.
+- `/api/ingest` exige secreto; sin fallback; body ≤ 256 KB; valida dominio (casos/menciones/indicadores/ingest_errors).
+- `raw_items` / `ingest_runs` no son legibles desde el cliente.
+- `ingest_errors` es legible (para `/gaps`) pero el payload debe ir **sanitizado** (sin secretos ni cuerpos completos).
 
 ## Flujo
 
 1. WF-A → `indicadores`
 2. WF-C → `raw_items`
-3. WF-D (manual) → `menciones` + `casos`
-4. Web: `/fuentes`, `/casos/[id]`
+3. WF-D (manual) → empareja a catálogo CO → `menciones` (o `ingest_errors` si unmatched)
+4. Web: `/co/fuentes`, `/co/casos/[id]`

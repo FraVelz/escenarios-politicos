@@ -51,6 +51,7 @@ export type Mencion = {
 
 export type Alerta = {
   id: string;
+  country_id?: string;
   tipo: string;
   caso_id: string;
   mensaje: string;

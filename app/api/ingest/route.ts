@@ -1,6 +1,7 @@
 import { timingSafeEqual } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebaseAdmin";
+import { validateDomainPayload } from "@/lib/ingest-domain";
 import {
   MAX_BODY_BYTES,
   ingestBodySchema,
@@ -68,12 +69,18 @@ export async function POST(req: NextRequest) {
   }
 
   const { collection, id, data } = parsed.data;
-
-  // Evitar que el payload cambie el id del documento.
   const payload = { ...data, id };
 
+  const domain = validateDomainPayload(collection, payload);
+  if (!domain.ok) {
+    return NextResponse.json({ error: domain.message }, { status: 400 });
+  }
+
   try {
-    await getAdminDb().collection(collection).doc(id).set(payload, { merge: true });
+    await getAdminDb()
+      .collection(collection)
+      .doc(id)
+      .set(domain.data, { merge: true });
     return NextResponse.json({ ok: true, collection, id });
   } catch (e) {
     console.error("ingest write failed", e);

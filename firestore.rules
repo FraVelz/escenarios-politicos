@@ -57,7 +57,9 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
-    // Errores de ingest: lectura para gaps; escritura solo Admin
+    // Errores de ingest: lectura pública solo de metadatos sanitizados
+    // (reason, workflow_id, country_id, created_at). Pipelines no deben
+    // persistir secretos ni cuerpos completos en payload.
     match /ingest_errors/{id} {
       allow read: if true;
       allow write: if false;

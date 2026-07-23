@@ -6,7 +6,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2025-10-01",
+    "primera_mencion_at": "2026-06-15",
     "ultima_mencion_at": "2026-06-15",
     "especificidad": 55,
     "especificidad_checklist": {
@@ -41,7 +41,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2025-09-01",
+    "primera_mencion_at": "2026-07-10",
     "ultima_mencion_at": "2026-07-10",
     "especificidad": 0,
     "especificidad_checklist": {
@@ -65,7 +65,7 @@
     "revision": "en_seguimiento",
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Alta repetición y centralidad de cierre; sin plan operativo.",
+    "notas": "Una mención seed; relato de cierre sin plan operativo. Frecuencia aún baja.",
     "workflow_id": "seed-manual",
     "country_id": "co"
   },
@@ -111,7 +111,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2025-11-01",
+    "primera_mencion_at": "2026-07-01",
     "ultima_mencion_at": "2026-07-01",
     "especificidad": 0,
     "especificidad_checklist": {
@@ -137,7 +137,7 @@
       "factibilidad"
     ],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Mucha repetición, cero detalle.",
+    "notas": "Una mención seed; eslogan sin plan. Credibilidad baja por especificidad 0, no por volumen.",
     "workflow_id": "seed-manual",
     "country_id": "co"
   },
@@ -172,7 +172,7 @@
     "revision": "pendiente",
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Baja frecuencia / alta importancia.",
+    "notas": "Baja frecuencia en seed / alta importancia: no perder por rareza.",
     "workflow_id": "seed-manual",
     "country_id": "co"
   },
@@ -183,7 +183,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2026-01-20",
+    "primera_mencion_at": "2026-06-01",
     "ultima_mencion_at": "2026-06-01",
     "especificidad": 50,
     "especificidad_checklist": {
@@ -218,7 +218,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2026-04-01",
+    "primera_mencion_at": "2026-05-12",
     "ultima_mencion_at": "2026-05-12",
     "especificidad": 100,
     "especificidad_checklist": {
@@ -253,7 +253,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2025-11-15",
+    "primera_mencion_at": "2026-07-05",
     "ultima_mencion_at": "2026-07-05",
     "especificidad": 0,
     "especificidad_checklist": {
@@ -277,7 +277,7 @@
     "revision": "en_seguimiento",
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Ruido vacío en salud.",
+    "notas": "Eslogan de gratuidad sin instrumentos en la mención seed.",
     "workflow_id": "seed-manual",
     "country_id": "co"
   },
@@ -288,7 +288,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2026-02-10",
+    "primera_mencion_at": "2026-06-20",
     "ultima_mencion_at": "2026-06-20",
     "especificidad": 55,
     "especificidad_checklist": {
@@ -322,7 +322,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2026-03-01",
+    "primera_mencion_at": "2026-05-20",
     "ultima_mencion_at": "2026-05-20",
     "especificidad": 60,
     "especificidad_checklist": {
@@ -357,7 +357,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2026-01-08",
+    "primera_mencion_at": "2026-04-18",
     "ultima_mencion_at": "2026-04-18",
     "especificidad": 55,
     "especificidad_checklist": {
@@ -415,7 +415,7 @@
     "revision": "pendiente",
     "campos_pendientes": [],
     "updated_at": "2026-07-21T21:30:00Z",
-    "notas": "Poco ruido; factibilidad relativa alta.",
+    "notas": "Plan procesal con factibilidad relativa alta; volumen de menciones aún bajo.",
     "workflow_id": "seed-manual",
     "country_id": "co"
   },
@@ -426,7 +426,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "campana",
     "n_menciones": 1,
-    "primera_mencion_at": "2025-10-20",
+    "primera_mencion_at": "2026-07-08",
     "ultima_mencion_at": "2026-07-08",
     "especificidad": 0,
     "especificidad_checklist": {
@@ -463,7 +463,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
     "n_menciones": 1,
-    "primera_mencion_at": "2026-06-25",
+    "primera_mencion_at": "2026-07-15",
     "ultima_mencion_at": "2026-07-15",
     "especificidad": 35,
     "especificidad_checklist": {
@@ -501,7 +501,7 @@
     "actor_id": "co-abelardo-espriella",
     "fase": "transicion",
     "n_menciones": 1,
-    "primera_mencion_at": "2026-07-01",
+    "primera_mencion_at": "2026-07-12",
     "ultima_mencion_at": "2026-07-12",
     "especificidad": 10,
     "especificidad_checklist": {
@@ -565,7 +565,7 @@
       "recursos"
     ],
     "updated_at": "2026-07-22T15:00:00Z",
-    "notas": "Alta especificidad relativa; poca repetición aún.",
+    "notas": "Alta especificidad relativa en checklist; poca repetición (n=1).",
     "workflow_id": "seed-manual",
     "country_id": "co"
   }

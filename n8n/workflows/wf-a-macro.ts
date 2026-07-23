@@ -87,7 +87,7 @@ if (missing.length) {
       id: 'err-wf-a-' + Date.now(),
         data: {
           reason: 'missing fields: ' + missing.join(','),
-          payload: indicador,
+          payload: { id: indicador.id, codigo: indicador.codigo },
           country_id: 'co',
           workflow_id: 'wf-a-macro',
           created_at: new Date().toISOString(),

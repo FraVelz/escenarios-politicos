@@ -84,25 +84,32 @@ export function listSenalesSync(countryId?: string): SenalSeed[] {
 }
 
 export function listAlertasSync(countryId?: string): Alerta[] {
-  const alertas: Alerta[] = [
-    {
-      id: "ruido-empleo-eslogan",
-      tipo: "ruido_vacio",
-      caso_id: "empleo-eslogan",
-      mensaje: "Alta frecuencia + baja especificidad",
-      created_at: "2026-07-21T20:00:00Z",
-    },
-    {
-      id: "identidad-paz-factibilidad",
-      tipo: "credibilidad_alta_factibilidad_baja",
-      caso_id: "paz-total-identidad",
-      mensaje: "Discurso identidad con factibilidad baja",
-      created_at: "2026-07-21T20:00:00Z",
-    },
-  ];
-  if (!countryId) return alertas;
-  const casoIds = new Set(listCasosSync(countryId).map((c) => c.id));
-  return alertas.filter((a) => casoIds.has(a.caso_id));
+  const casos = listCasosSync(countryId);
+  const created_at = "2026-07-22T20:00:00Z";
+  const alertas: Alerta[] = [];
+  for (const c of casos) {
+    if (c.discurso_identidad && c.factibilidad === "baja") {
+      alertas.push({
+        id: `alerta-identidad-${c.id}`,
+        country_id: c.country_id,
+        tipo: "credibilidad_alta_factibilidad_baja",
+        caso_id: c.id,
+        mensaje: "Discurso identidad con factibilidad baja",
+        created_at,
+      });
+    }
+    if (c.n_menciones >= 10 && c.especificidad < 20) {
+      alertas.push({
+        id: `alerta-ruido-${c.id}`,
+        country_id: c.country_id,
+        tipo: "ruido_vacio",
+        caso_id: c.id,
+        mensaje: "Alta frecuencia + baja especificidad",
+        created_at,
+      });
+    }
+  }
+  return alertas;
 }
 
 export function gapsFromCasos(casos: Caso[]): { caso_id: string; campos: string[] }[] {

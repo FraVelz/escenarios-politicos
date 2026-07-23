@@ -74,8 +74,8 @@ export function GapsIngestErrors() {
         Errores de ingest
       </h2>
       <p className="mb-4 text-sm text-muted-foreground">
-        Fallos del pipeline (n8n → Firestore). Vacío no implica pipeline
-        saludable si aún no hay runs.
+        Fallos del pipeline (n8n → Firestore). Payload sanitizado (sin
+        secretos). Vacío no implica pipeline saludable si aún no hay runs.
       </p>
       {status === "loading" && (
         <p className="text-sm text-muted-foreground">Cargando…</p>
